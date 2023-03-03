@@ -1,81 +1,118 @@
 # AktuellerCoronaLagebericht
+
 Dieses Scriptable iOS Widget zeigt Covid-19 Daten für Deutschland, ein Bundesland und einen Landkreis an. Es lassen sich diverse unterschiedliche Werte zur Anzeige konfigurieren. Dadurch erhält man den individuell benötigten Überblick über die aktuelle Lage.
 
 Das Skript funktioniert derzeit ausschließlich als großes (large) Widget.
 
+
 # Datenquellen:
 RKI Corona Landkreise: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0
+
 RKI Corona Bundesländer: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Coronafälle_in_den_Bundesländern/FeatureServer/0
-RKI COVID19: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0
+
+RKI COVID19: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0 
+
 RKI COVID19 Sums: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Covid19_RKI_Sums/FeatureServer/0
 
+
 # Datenbeschreibung:
+
 RKI Corona Landkreise: https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/917fc37a709542548cc3be077a786c17_0
+
 RKI Corona Bundesländer: https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/ef4b445a53c1406892257fe63129a8ea_0
+
 RKI COVID19: https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0
+
 RKI COVID19 Sums: https://covid-19-geohub-deutschland-esridech.hub.arcgis.com/datasets/9644cad183f042e79fb6ad00eadc4ecf_0
 
+
 # Benutzerdefinierte Lizenz:
+
 Bundesamt für Kartographie und Geodäsie
+
 Robert Koch-Institut
-Die Daten sind die „Fallzahlen in Deutschland“ des Robert Koch-Institut (RKI) und stehen unter der Open Data Datenlizenz
-Deutschland – Namensnennung – Version 2.0 zur Verfügung.
+
+Die Daten sind die „Fallzahlen in Deutschland“ des Robert Koch-Institut (RKI) und stehen unter der Open Data Datenlizenz Deutschland – Namensnennung – Version 2.0 zur Verfügung.
+
 
 # Quellenvermerk:
+
 Robert Koch-Institut (RKI), dl-de/by-2-0
 
+
 # Haftungsausschluss:
-„Die Inhalte, die über die Internetseiten des Robert Koch-Instituts zur Verfügung gestellt werden,
-dienen ausschließlich der allgemeinen Information der Öffentlichkeit, vorrangig der Fachöffentlichkeit“.
+
+„Die Inhalte, die über die Internetseiten des Robert Koch-Instituts zur Verfügung gestellt werden, dienen ausschließlich der allgemeinen Information der Öffentlichkeit, vorrangig der Fachöffentlichkeit“.
+
 
 # // Datenquellen:
 // RKI COVID19 Hospitalisierung: https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/master/Aktuell_Deutschland_COVID-19-Hospitalisierungen.csv
+
 // RKI R-Faktor: https://raw.githubusercontent.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung/main/Nowcast_R_aktuell.csv
+
 // RKI COVID-19-Impfungen: https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Impfungen_in_Deutschland/master/Aktuell_Deutschland_Impfquoten_COVID-19.csv
 
+
 # // Datenbeschreibung:
+
 // RKI COVID19 Hospitalisierung: https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland
+
 // RKI R-Faktor: https://github.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung
+
 // RKI COVID-19-Impfungen: https://github.com/robert-koch-institut/COVID-19-Impfungen_in_Deutschland
 
+
 # Benutzerdefinierte Lizenz:
+
 Robert Koch-Institut
-Die Daten der "COVID-19-Hospitalisierungen in Deutschland" und der "SARS-CoV-2-Nowcasting und -R-Schaetzung" sind
-lizenziert unter der Creative Commons Namensnennung 4.0 International Public License
+
+Die Daten der "COVID-19-Hospitalisierungen in Deutschland" und der "SARS-CoV-2-Nowcasting und -R-Schaetzung" sind lizenziert unter der Creative Commons Namensnennung 4.0 International Public License
+
 
 # Quellenvermerk:
+
 Robert Koch-Institut (RKI), CC-BY 4.0 International
 
+
 # Haftungsausschluss:
-„Die Inhalte, die über die Internetseiten des Robert Koch-Instituts zur Verfügung gestellt werden,
-dienen ausschließlich der allgemeinen Information der Öffentlichkeit, vorrangig der Fachöffentlichkeit“.
+
+„Die Inhalte, die über die Internetseiten des Robert Koch-Instituts zur Verfügung gestellt werden, dienen ausschließlich der allgemeinen Information der Öffentlichkeit, vorrangig der Fachöffentlichkeit“.
+
 
 # Datenquellen:
+
 DIVI-Intensivregister auf Landkreisebene: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/DIVI_Intensivregister_Landkreise/FeatureServer/0
 
+
 # Datenbeschreibung:
+
 DIVI-Intensivregister auf Landkreisebene: https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/8fc79b6cf7054b1b80385bda619f39b8_0
 
+
 # Benutzerdefinierte Lizenz:
+
 Deutsche Interdisziplinäre Vereinigung für Intensiv- und Notfallmedizin e.V.
+
 Bitte kontaktieren Sie DIVI-Intensivregister, sollten Sie die Daten weiterverwenden wollen. (https://www.divi.de/register/anprechpartner-register)
+
 Datenquelle: DIVI-Intensivregister (https://www.divi.de/register/tagesreport)
+
 Terms of Use: DIVI-Intensivregister (https://www.divi.de/register/tagesreport)
+
 Credits (Attribution): DIVI-Intensivregister (https://www.divi.de/impressum)
 
+
 # Quellenvermerk:
+
 DIVI-Intensivregister (www.intensivregister.de)
 
-# Haftungsausschluss:
-Die Daten des Intensivregister können nach vorheriger Absprache und unter Verwendung des Quellenhinweis
-„DIVI-Intensivregister“, zumindest für journalistische Zwecke, frei verwendet werden.
-Der Herausgeber behält sich alle Rechte vor, insbesondere das der Übersetzung,
-des öffentlichen Vortrages sowie der Übertragung durch Rundfunk und Fernsehen, auch einzelner Teile.
-Keine Inhalte dürfen in irgendeiner Form ohne Genehmigung reproduziert oder unter Verwendung elektronischer
-Systeme verarbeitet, vervielfältigt oder verbreitet werden. Das uneingeschränkte Kopierrecht aller Inhalte liegt –
-falls nicht anders gekennzeichnet (z.B. Pressetexte und Pressefotos) – bei dem Herausgeber.
-Die Verwendung von Texten, Textteilen oder Bildmaterial bedarf einer schriftlichen Zustimmung der Redaktion.
 
+# Haftungsausschluss:
+
+Die Daten des Intensivregister können nach vorheriger Absprache und unter Verwendung des Quellenhinweis „DIVI-Intensivregister“, zumindest für journalistische Zwecke, frei verwendet werden. Der Herausgeber behält sich alle Rechte vor, insbesondere das der Übersetzung, des öffentlichen Vortrages sowie der Übertragung durch Rundfunk und Fernsehen, auch einzelner Teile. Keine Inhalte dürfen in irgendeiner Form ohne Genehmigung reproduziert oder unter Verwendung elektronischer Systeme verarbeitet, vervielfältigt oder verbreitet werden. Das uneingeschränkte Kopierrecht aller Inhalte liegt – falls nicht anders gekennzeichnet (z.B. Pressetexte und Pressefotos) – bei dem Herausgeber. Die Verwendung von Texten, Textteilen oder Bildmaterial bedarf einer schriftlichen Zustimmung der Redaktion.
+
+
+# Beschreibung
 ![Bildschirmfoto 2021-12-04 um 23 51 28](https://user-images.githubusercontent.com/74063738/144726975-117be99f-c1a3-4323-803f-efb52bab10b9.png)
 ![Bildschirmfoto 2021-12-04 um 23 50 08](https://user-images.githubusercontent.com/74063738/144726980-8d44c9c2-c673-42cb-b656-d810e4dac89f.png)
 
