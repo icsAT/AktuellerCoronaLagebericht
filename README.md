@@ -5,25 +5,17 @@ Dieses Widget zeigt Corona (Covid-19) Daten für Deutschland, ein Bundesland und
 Das Skript funktioniert derzeit ausschließlich als großes (large) Widget.
 
 
-# Datenquellen:
-RKI Corona Landkreise: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0
+# Datenquellen COVID-19 Datenhub:
 
-RKI Corona Bundesländer: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Coronafälle_in_den_Bundesländern/FeatureServer/0
-
-RKI COVID19: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0 
-
-RKI COVID19 Sums: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Covid19_RKI_Sums/FeatureServer/0
+RKI Corona Landkreise:           https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0
+RKI Key Data:                    https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0
 
 
-# Datenbeschreibung:
+# Datenbeschreibung COVID-19 Datenhub:
 
-RKI Corona Landkreise: https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/917fc37a709542548cc3be077a786c17_0
+RKI Corona Landkreise:           https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/917fc37a709542548cc3be077a786c17_0/explore
 
-RKI Corona Bundesländer: https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/ef4b445a53c1406892257fe63129a8ea_0
-
-RKI COVID19: https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0
-
-RKI COVID19 Sums: https://covid-19-geohub-deutschland-esridech.hub.arcgis.com/datasets/9644cad183f042e79fb6ad00eadc4ecf_0
+RKI Key Data:                    https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/c2f3c3b935a242169c6bec82e1fa573e_0/explore
 
 
 # Benutzerdefinierte Lizenz:
@@ -44,30 +36,34 @@ Robert Koch-Institut (RKI), dl-de/by-2-0
 
 „Die Inhalte, die über die Internetseiten des Robert Koch-Instituts zur Verfügung gestellt werden, dienen ausschließlich der allgemeinen Information der Öffentlichkeit, vorrangig der Fachöffentlichkeit“.
 
+# Datenschutzerklärung
+
+„Die Nutzung des Webangebotes des RKI ist grundsätzlich ohne Bekanntgabe personenbezogener Daten möglich“.
+
 
 # Datenquellen:
 
-RKI COVID19 Hospitalisierung: https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/master/Aktuell_Deutschland_COVID-19-Hospitalisierungen.csv
+RKI COVID19 Hospitalisierung:    https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/master/Aktuell_Deutschland_COVID-19-Hospitalisierungen.csv
 
-RKI R-Faktor: https://raw.githubusercontent.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung/main/Nowcast_R_aktuell.csv
+RKI COVID-19-Impfungen:          https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Impfungen_in_Deutschland/master/Aktuell_Deutschland_Impfquoten_COVID-19.csv
 
-RKI COVID-19-Impfungen: https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Impfungen_in_Deutschland/master/Aktuell_Deutschland_Impfquoten_COVID-19.csv
+RKI R-Faktor:                    https://raw.githubusercontent.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung/main/Nowcast_R_aktuell.csv
 
 
 # Datenbeschreibung:
 
-RKI COVID19 Hospitalisierung: https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland
+RKI COVID19 Hospitalisierung:    https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland
 
-RKI R-Faktor: https://github.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung
+RKI COVID-19-Impfungen:          https://github.com/robert-koch-institut/COVID-19-Impfungen_in_Deutschland
 
-RKI COVID-19-Impfungen: https://github.com/robert-koch-institut/COVID-19-Impfungen_in_Deutschland
+RKI R-Faktor:                    https://github.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung
 
 
 # Benutzerdefinierte Lizenz:
 
-Robert Koch-Institut
+Robert Koch-Institut (RKI)
 
-Die Daten der "COVID-19-Hospitalisierungen in Deutschland" und der "SARS-CoV-2-Nowcasting und -R-Schaetzung" sind lizenziert unter der Creative Commons Namensnennung 4.0 International Public License
+Die Daten der "COVID-19-Hospitalisierungen in Deutschland", "COVID-19-Impfungen in Deutschland" und der "SARS-CoV-2-Nowcasting und -R-Schaetzung" sind lizenziert unter der Creative Commons Namensnennung 4.0 International Public License | CC-BY 4.0 International
 
 
 # Quellenvermerk:
@@ -129,7 +125,7 @@ Die Werte-Einstellungen erfolgen im Skript selber im Bereich "custom".
 ![grafik](https://user-images.githubusercontent.com/74063738/142745487-999d6678-9d24-4946-ad67-bf23e0f64bfe.png)
 
 Mit dem Parameter "altUeberschrift" lässt sich eine abweichende Überschrift konfigurieren.
-Die "cacheTime" gibt in Minuten an, wie oft maximal neue Daten geladen werden sollen. Default sind "60" Minuten.
+Die "cacheTime" gibt in Minuten an, wie oft maximal neue Daten geladen werden sollen. Default sind "120" Minuten.
 
 ![grafik](https://user-images.githubusercontent.com/74063738/142745537-be86a143-e2c9-46c3-8c9a-dbdd663afacd.png)
 
@@ -141,33 +137,61 @@ Mit "head" kann die Überschrift ausgewählt werden. Default ist "Deutschland".
 
 Das gleiche gilt für das Bundesland unter "land" und für den Landkreis/die Stadt unter "kreis".
 
-Nun folgen die einzelnen anzeigbaren Werte beginnend mit der "hospitalisierungsInzidenz".
+Nun folgen die einzelnen anzeigbaren Werte wie z.B. "hospitalisierungsInzidenz".
 Alle anzeigbaren Werte haben die gleichen Parameter.
-"show" mit den Werten "true" und "false" gibt an, ob der Wert angezeigt wird oder nicht.
-"text" gibt an wie der Wert beschriftet werden soll.
-"einheit" wird hinter dem jeweiligen Wert angezeigt. Z.B. "%"
-"warnGelb" gibt an beim Überschreiten welches Wertes der Hintergrund für diesen Wert Gelb angezeigt werden soll.
-"warnOrange" gibt an beim Überschreiten welches Wertes der Hintergrund für diesen Wert Orange angezeigt werden soll.
-"warnRot" gibt an beim Überschreiten welches Wertes der Hintergrund für diesen Wert Rot angezeigt werden soll.
-Wird für den Warn-Wert -1 konfiguriert, so ist die entsprecehnde Farbe deaktiviert.
-"warnOP" kennt die Werte "GT" (größer als) und "LT" (kleiner als) und gibt an, ob beim Überschreiten oder beim Unterschreiten die jeweilige Farbe gelten soll.
+- "show" mit den Werten "true" und "false" gibt an, ob der Wert angezeigt wird oder nicht.
+- "text" gibt an wie der Wert beschriftet werden soll.
+- "einheit" wird hinter dem jeweiligen Wert angezeigt. Z.B. "%"
+- "warnGelb" gibt an beim Überschreiten welches Wertes der Hintergrund für diesen Wert Gelb angezeigt werden soll.
+- "warnOrange" gibt an beim Überschreiten welches Wertes der Hintergrund für diesen Wert Orange angezeigt werden soll.
+- "warnRot" gibt an beim Überschreiten welches Wertes der Hintergrund für diesen Wert Rot angezeigt werden soll.
+- Wird für den Warn-Wert -1 konfiguriert, so ist die entsprecehnde Farbe deaktiviert.
+- "warnOP" kennt die Werte "GT" (größer als) und "LT" (kleiner als) und gibt an, ob beim Überschreiten oder beim Unterschreiten die jeweilige Farbe gelten soll.
 
 ![grafik](https://user-images.githubusercontent.com/74063738/142745763-63408dd4-5e80-4c54-938c-f4e339925d68.png)
 
 Die Konfigurationsmöglichkeiten auf Bundesebene wirderholen sich für:
-- hospitalisierungInzidenz
-- hospitalisierung7Tage
+- neuinfektioenenInzidenz
 - neuinfektioenenAnzahl
-- neuinfektioenenLiveInzidenz
+- neueTodesfaelle
+- aktive
+- faelle
+- faelle7T
+- todesfaelle
+- genesene
+- neueGenesene
+- neueAktive
 - intensivbettenBelegtProzent²
 - intensivbettenBelegtAnzahl²
 - intensivbettenFrei²
+- hospitalisierungInzidenz³
+- hospitalisierung7Tage
+- impfQuote
+- impfungenGesamt
+- impfungenGesamtMin1
+- impfungenGesamtGI
+- impfungenGesamtBoost1
+- impfungenGesamtBoost2
+- impfungenGesamtBoost3
+- impfungenGesamtBoost4
 - rWert
-- faelle
-- todesfaelle
+
+Auf Landesebene gibt es folgende Werte, die genau wie die Bundesebene konfigurte werden können:
+- neuinfektioenenInzidenz
+- neuinfektioenenAnzahl
 - neueTodesfaelle
-- genesene
 - aktive
+- faelle
+- faelle7T
+- todesfaelle
+- genesene
+- neueGenesene
+- neueAktive
+- intensivbettenBelegtProzent²
+- intensivbettenBelegtAnzahl²
+- intensivbettenFrei²
+- hospitalisierungInzidenz³
+- hospitalisierung7Tage
 - impfQuote
 - impfungenGesamt
 - impfungenGesamtMin1
@@ -177,41 +201,21 @@ Die Konfigurationsmöglichkeiten auf Bundesebene wirderholen sich für:
 - impfungenGesamtBoost3
 - impfungenGesamtBoost4
 
-Auf Landesebene gibt es folgende Werte, die genau wie die Bundesebene konfigurte werden können:
-- hospitalisierungInzidenz³
-- hospitalisierung7Tage
-- neuinfektioenenLiveInzidenz
-- neuinfektioenenStaticInzidenz
-- neuinfektioenenAnzahl
-- intensivbettenBelegtProzent²
-- intensivbettenBelegtAnzahl²
-- intensivbettenFrei²
-- faelle
-- todesfaelle
-- neueTodesfaelle
-- genesene
-- aktive
-- impQuote
-- impfungenGesamt
-- impfungenGesamtMin1
-- impfungenGesamtGI
-- impfungenGesamtBoost1
-- impfungenGesamtBoost2
-- impfungenGesamtBoost3
-- impfungenGesamtBoost4
-
 Auf Kreisebene sind es die folgenden Werte:
-- neuinfektioenenLiveInzidenz
-- neuinfektioenenStaticInzidenz
+- neuinfektioenenInzidenz
 - neuinfektioenenAnzahl
+- neueTodesfaelle
+- aktive
+- faelle
+- faelle7T
+- todesfaelle
+- genesene
+- neueGenesene
+- neueAktive
 - intensivbettenBelegtProzent²
 - intensivbettenBelegtAnzahl²
 - intensivbettenFrei²
-- faelle
-- todesfaelle
-- neueTodesfaelle
-- genesene
-- aktive
+
 
 Im Bereich "colors" könnte bei Bedarf die Farbgebung verändert werden.
 
@@ -241,7 +245,7 @@ Anpassbar sind jeweils die Parameter:
 
 ![grafik](https://user-images.githubusercontent.com/74063738/142745930-4015e218-d118-42ea-903c-d8a70f999a84.png)
 
-1 = Das Widget unterscheidet auf Landes- und Kreisebene zwischen der Live-Inzidenz und der Static-Inzidenz. Die Static-Indizenz ist der vom RKI einmal am Tag veröffentlichte Inzidenz Wert. Dieser verändert sich im Laufe des Tages nicht. Die Live Inzidenz kann sich untertägig verändern, da hier auch Nachmeldungen berücksichtigt werden, die ggf. später eingepflegt werden.
+1 = gestrichen
 
 2 = Alle anzeigbaren Werte zu den Intensivstationen (Prozentuale Bettenbelegung, Anzahl der belegten Betten und freie Betten) basiert auf Angaben des DIVI-Intensivregister (www.intensivregister.de). Da diese Werte nicht in irgendeiner Form ohne Genehmigung reproduziert oder unter Verwendung elektronischer Systeme verarbeitet, vervielfältigt oder verbreitet werden dürfen, habe ich angefragt ob ich die Werte in meinem Skript verwenden darf. Die ernüchternde Antwort lautete für mich selbst dürfe ich dies tun, anderen diese Möglichkeit bereitstellen jedoch nicht. Die Begründung dazu lautet, dass die Daten bereits aufbereitet und auf der Seite von intensivregister.de öffentlich zur Verfügung gestellt werden. Daher habe ich im Skript einen Schalter eingebaut. Fragt per Mail beim DIVI-Intensivregister (www.intensivregister.de) unter info@divi-intensivregister.de an ob Ihr die Daten aus der DIVI-Intensivregister API für private Zwecke mit Hilfe eines Scriptable Skriptes auf dem Homebildschirm Eures Apple Devices anzeigen lassen dürft. Wenn Euch die Genehmigung dazu vorliegt, könnt Ihr den Schalter "diviNutzungsfreigabe" auf "true" setzen und die Werte werden abgefragt und angezeigt, sofern die Anzeige von Euch entsprechend konfiguriert wurde.
 
@@ -253,6 +257,13 @@ Quelle: https://www.niedersachsen.de/Coronavirus/aktuelle_lage_in_niedersachsen/
 
 
 # Versionen:
+
+Version 0.97 (05.03.2023):
+- Konsolidieren der Datenabrufe beim RKI, welche durch die Umstellung von Covid19_hubv auf rki_key_data_hubv möglich geworden sind.
+- Implementieren zusätzlicher Cache Files, ändern des Speicherortes und erhöhen der Standard Cache Zeit auf 120 Minuten. Ein weiterer Versuch die Speichernutzung so zu beeinflussen, dass aktuelle Daten angezeigt werden können.
+
+Version 0.96 (04.03.2023):
+- Das RKI hat die Datenquelle Covid19_hubv deaktiviert. Daher wurden die betroffenen Aufrufe auf rki_key_data_hubv umgestellt.
 
 Version 0.95 (20.01.2023):
 - Fehlerkorrektur. Wenn die iCloud nicht aktiv war kam es zu einem Fehler.
