@@ -2,17 +2,13 @@
 // These must be at the very top of the file. Do not edit.
 // icon-color: blue; icon-glyph: heartbeat;
 
-// Datenquellen:
+// Datenquellen COVID-19 Datenhub:
 // RKI Corona Landkreise:           https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0
-// (RKI Corona Bundesländer:        https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Coronafälle_in_den_Bundesländern/FeatureServer/0)
-// RKI COVID19:                     https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0
-// (RKI COVID19 Sums:               https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Covid19_RKI_Sums/FeatureServer/0)
+// RKI Key Data:                    https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0
 
-// Datenbeschreibung:
+// Datenbeschreibung COVID-19 Datenhub:
 // RKI Corona Landkreise:           https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/917fc37a709542548cc3be077a786c17_0
-// RKI Corona Bundesländer:         https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/ef4b445a53c1406892257fe63129a8ea_0
-// RKI COVID19:                     https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0
-// RKI COVID19 Sums:                https://covid-19-geohub-deutschland-esridech.hub.arcgis.com/datasets/9644cad183f042e79fb6ad00eadc4ecf_0
+// RKI Key Data:                    https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/c2f3c3b935a242169c6bec82e1fa573e_0
 
 // Benutzerdefinierte Lizenz:
 // Bundesamt für Kartographie und Geodäsie
@@ -27,21 +23,25 @@
 // „Die Inhalte, die über die Internetseiten des Robert Koch-Instituts zur Verfügung gestellt werden,
 // dienen ausschließlich der allgemeinen Information der Öffentlichkeit, vorrangig der Fachöffentlichkeit“.
 
+// Datenschutzerklärung:
+// „Die Nutzung des Webangebotes des RKI ist grundsätzlich ohne Bekanntgabe personenbezogener Daten möglich“.
+
 
 // Datenquellen:
 // RKI COVID19 Hospitalisierung:    https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/master/Aktuell_Deutschland_COVID-19-Hospitalisierungen.csv
-// RKI R-Faktor:                    https://raw.githubusercontent.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung/main/Nowcast_R_aktuell.csv
 // RKI COVID-19-Impfungen:          https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Impfungen_in_Deutschland/master/Aktuell_Deutschland_Impfquoten_COVID-19.csv
+// RKI R-Faktor:                    https://raw.githubusercontent.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung/main/Nowcast_R_aktuell.csv
 
 // Datenbeschreibung:
 // RKI COVID19 Hospitalisierung:    https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland
-// RKI R-Faktor:                    https://github.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung
 // RKI COVID-19-Impfungen:          https://github.com/robert-koch-institut/COVID-19-Impfungen_in_Deutschland
+// RKI R-Faktor:                    https://github.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung
 
 // Benutzerdefinierte Lizenz:
-// Robert Koch-Institut
-// Die Daten der "COVID-19-Hospitalisierungen in Deutschland" und der "SARS-CoV-2-Nowcasting und -R-Schaetzung" sind
-// lizenziert unter der Creative Commons Namensnennung 4.0 International Public License 
+// Robert Koch-Institut (RKI)
+// Die Daten der "COVID-19-Hospitalisierungen in Deutschland", "COVID-19-Impfungen in Deutschland" und der
+// "SARS-CoV-2-Nowcasting und -R-Schaetzung" sind lizenziert unter der
+// Creative Commons Namensnennung 4.0 International Public License | CC-BY 4.0 International
 
 // Quellenvermerk:
 // Robert Koch-Institut (RKI), CC-BY 4.0 International
@@ -55,7 +55,7 @@
 // DIVI-Intensivregister auf Landkreisebene:   https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/DIVI_Intensivregister_Landkreise/FeatureServer/0
 
 // Datenbeschreibung:
-// DIVI-Intensivregister auf Landkreisebene:   https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/8fc79b6cf7054b1b80385bda619f39b8_0
+// DIVI-Intensivregister auf Landkreisebene:   https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/8fc79b6cf7054b1b80385bda619f39b8_0/explore
 
 // Benutzerdefinierte Lizenz:
 // Deutsche Interdisziplinäre Vereinigung für Intensiv- und Notfallmedizin e.V.
@@ -78,7 +78,7 @@
 // Die Verwendung von Texten, Textteilen oder Bildmaterial bedarf einer schriftlichen Zustimmung der Redaktion.
 
 // DIVI-Nutzungsfreigabe liegt vor (ja = true / nein = false)
-const diviNutzungsfreigabe  = true
+const diviNutzungsfreigabe  = false
 
 // Widget Basic Information
 const basic = {
@@ -90,8 +90,8 @@ const basic = {
 
     }
 
-    ,version:               "v0.96"
-    ,lastChange:            "03.03.2023"
+    ,version:               "v0.98"
+    ,lastChange:            "24.25.2023"
     ,author:                "icsAT"
     ,source:                "https://github.com/icsAT/AktuellerCoronaLagebericht"
 
@@ -102,32 +102,21 @@ const custom = {
     debug:                  false
     ,logging:               false
     ,altUeberschrift:       ""
-    ,cacheTime:             60
+    ,cacheTime:             120
 
     ,bund: {
 
         show:               true
         ,head:               "Deutschland"
-        ,hospitalisierungInzidenz: {
+        ,neuinfektioenenInzidenz: {
 
             show:           true
-            ,text:          "Hospitalisierungs-Inzidenz"
+            ,text:          "7-Tage-Inzidenz Neuinfektionen"
             ,einheit:       ""
-            ,warnGelb:      3
-            ,warnOrange:    6
-            ,warnRot:       9
+            ,warnGelb:      35
+            ,warnOrange:    100
+            ,warnRot:       200
             ,warnOP:        "GT"
-
-        }
-        ,hospitalisierung7Tage: {
-
-            show:           false
-            ,text:          "Stationäre Aufnahmen 7T"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
 
         }
         ,neuinfektioenenAnzahl: {
@@ -141,15 +130,92 @@ const custom = {
             ,warnOP:        ""
 
         }
-        ,neuinfektioenenInzidenz: {
+        ,neueTodesfaelle: {
 
             show:           true
-            ,text:          "7-Tage-Inzidenz Neuinfektionen"
+            ,text:          "Neue Todesfälle"
             ,einheit:       ""
-            ,warnGelb:      35
-            ,warnOrange:    100
-            ,warnRot:       200
-            ,warnOP:        "GT"
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,aktive: {
+
+            show:           true
+            ,text:          "Aktive Fälle"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,faelle: {
+
+            show:           false
+            ,text:          "Fälle Gesamt"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,faelle7T: {
+
+            show:           false
+            ,text:          "Fälle 7-Tage"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,todesfaelle: {
+
+            show:           false
+            ,text:          "Todesfälle Gesamt"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,genesene: {
+
+            show:           false
+            ,text:          "Genesene"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,neueGenesene: {
+
+            show:           false
+            ,text:          "Neue Genesene"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,neueAktive: {
+
+            show:           false
+            ,text:          "Neue Aktive Fälle"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
 
         }
         ,intensivbettenBelegtProzent: {
@@ -185,65 +251,21 @@ const custom = {
             ,warnOP:        ""
 
         }
-        ,rWert: {
+        ,hospitalisierungInzidenz: {
 
             show:           true
-            ,text:          "7-Tage-R-Wert"
+            ,text:          "Hospitalisierungs-Inzidenz"
             ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
+            ,warnGelb:      3
+            ,warnOrange:    6
+            ,warnRot:       9
+            ,warnOP:        "GT"
 
         }
-        ,faelle: {
+        ,hospitalisierung7Tage: {
 
             show:           false
-            ,text:          "Fälle Gesamt"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
-
-        }
-        ,todesfaelle: {
-
-            show:           false
-            ,text:          "Todesfälle Gesamt"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
-
-        }
-        ,neueTodesfaelle: {
-
-            show:           true
-            ,text:          "Neue Todesfälle"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
-
-        }
-        ,genesene: {
-
-            show:           false
-            ,text:          "Genesene"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
-
-        }
-        ,aktive: {
-
-            show:           true
-            ,text:          "Aktive Fälle"
+            ,text:          "Stationäre Aufnahmen 7T"
             ,einheit:       ""
             ,warnGelb:      -1
             ,warnOrange:    -1
@@ -339,48 +361,25 @@ const custom = {
             ,warnOP:        ""
 
         }
+        ,rWert: {
 
+            show:           true
+            ,text:          "7-Tage-R-Wert"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
     }
 
     ,land: {
 
         show:               true
-        ,hospitalisierungInzidenz: {
-
-            show:           true
-            ,text:          "Hospitalisierungs-Inzidenz"
-            ,einheit:       ""
-            ,warnGelb:      3
-            ,warnOrange:    6
-            ,warnRot:       9
-            ,warnOP:        "GT"
-
-        }
-        ,hospitalisierung7Tage: {
-
-            show:           false
-            ,text:          "Stationäre Aufnahmen 7T"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        "GT"
-
-        }
         ,neuinfektioenenInzidenz: {
 
             show:           true
-            ,text:          "7-Tage-Inzidenz Neuinfektionen"
-            ,einheit:       ""
-            ,warnGelb:      35
-            ,warnOrange:    100
-            ,warnRot:       200
-            ,warnOP:        "GT"
-
-        }
-        ,neuinfektioenenStaticInzidenz: {
-
-            show:           false
             ,text:          "7-Tage-Inzidenz Neuinfektionen"
             ,einheit:       ""
             ,warnGelb:      35
@@ -393,6 +392,94 @@ const custom = {
 
             show:           false
             ,text:          "Anzahl Neuinfektionen"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,neueTodesfaelle: {
+
+            show:           true
+            ,text:          "Neue Todesfälle"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,aktive: {
+
+            show:           true
+            ,text:          "Aktive Fälle"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,faelle: {
+
+            show:           false
+            ,text:          "Fälle Gesamt"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,faelle7T: {
+
+            show:           false
+            ,text:          "Fälle 7-Tage"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,todesfaelle: {
+
+            show:           false
+            ,text:          "Todesfälle Gesamt"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,genesene: {
+
+            show:           false
+            ,text:          "Genesene"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,neueGenesene: {
+
+            show:           false
+            ,text:          "Neue Genesene"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,neueAktive: {
+
+            show:           false
+            ,text:          "Neue Aktive Fälle"
             ,einheit:       ""
             ,warnGelb:      -1
             ,warnOrange:    -1
@@ -433,59 +520,26 @@ const custom = {
             ,warnOP:        ""
 
         }
-        ,faelle: {
+        ,hospitalisierungInzidenz: {
 
             show:           false
-            ,text:          "Fälle Gesamt"
+            ,text:          "Hospitalisierungs-Inzidenz"
             ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
+            ,warnGelb:      3
+            ,warnOrange:    6
+            ,warnRot:       9
+            ,warnOP:        "GT"
 
         }
-        ,todesfaelle: {
+        ,hospitalisierung7Tage: {
 
             show:           false
-            ,text:          "Todesfälle Gesamt"
+            ,text:          "Stationäre Aufnahmen 7T"
             ,einheit:       ""
             ,warnGelb:      -1
             ,warnOrange:    -1
             ,warnRot:       -1
-            ,warnOP:        ""
-
-        }
-        ,neueTodesfaelle: {
-
-            show:           true
-            ,text:          "Neue Todesfälle"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
-
-        }
-        ,genesene: {
-
-            show:           false
-            ,text:          "Genesene"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
-
-        }
-        ,aktive: {
-
-            show:           true
-            ,text:          "Aktive Fälle"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
+            ,warnOP:        "GT"
 
         }
         ,impfQuote: {
@@ -593,21 +647,98 @@ const custom = {
             ,warnOP:        "GT"
 
         }
-        ,neuinfektioenenStaticInzidenz: {
-
-            show:           false
-            ,text:          "7-Tage-Inzidenz Neuinfektionen"
-            ,einheit:       ""
-            ,warnGelb:      35
-            ,warnOrange:    100
-            ,warnRot:       200
-            ,warnOP:        "GT"
-
-        }
         ,neuinfektioenenAnzahl: {
 
             show:           true
             ,text:          "Anzahl Neuinfektionen"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,neueTodesfaelle: {
+
+            show:           true
+            ,text:          "Neue Todesfälle"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,aktive: {
+
+            show:           true
+            ,text:          "Aktive Fälle"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,faelle: {
+
+            show:           false
+            ,text:          "Fälle Gesamt"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,faelle7T: {
+
+            show:           false
+            ,text:          "Fälle 7-Tage"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,todesfaelle: {
+
+            show:           false
+            ,text:          "Todesfälle Gesamt"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,genesene: {
+
+            show:           false
+            ,text:          "Genesene"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,neueGenesene: {
+
+            show:           false
+            ,text:          "neue Genesene"
+            ,einheit:       ""
+            ,warnGelb:      -1
+            ,warnOrange:    -1
+            ,warnRot:       -1
+            ,warnOP:        ""
+
+        }
+        ,neueAktive: {
+
+            show:           false
+            ,text:          "neue Aktive Fälle"
             ,einheit:       ""
             ,warnGelb:      -1
             ,warnOrange:    -1
@@ -628,7 +759,7 @@ const custom = {
         }
         ,intensivbettenBelegtAnzahl:  {
 
-            show:           true
+            show:           false
             ,text:          "Intensivbettenbelegung C19"
             ,einheit:       ""
             ,warnGelb:      -1
@@ -639,73 +770,15 @@ const custom = {
         }
         ,intensivbettenFrei:  {
 
-            show:           true
+            show:           false
             ,text:          "Freie Intensivbetten"
             ,einheit:       ""
             ,warnGelb:      10
             ,warnOrange:    5
             ,warnRot:       3
             ,warnOP:        "LT"
-
         }
-        ,faelle: {
-
-            show:           false
-            ,text:          "Fälle Gesamt"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
-
-        }
-        ,todesfaelle: {
-
-            show:           false
-            ,text:          "Todesfälle Gesamt"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
-
-        }
-        ,neueTodesfaelle: {
-
-            show:           true
-            ,text:          "Neue Todesfälle"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
-
-        }
-        ,genesene: {
-
-            show:           false
-            ,text:          "Genesene"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
-
-        }
-        ,aktive: {
-
-            show:           true
-            ,text:          "Aktive Fälle"
-            ,einheit:       ""
-            ,warnGelb:      -1
-            ,warnOrange:    -1
-            ,warnRot:       -1
-            ,warnOP:        ""
-
-        }
-
     }
-
 }
 
 const colors = {
@@ -813,38 +886,43 @@ const text = {
 }
 
 // URL's zur Datenermittlung
-const rkiApiLk                  = (geodaten) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=1%3D1&outFields=AGS,GEN,BEZ,cases,deaths,BL,BL_ID,last_update,cases7_per_100k,cases7_bl_per_100k,EWZ,EWZ_BL&geometry=${geodaten.longitude.toFixed(3)}%2C${geodaten.latitude.toFixed(3)}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelWithin&returnGeometry=false&outSR=4326&f=json`
-const rkiApiLkNeueFaelle        = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${lkID}&outFields=AnzFallNeu&returnGeometry=false&f=json`
-const rkiApiLkNeueFaelle7T      = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${lkID}&outFields=AnzFall7T&returnGeometry=false&f=json`
-const rkiApiLkNeueTodesfaelle   = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${lkID}&outFields=AnzTodesfallNeu&returnGeometry=false&f=json`
-const rkiApiLkGenesen           = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${lkID}&outFields=AnzGenesen&returnGeometry=false&f=json`
+const rkiApiLk                  = (geodaten) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=1%3D1&outFields=AGS,GEN,BEZ,BL,BL_ID,last_update&geometry=${geodaten.longitude.toFixed(3)}%2C${geodaten.latitude.toFixed(3)}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelWithin&returnGeometry=false&outSR=4326&f=json`
+const rkiApiLkKeyData           = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${lkID}&outFields=*&returnGeometry=false&f=json`
 const diviApiLk                 = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/DIVI_Intensivregister_Landkreise/FeatureServer/0/query?where=AGS=${lkID}&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=false&featureEncoding=esriDefault&multipatchOption=none&maxAllowableOffset=&geometryPrecision=&outSR=&sqlFormat=none&f=json`
 
-const rkiApiBlNeueFaelle        = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=AnzFallNeu&returnGeometry=false&f=json`
-const rkiApiBlNeueFaelle7T      = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=AnzFall7T&returnGeometry=false&f=json`
-const rkiApiBlFaelle            = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=AnzFall&returnGeometry=false&f=json`
-const rkiApiBlNeueTodesfaelle   = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=AnzTodesfallNeu&returnGeometry=false&f=json`
-const rkiApiBlTodesfaelle       = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=AnzTodesfall&returnGeometry=false&f=json`
-const rkiApiBlGenesen           = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=AnzGenesen&returnGeometry=false&f=json`
+const rkiApiBlKeyData           = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=*&returnGeometry=false&f=json`
 const diviApiBl                 = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/DIVI_Intensivregister_Landkreise/FeatureServer/0/query?where=BL_ID=${blID}&returnGeodetic=false&outFields=*&returnGeometry=false&returnCentroid=false&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22faelle_covid_aktuell%22%2C%22outStatisticFieldName%22%3A%22faelle_covid_aktuell%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22faelle_covid_aktuell_beatmet%22%2C%22outStatisticFieldName%22%3A%22faelle_covid_aktuell_beatmet%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22betten_frei%22%2C%22outStatisticFieldName%22%3A%22betten_frei%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22betten_gesamt%22%2C%22outStatisticFieldName%22%3A%22betten_gesamt%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22anzahl_standorte%22%2C%22outStatisticFieldName%22%3A%22anzahl_standorte%22%7D%2C%7B%22statisticType%22%3A%22max%22%2C%22onStatisticField%22%3A%22daten_stand%22%2C%22outStatisticFieldName%22%3A%22daten_stand%22%7D%5D&returnZ=false&returnM=false&returnExceededLimitFeatures=true&sqlFormat=none&f=json`
+
+const rkiApiDeKeyData           = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=*&returnGeometry=false&f=json`
+const diviApiDe                 = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/DIVI_Intensivregister_Landkreise/FeatureServer/0/query?where=1=1&returnGeodetic=false&outFields=*&returnGeometry=false&returnCentroid=false&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22faelle_covid_aktuell%22%2C%22outStatisticFieldName%22%3A%22faelle_covid_aktuell%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22faelle_covid_aktuell_beatmet%22%2C%22outStatisticFieldName%22%3A%22faelle_covid_aktuell_beatmet%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22betten_frei%22%2C%22outStatisticFieldName%22%3A%22betten_frei%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22betten_gesamt%22%2C%22outStatisticFieldName%22%3A%22betten_gesamt%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22anzahl_standorte%22%2C%22outStatisticFieldName%22%3A%22anzahl_standorte%22%7D%2C%7B%22statisticType%22%3A%22max%22%2C%22onStatisticField%22%3A%22daten_stand%22%2C%22outStatisticFieldName%22%3A%22daten_stand%22%7D%5D&returnZ=false&returnM=false&returnExceededLimitFeatures=true&sqlFormat=none&f=json`
 
 const rkiCsvHospitalisierung    = `https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/master/Aktuell_Deutschland_COVID-19-Hospitalisierungen.csv`
 const rkiCsvImpfungen           = `https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Impfungen_in_Deutschland/master/Aktuell_Deutschland_Impfquoten_COVID-19.csv`
-
-const rkiApiDeNeueFaelle        = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=AnzFallNeu&returnGeometry=false&f=json`
-const rkiApiDeNeueFaelle7T      = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=AnzFall7T&returnGeometry=false&f=json`
-const rkiApiDeFaelle            = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=AnzFall&returnGeometry=false&f=json`
-const rkiApiDeNeueTodesfaelle   = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=AnzTodesfallNeu&returnGeometry=false&f=json`
-const rkiApiDeTodesfaelle       = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=AnzTodesfall&returnGeometry=false&f=json`
-const rkiApiDeGenesen           = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=AnzGenesen&returnGeometry=false&f=json`
-const rkiApiDeEwz               = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Coronaf%C3%A4lle_in_den_Bundesl%C3%A4ndern/FeatureServer/0/query?where=1=1&outFields=LAN_ew_EWZ&returnGeometry=false&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27LAN_ew_EWZ%27%2C%27outStatisticFieldName%27%3A%27EWZ%27%7D%5D&f=json`
 const rkiCsvRFaktor             = `https://raw.githubusercontent.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung/main/Nowcast_R_aktuell.csv`
-const diviApiDe                 = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/DIVI_Intensivregister_Landkreise/FeatureServer/0/query?where=1=1&returnGeodetic=false&outFields=*&returnGeometry=false&returnCentroid=false&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22faelle_covid_aktuell%22%2C%22outStatisticFieldName%22%3A%22faelle_covid_aktuell%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22faelle_covid_aktuell_beatmet%22%2C%22outStatisticFieldName%22%3A%22faelle_covid_aktuell_beatmet%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22betten_frei%22%2C%22outStatisticFieldName%22%3A%22betten_frei%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22betten_gesamt%22%2C%22outStatisticFieldName%22%3A%22betten_gesamt%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22anzahl_standorte%22%2C%22outStatisticFieldName%22%3A%22anzahl_standorte%22%7D%2C%7B%22statisticType%22%3A%22max%22%2C%22onStatisticField%22%3A%22daten_stand%22%2C%22outStatisticFieldName%22%3A%22daten_stand%22%7D%5D&returnZ=false&returnM=false&returnExceededLimitFeatures=true&sqlFormat=none&f=json`
 
 // running the script
 config.widgetFamily = config.widgetFamily || 'large'
 
-let widget = await createWidget()
+let widget = await createWidgetCache()
+
+if (config.runsInWidget) {
+
+    Script.setWidget(widget)
+
+} else {
+
+    switch (config.widgetFamily) {
+
+        case 'small': await widget.presentSmall(); break;
+        case 'medium': await widget.presentMedium(); break;
+        case 'large': await widget.presentLarge(); break;
+        case 'extraLarge': await widget.presentExtraLarge(); break;
+
+    }
+
+}
+
+widget = await createWidget()
 
 if (config.runsInWidget) {
 
@@ -865,232 +943,281 @@ if (config.runsInWidget) {
 
 Script.complete()
 
-// create the widget
-async function createWidget() {
+// create the widget from cache
+async function createWidgetCache() {
 
-    let fm = FileManager.iCloud()
-    let logPath = ""
-    let logFile = ""
-    let cachePath = ""
+    let fm = FileManager.local()
+    const iCloudInUse = fm.isFileStoredIniCloud(module.filename)
+    fm = iCloudInUse ? FileManager.iCloud() : fm
 
-    try {
-
-        logPath = fm.joinPath(fm.documentsDirectory(), basic.name.short + "Logs")
-        logFile = fm.joinPath(logPath, basic.name.short + ".log")
-        cachePath = fm.joinPath(fm.cacheDirectory(), basic.name.short + ".cache")
-
-    } catch(e) {
-
-        fm = FileManager.local()
-        logPath = fm.joinPath(fm.documentsDirectory(), basic.name.short + "Logs")
-        logFile = fm.joinPath(logPath, basic.name.short + ".log")
-        cachePath = fm.joinPath(fm.cacheDirectory(), basic.name.short + ".cache")
-
-    }
-
+    let basicPath = fm.joinPath(fm.documentsDirectory(), basic.name.short)
+    if (!fm.fileExists(basicPath) || !fm.isDirectory(basicPath)) { fm.createDirectory(basicPath) }
+    let logPath = fm.joinPath(basicPath, "Logs")
+    if (!fm.fileExists(logPath) || !fm.isDirectory(logPath)) { fm.createDirectory(logPath) }
+    let logFile = fm.joinPath(logPath, basic.name.short + ".log")
+    let cachePath = fm.joinPath(basicPath, "Cache")
+    if (!fm.fileExists(cachePath) || !fm.isDirectory(cachePath)) { fm.createDirectory(cachePath) }
+    let cacheFile = fm.joinPath(cachePath, basic.name.short + ".cache")
+   
+    if (fm.fileExists(logFile)) fm.remove(logFile)
+    
+    logDebug("basicPath: " + basicPath)
     logDebug("logPath: " + logPath)
     logDebug("logFile: " + logFile)
     logDebug("cachePath: " + cachePath)
+    logDebug("cacheFile: " + cacheFile)
 
-    logDebug("START async function crateWidget()")
+    logDebug("START async function crateWidgetCache()")
 
-    if (fm.fileExists(logFile)) fm.remove(logFile)
+    let geodaten = ""
+    let lakrDaten = ""
+    let locationID = ""
     
-    listWidget                              = new ListWidget()
-    listWidget.backgroundColor              = Color.clear()
-    listWidget.layoutVertically
-    listWidget.centerAlignContent
-   
     try {
 	
-		geodaten	                   		= await geodatenHolen(args.widgetParameter)
+		geodaten = await geodatenHolen(args.widgetParameter)
 		logDebug("geodaten: " + JSON.stringify(geodaten))
             
-		lkDaten								= await lkDatenHolen(geodaten)
-		logDebug("lkDaten: " + JSON.stringify(lkDaten))
+		lakrDaten = await lakrDatenHolen(geodaten)
+		logDebug("lakrDaten: " + JSON.stringify(lakrDaten))
 		
-		locationID 							= { AGS: lkDaten.AGS }
+		locationID  = { AGS: lakrDaten.AGS }
 		logDebug("locationID aktuell: " + JSON.stringify(locationID))
 
-		fm.writeString(cachePath, JSON.stringify(locationID, null, 2))
+		fm.writeString(cacheFile, JSON.stringify(locationID, null, 2))
 
 	} catch(e) {
   
-		locationID 							= cacheHolen(fm, cachePath)
+		locationID  = cacheHolen(fm, cacheFile)
         logDebug("locationID aus Cache: " + JSON.stringify(locationID))
 
 	}
 
 	if (locationID.AGS) {
   
-		cachePath = fm.joinPath(fm.cacheDirectory(), basic.name.short + "." + locationID.AGS + ".cache")
+		cachePath = fm.joinPath(cachePath, locationID.AGS)
 		logDebug("cachePath locationID: " + cachePath)
-
+        
 	} else {
   
-  		cachePath = fm.joinPath(fm.cacheDirectory(), basic.name.short + ".0.cache")
-		logDebug("cachePath 0: " + cachePath)
+  		cachePath = fm.joinPath(cachePath, "0")
+        logDebug("cachePath 0: " + cachePath)
 
 	}
 
-    let covidDaten = cacheHolen(fm, cachePath, custom.cacheTime)
-    logDebug("covidDaten aus Cache: " + JSON.stringify(covidDaten))
+    if (!fm.fileExists(cachePath) || !fm.isDirectory(cachePath)) { fm.createDirectory(cachePath) }
 
-    if (!covidDaten || covidDaten.cacheExpired) {
+    let cacheFileLaKr = fm.joinPath(cachePath, basic.name.short + ".LaKr.cache")
+    let cacheFileKeyD = fm.joinPath(cachePath, basic.name.short + ".KeyD.cache")
+    let cacheFileDIVI = fm.joinPath(cachePath, basic.name.short + ".DIVI.cache")
+    let cacheFileImpf = fm.joinPath(cachePath, basic.name.short + ".Impf.cache")
+    let cacheFileHosp = fm.joinPath(cachePath, basic.name.short + ".Hosp.cache")
+    let cacheFileRWer = fm.joinPath(cachePath, basic.name.short + ".rWer.cache")
+    
+    logDebug("cacheFileLaKr: " + cacheFileLaKr)
+    logDebug("cacheFileKeyD: " + cacheFileKeyD)
+    logDebug("cacheFileDIVI: " + cacheFileDIVI)
+    logDebug("cacheFileImpf: " + cacheFileImpf)
+    logDebug("cacheFileHosp: " + cacheFileHosp)
+    logDebug("cacheFileRWer: " + cacheFileRWer)
+    
+    if (!lakrDaten || lakrDaten == "") {
 
-    	try {
-
-            if (!geodaten) {
-            	
-            	geodaten					= await geodatenHolen(args.widgetParameter)
-            	logDebug("geodaten: " + JSON.stringify(geodaten))
-            
-            }
-            if (!lkDaten) {
-            
-            	lkDaten             		= await lkDatenHolen(geodaten)
-            	logDebug("lkDaten: " + JSON.stringify(lkDaten))
-            
-            }
-            Inzidenz                    = await InzidenzHolen(lkDaten.AGS, lkDaten.BL_ID, lkDaten.EWZ, lkDaten.EWZ_BL)
-            logDebug("Inzidenz: " + JSON.stringify(Inzidenz))
-            neueFaelle             		    = await neueFaelleHolen(lkDaten.AGS, lkDaten.BL_ID)
-            logDebug("neueFaelle: " + JSON.stringify(neueFaelle))
-            alleFaelle                      = await alleFaelleHolen(lkDaten.BL_ID)
-            logDebug("alleFaelle: " + JSON.stringify(alleFaelle))
-            neueTodesfaelle                 = await neueTodesfaelleHolen(lkDaten.AGS, lkDaten.BL_ID)
-            logDebug("neueTodesfaelle: " + JSON.stringify(neueTodesfaelle))
-            alleTodesfaelle                 = await alleTodesfaelleHolen(lkDaten.BL_ID)
-            logDebug("alleTodesfaelle: " + JSON.stringify(alleTodesfaelle))
-            alleGesenenen                   = await geneseneHolen(lkDaten.AGS, lkDaten.BL_ID)
-            logDebug("alleGesenenen: " + JSON.stringify(alleGesenenen))
-            let lkAktive                    = -1
-            if (lkDaten && alleGesenenen && lkDaten.cases!==null && lkDaten.death!==null && alleGesenenen.lkGenesene!==null) {
-
-                lkAktive                    = (lkDaten.cases.replace(/\./g, "") - lkDaten.death.replace(/\./g, "") - alleGesenenen.lkGenesene.replace(/\./g, "")).toLocaleString()
-            
-            }
-            logDebug("lkAktive: " + lkAktive)
-            let blAktive                    = -1
-            if (alleFaelle && alleTodesfaelle && alleGesenenen && alleFaelle.blAnzahlFaelle!==null && alleTodesfaelle.blTodesfaelle!==null && alleGesenenen.blGenesene!==null) {
-                
-                blAktive                    = (alleFaelle.blAnzahlFaelle.replace(/\./g, "") - alleTodesfaelle.blTodesfaelle.replace(/\./g, "") - alleGesenenen.blGenesene.replace(/\./g, "")).toLocaleString()
-
-            }
-            logDebug("blAktive: " + blAktive)
-            let deAktive                    = -1
-            if (alleFaelle && alleTodesfaelle && alleGesenenen && alleFaelle.deAnzahlFaelle!==null && alleTodesfaelle.deTodesfaelle!==null && alleGesenenen.deGenesene!==null) {
-
-                deAktive                    = (alleFaelle.deAnzahlFaelle.replace(/\./g, "") - alleTodesfaelle.deTodesfaelle.replace(/\./g, "") - alleGesenenen.deGenesene.replace(/\./g, "")).toLocaleString()
-
-            }
-            logDebug("deAktive: " + deAktive)  
-            hospitalisierungsDaten          = await hospitalisierungHolen(lkDaten.BL)
-            logDebug("hospitalisierungsDaten: " + JSON.stringify(hospitalisierungsDaten))
-            impfDaten                       = await impfDatenHolen(lkDaten.BL)
-            logDebug("impfDaten: " + JSON.stringify(impfDaten))
-            intensivbettenDaten             = await intensivbettenHolen(lkDaten.AGS, lkDaten.BL_ID)
-            logDebug("intensivbettenDaten: " + JSON.stringify(intensivbettenDaten))
-            let rFaktorDaten                = await rFaktorHolen()
-            logDebug("rFaktorDaten: " +JSON.stringify( rFaktorDaten))
-
-            covidDaten = {
-
-                latitude:                       geodaten.latitude || "0"
-                ,longitude:                     geodaten.longitude || "0"
-                ,AGS:                           lkDaten.AGS || "00000"
-                ,GEN:                           lkDaten.GEN || ""
-                ,BEZ:                           lkDaten.BEZ || ""
-                ,EWZ:                           lkDaten.EWZ || "-1"
-                ,lkCases:                       lkDaten.cases || "-1"
-                ,lkDeath:                       lkDaten.death || "-1"
-                ,BL:                            lkDaten.BL || ""
-                ,BL_ID:                         lkDaten.BL_ID || "0"
-                ,EWZ_BL:                        lkDaten.EWZ_BL || "-1"
-                ,lkLastUpdate:                  lkDaten.last_update || "01.01.1900"
-                ,lkStaticInzidenz:              lkDaten.cases7_per_100k || "-1"
-                ,blStaticInzidenz:              lkDaten.cases7_bl_per_100k || "-1"
-                ,lkInzidenz:                Inzidenz.lkInzidenz || "-1"
-                ,blInzidenz:                Inzidenz.blInzidenz || "-1"
-                ,deInzidenz:                Inzidenz.deInzidenz || "-1"
-                ,deEWZ:                         Inzidenz.deEWZ || "-1"
-                ,lkAnzahlNeueFaelle:            neueFaelle.lkAnzahlNeueFaelle || "-1"
-                ,blAnzahlNeueFaelle:            neueFaelle.blAnzahlNeueFaelle || "-1"
-                ,deAnzahlNeueFaelle:            neueFaelle.deAnzahlNeueFaelle || "-1"
-                ,blAnzahlFaelle:                alleFaelle.blAnzahlFaelle || "-1"
-                ,deAnzahlFaelle:                alleFaelle.deAnzahlFaelle || "-1"
-                ,lkNeueTodesfaelle:             neueTodesfaelle.lkNeueTodesfaelle || "-1"
-                ,blNeueTodesfaelle:             neueTodesfaelle.blNeueTodesfaelle || "-1"
-                ,deNeueTodesfaelle:             neueTodesfaelle.deNeueTodesfaelle || "-1"
-                ,blTodesfaelle:                 alleTodesfaelle.blTodesfaelle || "-1"
-                ,deTodesfaelle:                 alleTodesfaelle.deTodesfaelle || "-1"
-                ,lkGenesene:                    alleGesenenen.lkGenesene || "-1"
-                ,blGenesene:                    alleGesenenen.blGenesene || "-1"
-                ,deGenesene:                    alleGesenenen.deGenesene || "-1"
-                ,lkAktive:                      lkAktive || "-1"
-                ,blAktive:                      blAktive || "-1"
-                ,deAktive:                      deAktive || "-1"
-                ,lkIntensivBelegungProzent:     intensivbettenDaten.lkIntensivBelegungProzent || "-1"
-                ,lkIntensivbelegungAnzahl:      intensivbettenDaten.lkIntensivbelegungAnzahl || "-1"
-                ,lkFreieIntensivbetten:         intensivbettenDaten.lkFreieIntensivbetten || "-1"
-                ,lkIntensivbettenUpdate:        intensivbettenDaten.lkIntensivbettenUpdate || "01.01.1900"
-                ,blIntensivBelegungProzent:     intensivbettenDaten.blIntensivBelegungProzent || "-1"
-                ,blIntensivbelegungAnzahl:      intensivbettenDaten.blIntensivbelegungAnzahl || "-1"
-                ,blFreieIntensivbetten:         intensivbettenDaten.blFreieIntensivbetten || "-1"
-                ,blIntensivbettenUpdate:        intensivbettenDaten.blIntensivbettenUpdate || "01.01.1900"
-                ,deIntensivBelegungProzent:     intensivbettenDaten.deIntensivBelegungProzent || "-1"
-                ,deIntensivbelegungAnzahl:      intensivbettenDaten.deIntensivbelegungAnzahl || "-1"
-                ,deFreieIntensivbetten:         intensivbettenDaten.deFreieIntensivbetten || "-1"
-                ,deIntensivbettenUpdate:        intensivbettenDaten.deIntensivbettenUpdate || "01.01.1900"
-                ,blHospitalisierungFaelle7T:    hospitalisierungsDaten.blHospitalisierungFaelle7T || "-1"
-                ,blHospitalisierungInzidenz7T:  hospitalisierungsDaten.blHospitalisierungInzidenz7T || "-1"
-                ,blHospitalisierungUpdate:      hospitalisierungsDaten.blHospitalisierungUpdate || "-1"
-                ,deHospitalisierungFaelle7T:    hospitalisierungsDaten.deHospitalisierungFaelle7T || "-1"
-                ,deHospitalisierungInzidenz7T:  hospitalisierungsDaten.deHospitalisierungInzidenz7T || "-1"
-                ,deHospitalisierungUpdate:      hospitalisierungsDaten.deHospitalisierungUpdate || "01.01.1900"
-                ,rFaktor:                       rFaktorDaten.rFaktor || "-1"
-                ,deImpfungAnzahl:               impfDaten.deImpfungAnzahl || "-1"
-                ,deImpfungAnzahlMin1:           impfDaten.deImpfungAnzahlMin1 || "-1"
-                ,deImpfungAnzahlGI:             impfDaten.deImpfungAnzahlGI || "-1"
-                ,deImpfungAnzahlBoost1:         impfDaten.deImpfungAnzahlBoost1 || "-1"
-                ,deImpfungAnzahlBoost2:         impfDaten.deImpfungAnzahlBoost2 || "-1"
-                ,deImpfungAnzahlBoost3:         impfDaten.deImpfungAnzahlBoost3 || "-1"
-                ,deImpfungAnzahlBoost4:         impfDaten.deImpfungAnzahlBoost4 || "-1"
-                ,deImpfungQuoteMin1:            impfDaten.deImpfungQuoteMin1 || "-1"
-                ,deImpfungQuoteGI:              impfDaten.deImpfungQuoteGI || "-1"
-                ,deImpfungQuoteBoost1:          impfDaten.deImpfungQuoteBoost1 || "-1"
-                ,deImpfungQuoteBoost2:          impfDaten.deImpfungQuoteBoost2 || "-1"
-                ,deImpfungUpdate:               impfDaten.deImpfungUpdate || "01.01.1900"
-                ,blImpfungAnzahl:               impfDaten.blImpfungAnzahl || "-1"
-                ,blImpfungAnzahlMin1:           impfDaten.blImpfungAnzahlMin1 || "-1"
-                ,blImpfungAnzahlGI:             impfDaten.blImpfungAnzahlGI || "-1"
-                ,blImpfungAnzahlBoost1:         impfDaten.blImpfungAnzahlBoost1 || "-1"
-                ,blImpfungAnzahlBoost2:         impfDaten.blImpfungAnzahlBoost2 || "-1"
-                ,blImpfungAnzahlBoost3:         impfDaten.blImpfungAnzahlBoost3 || "-1"
-                ,blImpfungAnzahlBoost4:         impfDaten.blImpfungAnzahlBoost4 || "-1"
-                ,blImpfungQuoteMin1:            impfDaten.blImpfungQuoteMin1 || "-1"
-                ,blImpfungQuoteGI:              impfDaten. blImpfungQuoteGI || "-1"
-                ,blImpfungQuoteBoost1:          impfDaten.blImpfungQuoteBoost1 || "-1"
-                ,blImpfungQuoteBoost2:          impfDaten.blImpfungQuoteBoost2 || "-1"
-                ,blImpfungUpdate:               impfDaten.blImpfungUpdate || "01.01.1900"
-
-            }
-            logDebug("covidDaten: " + JSON.stringify(covidDaten))
-
-            fm.writeString(cachePath, JSON.stringify(covidDaten, null, 2))
-
-        } catch(e) {
-
-            logDebug("Fehler beim Daten ermitteln.")
-
-            covidDaten = cacheHolen(fm, cachePath)
-            logDebug("covidDaten: " + JSON.stringify(covidDaten))
-
-        }
+        lakrDaten = cacheHolen(fm, cacheFileLaKr, custom.cacheTime)
+        logDebug("lakrDaten aus Cache: " + JSON.stringify(lakrDaten))
 
     }
+    
+    let keydDaten = cacheHolen(fm, cacheFileKeyD, custom.cacheTime)
+    logDebug("keydDaten aus Cache: " + JSON.stringify(keydDaten))
 
-    if (custom.debug && covidDaten) console.log("covidDaten: " + JSON.stringify(covidDaten))
+    let diviDaten = cacheHolen(fm, cacheFileDIVI, custom.cacheTime)
+    logDebug("diviDaten aus Cache: " + JSON.stringify(diviDaten))
+
+    let impfDaten = cacheHolen(fm, cacheFileImpf, custom.cacheTime)
+    logDebug("impfDaten aus Cache: " + JSON.stringify(impfDaten))
+
+    let hospDaten = cacheHolen(fm, cacheFileHosp, custom.cacheTime)
+    logDebug("hospDaten aus Cache: " + JSON.stringify(hospDaten))
+      
+    let rWerDaten = cacheHolen(fm, cacheFileRWer, custom.cacheTime)
+    logDebug("rWerDaten aus Cache: " + JSON.stringify(rWerDaten))
+
+    let covidDaten = {
+
+        AGS:                            "00000"
+        ,GEN:                           "n/a"
+        ,BEZ:                           ""
+        ,BL:                            "n/a"
+        ,BL_ID:                         "0"
+        ,lkLastUpdate:                  "Fehler"
+        ,lkInzidenz:                    "-1"
+        ,blInzidenz:                    "-1"
+        ,deInzidenz:                    "-1"
+        ,lkAnzahlNeueFaelle:            "-1"
+        ,blAnzahlNeueFaelle:            "-1"
+        ,deAnzahlNeueFaelle:            "-1"
+        ,lkNeueTodesfaelle:             "-1"
+        ,blNeueTodesfaelle:             "-1"
+        ,deNeueTodesfaelle:             "-1"
+        ,lkAktive:                      "-1"
+        ,blAktive:                      "-1"
+        ,deAktive:                      "-1"
+        ,lkAnzahlFaelle:                "-1"
+        ,blAnzahlFaelle:                "-1"
+        ,deAnzahlFaelle:                "-1"
+        ,lkAnzahlFaelle7T:              "-1"
+        ,blAnzahlFaelle7T:              "-1"
+        ,deAnzahlFaelle7T:              "-1"
+        ,lkTodesfaelle:                 "-1"            
+        ,blTodesfaelle:                 "-1"
+        ,deTodesfaelle:                 "-1"
+        ,lkGenesene:                    "-1"
+        ,blGenesene:                    "-1"
+        ,deGenesene:                    "-1"
+        ,lkNeueGenesene:                "-1"
+        ,blNeueGenesene:                "-1"
+        ,deNeueGenesene:                "-1"
+        ,lkNeueAktive:                  "-1"
+        ,blNeueAktive:                  "-1"
+        ,deNeueAktive:                  "-1"
+        ,lkIntensivBelegungProzent:     "-1"
+        ,lkIntensivbelegungAnzahl:      "-1"
+        ,lkFreieIntensivbetten:         "-1"
+        ,lkIntensivbettenUpdate:        "Fehler"
+        ,blIntensivBelegungProzent:     "-1"
+        ,blIntensivbelegungAnzahl:      "-1"
+        ,blFreieIntensivbetten:         "-1"
+        ,blIntensivbettenUpdate:        "Fehler"
+        ,deIntensivBelegungProzent:     "-1"
+        ,deIntensivbelegungAnzahl:      "-1"
+        ,deFreieIntensivbetten:         "-1"
+        ,deIntensivbettenUpdate:        "Fehler"
+        ,blHospitalisierungFaelle7T:    "-1"
+        ,blHospitalisierungInzidenz7T:  "-1"
+        ,blHospitalisierungUpdate:      "-1"
+        ,deHospitalisierungFaelle7T:    "-1"
+        ,deHospitalisierungInzidenz7T:  "-1"
+        ,deHospitalisierungUpdate:      "Fehler"
+        ,deImpfungAnzahl:               "-1"
+        ,deImpfungAnzahlMin1:           "-1"
+        ,deImpfungAnzahlGI:             "-1"
+        ,deImpfungAnzahlBoost1:         "-1"
+        ,deImpfungAnzahlBoost2:         "-1"
+        ,deImpfungAnzahlBoost3:         "-1"
+        ,deImpfungAnzahlBoost4:         "-1"
+        ,deImpfungQuoteMin1:            "-1"
+        ,deImpfungQuoteGI:              "-1"
+        ,deImpfungQuoteBoost1:          "-1"
+        ,deImpfungQuoteBoost2:          "-1"
+        ,deImpfungUpdate:               "Fehler"
+        ,blImpfungAnzahl:               "-1"
+        ,blImpfungAnzahlMin1:           "-1"
+        ,blImpfungAnzahlGI:             "-1"
+        ,blImpfungAnzahlBoost1:         "-1"
+        ,blImpfungAnzahlBoost2:         "-1"
+        ,blImpfungAnzahlBoost3:         "-1"
+        ,blImpfungAnzahlBoost4:         "-1"
+        ,blImpfungQuoteMin1:            "-1"
+        ,blImpfungQuoteGI:              "-1"
+        ,blImpfungQuoteBoost1:          "-1"
+        ,blImpfungQuoteBoost2:          "-1"
+        ,blImpfungUpdate:               "Fehler"
+        ,rFaktor:                       "-1"
+
+    }
+    
+    if ( lakrDaten ) { covidDaten.AGS = lakrDaten.AGS }
+    if ( lakrDaten ) { covidDaten.GEN = lakrDaten.GEN }
+    if ( lakrDaten ) { covidDaten.BEZ = lakrDaten.BEZ }
+    if ( lakrDaten ) { covidDaten.BL = lakrDaten.BL }
+    if ( lakrDaten ) { covidDaten.BL_ID = lakrDaten.BL_ID }
+    if ( lakrDaten ) { covidDaten.lkLastUpdate = lakrDaten.lkLastUpdate }
+    
+    if ( keydDaten ) { covidDaten.lkInzidenz = keydDaten.lkInzidenz }
+    if ( keydDaten ) { covidDaten.blInzidenz = keydDaten.blInzidenz }
+    if ( keydDaten ) { covidDaten.deInzidenz = keydDaten.deInzidenz }
+    if ( keydDaten ) { covidDaten.lkAnzahlNeueFaelle = keydDaten.lkAnzahlNeueFaelle }
+    if ( keydDaten ) { covidDaten.blAnzahlNeueFaelle = keydDaten.blAnzahlNeueFaelle }
+    if ( keydDaten ) { covidDaten.deAnzahlNeueFaelle = keydDaten.deAnzahlNeueFaelle }
+    if ( keydDaten ) { covidDaten.lkNeueTodesfaelle = keydDaten.lkNeueTodesfaelle }
+    if ( keydDaten ) { covidDaten.blNeueTodesfaelle = keydDaten.blNeueTodesfaelle }
+    if ( keydDaten ) { covidDaten.deNeueTodesfaelle = keydDaten.deNeueTodesfaelle }
+    if ( keydDaten ) { covidDaten.lkAktive = keydDaten.lkAktive }
+    if ( keydDaten ) { covidDaten.blAktive = keydDaten.blAktive }
+    if ( keydDaten ) { covidDaten.deAktive = keydDaten.deAktive }
+    if ( keydDaten ) { covidDaten.lkAnzahlFaelle = keydDaten.lkAnzahlFaelle }
+    if ( keydDaten ) { covidDaten.blAnzahlFaelle = keydDaten.blAnzahlFaelle }
+    if ( keydDaten ) { covidDaten.deAnzahlFaelle = keydDaten.deAnzahlFaelle }
+    if ( keydDaten ) { covidDaten.lkAnzahlFaelle7T = keydDaten.lkAnzahlFaelle7T }
+    if ( keydDaten ) { covidDaten.blAnzahlFaelle7T = keydDaten.blAnzahlFaelle7T }
+    if ( keydDaten ) { covidDaten.deAnzahlFaelle7T = keydDaten.deAnzahlFaelle7T }
+    if ( keydDaten ) { covidDaten.lkTodesfaelle = keydDaten.lkTodesfaelle }
+    if ( keydDaten ) { covidDaten.blTodesfaelle = keydDaten.blTodesfaelle }
+    if ( keydDaten ) { covidDaten.deTodesfaelle = keydDaten.deTodesfaelle }
+    if ( keydDaten ) { covidDaten.lkGenesene = keydDaten.lkGenesene }
+    if ( keydDaten ) { covidDaten.blGenesene = keydDaten.blGenesene }
+    if ( keydDaten ) { covidDaten.deGenesene = keydDaten.deGenesene }
+    if ( keydDaten ) { covidDaten.lkNeueGenesene = keydDaten.lkNeueGenesene }
+    if ( keydDaten ) { covidDaten.blNeueGenesene = keydDaten.blNeueGenesene }
+    if ( keydDaten ) { covidDaten.deNeueGenesene = keydDaten.deNeueGenesene }
+    if ( keydDaten ) { covidDaten.lkNeueAktive = keydDaten.lkNeueAktive }
+    if ( keydDaten ) { covidDaten.blNeueAktive = keydDaten.blNeueAktive }
+    if ( keydDaten ) { covidDaten.deNeueAktive = keydDaten.deNeueAktive }
+    
+    if ( diviDaten ) { covidDaten.lkIntensivBelegungProzent = diviDaten.lkIntensivBelegungProzent }
+    if ( diviDaten ) { covidDaten.lkIntensivbelegungAnzahl = diviDaten.lkIntensivbelegungAnzahl }
+    if ( diviDaten ) { covidDaten.lkFreieIntensivbetten = diviDaten.lkFreieIntensivbetten }
+    if ( diviDaten ) { covidDaten.lkIntensivbettenUpdate = diviDaten.lkIntensivbettenUpdate }
+    if ( diviDaten ) { covidDaten.blIntensivBelegungProzent = diviDaten.blIntensivBelegungProzent }
+    if ( diviDaten ) { covidDaten.blIntensivbelegungAnzahl = diviDaten.blIntensivbelegungAnzahl }
+    if ( diviDaten ) { covidDaten.blFreieIntensivbetten = diviDaten.blFreieIntensivbetten }
+    if ( diviDaten ) { covidDaten.blIntensivbettenUpdate = diviDaten.blIntensivbettenUpdate }
+    if ( diviDaten ) { covidDaten.deIntensivBelegungProzent = diviDaten.deIntensivBelegungProzent }
+    if ( diviDaten ) { covidDaten.deIntensivbelegungAnzahl = diviDaten.deIntensivbelegungAnzahl }
+    if ( diviDaten ) { covidDaten.deFreieIntensivbetten = diviDaten.deFreieIntensivbetten }
+    if ( diviDaten ) { covidDaten.deIntensivbettenUpdate = diviDaten.deIntensivbettenUpdate }
+    
+    if ( impfDaten ) { covidDaten.deImpfungAnzahl = impfDaten.deImpfungAnzahl }
+    if ( impfDaten ) { covidDaten.deImpfungAnzahlMin1 = impfDaten.deImpfungAnzahlMin1 }
+    if ( impfDaten ) { covidDaten.deImpfungAnzahlGI = impfDaten.deImpfungAnzahlGI }
+    if ( impfDaten ) { covidDaten.deImpfungAnzahlBoost1 = impfDaten.deImpfungAnzahlBoost1 }
+    if ( impfDaten ) { covidDaten.deImpfungAnzahlBoost2 = impfDaten.deImpfungAnzahlBoost2 }
+    if ( impfDaten ) { covidDaten.deImpfungAnzahlBoost3 = impfDaten.deImpfungAnzahlBoost3 }
+    if ( impfDaten ) { covidDaten.deImpfungAnzahlBoost4 = impfDaten.deImpfungAnzahlBoost4 }
+    if ( impfDaten ) { covidDaten.deImpfungQuoteMin1 = impfDaten.deImpfungQuoteMin1 }
+    if ( impfDaten ) { covidDaten.deImpfungQuoteGI = impfDaten.deImpfungQuoteGI }
+    if ( impfDaten ) { covidDaten.deImpfungQuoteBoost1 = impfDaten.deImpfungQuoteBoost1 }
+    if ( impfDaten ) { covidDaten.deImpfungQuoteBoost2 = impfDaten.deImpfungQuoteBoost2 }
+    if ( impfDaten ) { covidDaten.deImpfungUpdate = impfDaten.deImpfungUpdate }
+    if ( impfDaten ) { covidDaten.blImpfungAnzahl = impfDaten.blImpfungAnzahl }
+    if ( impfDaten ) { covidDaten.blImpfungAnzahlMin1 = impfDaten.blImpfungAnzahlMin1 }
+    if ( impfDaten ) { covidDaten.blImpfungAnzahlGI = impfDaten.blImpfungAnzahlGI }
+    if ( impfDaten ) { covidDaten.blImpfungAnzahlBoost1 = impfDaten.blImpfungAnzahlBoost1 }
+    if ( impfDaten ) { covidDaten.blImpfungAnzahlBoost2 = impfDaten.blImpfungAnzahlBoost2 }
+    if ( impfDaten ) { covidDaten.blImpfungAnzahlBoost3 = impfDaten.blImpfungAnzahlBoost3 }
+    if ( impfDaten ) { covidDaten.blImpfungAnzahlBoost4 = impfDaten.blImpfungAnzahlBoost4 }
+    if ( impfDaten ) { covidDaten.blImpfungQuoteMin1 = impfDaten.blImpfungQuoteMin1 }
+    if ( impfDaten ) { covidDaten.blImpfungQuoteGI = impfDaten.blImpfungQuoteGI }
+    if ( impfDaten ) { covidDaten.blImpfungQuoteBoost1 = impfDaten.blImpfungQuoteBoost1 }
+    if ( impfDaten ) { covidDaten.blImpfungQuoteBoost2 = impfDaten.blImpfungQuoteBoost2 }
+    if ( impfDaten ) { covidDaten.blImpfungUpdate = impfDaten.blImpfungUpdate }
+
+    if ( hospDaten ) { covidDaten.blHospitalisierungFaelle7T = hospDaten.blHospitalisierungFaelle7T }
+    if ( hospDaten ) { covidDaten.blHospitalisierungInzidenz7T = hospDaten.blHospitalisierungInzidenz7T }
+    if ( hospDaten ) { covidDaten.blHospitalisierungUpdate = hospDaten.blHospitalisierungUpdate }
+    if ( hospDaten ) { covidDaten.deHospitalisierungFaelle7T = hospDaten.deHospitalisierungFaelle7T }
+    if ( hospDaten ) { covidDaten.deHospitalisierungInzidenz7T = hospDaten.deHospitalisierungInzidenz7T }
+    if ( hospDaten ) { covidDaten.deHospitalisierungUpdate = hospDaten.deHospitalisierungUpdate }
+
+    if ( rWerDaten ) { covidDaten.rFaktor = rWerDaten.rFaktor }
+ 
+    logDebug("covidDaten: " + JSON.stringify(covidDaten))
+
+    listWidget                              = new ListWidget()
+    listWidget.backgroundColor              = Color.clear()
+    listWidget.layoutVertically
+    listWidget.centerAlignContent
 
     let gradient                            = new LinearGradient()
     gradient.colors                         = getBackgroundGradientColor(covidDaten.deHospitalisierungInzidenz7T)
@@ -1115,6 +1242,278 @@ async function createWidget() {
 
     }
 
+    logDebug("END async function crateWidgetCache()")
+
+    return listWidget
+
+}
+
+// create the widget
+async function createWidget() {
+
+    let fm = FileManager.local()
+    const iCloudInUse = fm.isFileStoredIniCloud(module.filename)
+    fm = iCloudInUse ? FileManager.iCloud() : fm
+
+    let basicPath = fm.joinPath(fm.documentsDirectory(), basic.name.short)
+    if (!fm.fileExists(basicPath) || !fm.isDirectory(basicPath)) { fm.createDirectory(basicPath) }
+    let logPath = fm.joinPath(basicPath, "Logs")
+    if (!fm.fileExists(logPath) || !fm.isDirectory(logPath)) { fm.createDirectory(logPath) }
+    let logFile = fm.joinPath(logPath, basic.name.short + ".log")
+    let cachePath = fm.joinPath(basicPath, "Cache")
+    if (!fm.fileExists(cachePath) || !fm.isDirectory(cachePath)) { fm.createDirectory(cachePath) }
+    let cacheFile = fm.joinPath(cachePath, basic.name.short + ".cache")
+   
+    logDebug("basicPath: " + basicPath)
+    logDebug("logPath: " + logPath)
+    logDebug("logFile: " + logFile)
+    logDebug("cachePath: " + cachePath)
+    logDebug("cacheFile: " + cacheFile)
+    
+    logDebug("START async function crateWidget()")
+    
+    let geodaten = ""
+    let lakrDaten = ""
+    let locationID = ""
+   
+    try {
+	
+		geodaten = await geodatenHolen(args.widgetParameter)
+		logDebug("geodaten: " + JSON.stringify(geodaten))
+            
+		lakrDaten = await lakrDatenHolen(geodaten)
+		logDebug("lakrDaten: " + JSON.stringify(lakrDaten))
+		
+		locationID = { AGS: lakrDaten.AGS }
+		logDebug("locationID aktuell: " + JSON.stringify(locationID))
+
+		fm.writeString(cacheFile, JSON.stringify(locationID, null, 2))
+
+	} catch(e) {
+  
+		locationID = cacheHolen(fm, cacheFile)
+        logDebug("locationID aus Cache: " + JSON.stringify(locationID))
+
+	}
+
+	if (locationID.AGS) {
+  
+		cachePath = fm.joinPath(cachePath, locationID.AGS)
+		logDebug("cachePath locationID: " + cachePath)
+        
+	} else {
+  
+  		cachePath = fm.joinPath(cachePath, "0")
+        logDebug("cachePath 0: " + cachePath)
+
+	}
+
+    if (!fm.fileExists(cachePath) || !fm.isDirectory(cachePath)) { fm.createDirectory(cachePath) }
+    
+    let cacheFileLaKr = fm.joinPath(cachePath, basic.name.short + ".LaKr.cache")
+    let cacheFileKeyD = fm.joinPath(cachePath, basic.name.short + ".KeyD.cache")
+    let cacheFileDIVI = fm.joinPath(cachePath, basic.name.short + ".DIVI.cache")
+    let cacheFileImpf = fm.joinPath(cachePath, basic.name.short + ".Impf.cache")
+    let cacheFileHosp = fm.joinPath(cachePath, basic.name.short + ".Hosp.cache")
+    let cacheFileRWer = fm.joinPath(cachePath, basic.name.short + ".rWer.cache")
+    
+    logDebug("cacheFileLaKr: " + cacheFileLaKr)
+    logDebug("cacheFileKeyD: " + cacheFileKeyD)
+    logDebug("cacheFileDIVI: " + cacheFileDIVI)
+    logDebug("cacheFileImpf: " + cacheFileImpf)
+    logDebug("cacheFileHosp: " + cacheFileHosp)
+    logDebug("cacheFileRWer: " + cacheFileRWer)
+
+    if (!lakrDaten || lakrDaten == "") {
+
+        lakrDaten = cacheHolen(fm, cacheFileLaKr, custom.cacheTime)
+        logDebug("lakrDaten aus Cache: " + JSON.stringify(lakrDaten))
+
+    }
+  
+    let keydDaten = cacheHolen(fm, cacheFileKeyD, custom.cacheTime)
+    logDebug("keydDaten aus Cache: " + JSON.stringify(keydDaten))
+
+    let diviDaten = cacheHolen(fm, cacheFileDIVI, custom.cacheTime)
+    logDebug("diviDaten aus Cache: " + JSON.stringify(diviDaten))
+
+    let impfDaten = cacheHolen(fm, cacheFileImpf, custom.cacheTime)
+    logDebug("impfDaten aus Cache: " + JSON.stringify(impfDaten))
+
+    let hospDaten = cacheHolen(fm, cacheFileHosp, custom.cacheTime)
+    logDebug("hospDaten aus Cache: " + JSON.stringify(hospDaten))
+  
+    let rWerDaten = cacheHolen(fm, cacheFileRWer, custom.cacheTime)
+    logDebug("rWerDaten aus Cache: " + JSON.stringify(rWerDaten))
+
+    if (!geodaten || geodaten == "") {
+            
+        geodaten = await geodatenHolen(args.widgetParameter)
+        logDebug("geodaten: " + JSON.stringify(geodaten))
+        
+    }
+    
+    if (!lakrDaten || lakrDaten == "") {
+        
+        lakrDaten = await lakrDatenHolen(geodaten)
+        logDebug("lakrDaten: " + JSON.stringify(lakrDaten))
+        
+    }
+    fm.writeString(cacheFileLaKr, JSON.stringify(lakrDaten, null, 2))
+    
+    if (!keydDaten || keydDaten.cacheExpired) {
+
+        keydDaten = await keyDataHolen(lakrDaten.AGS, lakrDaten.BL_ID)
+        logDebug("keydDaten: " + JSON.stringify(keydDaten))
+        fm.writeString(cacheFileKeyD, JSON.stringify(keydDaten, null, 2))
+
+    }
+    
+    if (!diviDaten || diviDaten.cacheExpired) {
+
+        diviDaten = await intensivbettenHolen(lakrDaten.AGS, lakrDaten.BL_ID)
+        logDebug("diviDaten: " + JSON.stringify(diviDaten))
+        fm.writeString(cacheFileDIVI, JSON.stringify(diviDaten, null, 2))
+
+    }
+    
+    if (!impfDaten || impfDaten.cacheExpired) {
+
+        impfDaten = await impfDatenHolen(lakrDaten.BL)
+        logDebug("impfDaten: " + JSON.stringify(impfDaten))
+        fm.writeString(cacheFileImpf, JSON.stringify(impfDaten, null, 2))
+
+    }
+    
+    if (!hospDaten || hospDaten.cacheExpired) {
+
+        hospDaten = await hospitalisierungHolen(lakrDaten.BL)
+        logDebug("hospDaten: " + JSON.stringify(hospDaten))
+        fm.writeString(cacheFileHosp, JSON.stringify(hospDaten, null, 2))
+
+    }
+    
+    if (!rWerDaten || rWerDaten.cacheExpired) {
+
+        let rWerDaten = await rFaktorHolen()
+        logDebug("rWerDaten: " +JSON.stringify(rWerDaten))
+        fm.writeString(cacheFileRWer, JSON.stringify(rWerDaten, null, 2))
+
+    }
+
+    covidDaten = {
+
+        AGS:                            lakrDaten.AGS
+        ,GEN:                           lakrDaten.GEN
+        ,BEZ:                           lakrDaten.BEZ
+        ,BL:                            lakrDaten.BL
+        ,BL_ID:                         lakrDaten.BL_ID
+        ,lkLastUpdate:                  lakrDaten.last_update
+        ,lkInzidenz:                    keydDaten.lkInzidenz
+        ,blInzidenz:                    keydDaten.blInzidenz
+        ,deInzidenz:                    keydDaten.deInzidenz
+        ,lkAnzahlNeueFaelle:            keydDaten.lkAnzahlNeueFaelle
+        ,blAnzahlNeueFaelle:            keydDaten.blAnzahlNeueFaelle
+        ,deAnzahlNeueFaelle:            keydDaten.deAnzahlNeueFaelle
+        ,lkNeueTodesfaelle:             keydDaten.lkNeueTodesfaelle
+        ,blNeueTodesfaelle:             keydDaten.blNeueTodesfaelle
+        ,deNeueTodesfaelle:             keydDaten.deNeueTodesfaelle
+        ,lkAktive:                      keydDaten.lkAktive
+        ,blAktive:                      keydDaten.blAktive
+        ,deAktive:                      keydDaten.deAktive
+        ,lkAnzahlFaelle:                keydDaten.lkAnzahlFaelle
+        ,blAnzahlFaelle:                keydDaten.blAnzahlFaelle
+        ,deAnzahlFaelle:                keydDaten.deAnzahlFaelle
+        ,lkAnzahlFaelle7T:              keydDaten.lkAnzahlFaelle7T
+        ,blAnzahlFaelle7T:              keydDaten.blAnzahlFaelle7T
+        ,deAnzahlFaelle7T:              keydDaten.deAnzahlFaelle7T
+        ,lkTodesfaelle:                 keydDaten.lkTodesfaelle       
+        ,blTodesfaelle:                 keydDaten.blTodesfaelle
+        ,deTodesfaelle:                 keydDaten.deTodesfaelle
+        ,lkGenesene:                    keydDaten.lkGenesene
+        ,blGenesene:                    keydDaten.blGenesene
+        ,deGenesene:                    keydDaten.deGenesene
+        ,lkNeueGenesene:                keydDaten.lkNeueGenesene
+        ,blNeueGenesene:                keydDaten.blNeueGenesene
+        ,deNeueGenesene:                keydDaten.deNeueGenesene
+        ,lkNeueAktive:                  keydDaten.lkNeueAktive
+        ,blNeueAktive:                  keydDaten.blNeueAktive
+        ,deNeueAktive:                  keydDaten.deNeueAktive
+        ,lkIntensivBelegungProzent:     diviDaten.lkIntensivBelegungProzent
+        ,lkIntensivbelegungAnzahl:      diviDaten.lkIntensivbelegungAnzahl
+        ,lkFreieIntensivbetten:         diviDaten.lkFreieIntensivbetten
+        ,lkIntensivbettenUpdate:        diviDaten.lkIntensivbettenUpdate
+        ,blIntensivBelegungProzent:     diviDaten.blIntensivBelegungProzent
+        ,blIntensivbelegungAnzahl:      diviDaten.blIntensivbelegungAnzahl
+        ,blFreieIntensivbetten:         diviDaten.blFreieIntensivbetten
+        ,blIntensivbettenUpdate:        diviDaten.blIntensivbettenUpdate
+        ,deIntensivBelegungProzent:     diviDaten.deIntensivBelegungProzent
+        ,deIntensivbelegungAnzahl:      diviDaten.deIntensivbelegungAnzahl
+        ,deFreieIntensivbetten:         diviDaten.deFreieIntensivbetten
+        ,deIntensivbettenUpdate:        diviDaten.deIntensivbettenUpdate
+        ,blHospitalisierungFaelle7T:    hospDaten.blHospitalisierungFaelle7T
+        ,blHospitalisierungInzidenz7T:  hospDaten.blHospitalisierungInzidenz7T
+        ,blHospitalisierungUpdate:      hospDaten.blHospitalisierungUpdate
+        ,deHospitalisierungFaelle7T:    hospDaten.deHospitalisierungFaelle7T
+        ,deHospitalisierungInzidenz7T:  hospDaten.deHospitalisierungInzidenz7T
+        ,deHospitalisierungUpdate:      hospDaten.deHospitalisierungUpdate
+        ,deImpfungAnzahl:               impfDaten.deImpfungAnzahl
+        ,deImpfungAnzahlMin1:           impfDaten.deImpfungAnzahlMin1
+        ,deImpfungAnzahlGI:             impfDaten.deImpfungAnzahlGI
+        ,deImpfungAnzahlBoost1:         impfDaten.deImpfungAnzahlBoost1
+        ,deImpfungAnzahlBoost2:         impfDaten.deImpfungAnzahlBoost2
+        ,deImpfungAnzahlBoost3:         impfDaten.deImpfungAnzahlBoost3
+        ,deImpfungAnzahlBoost4:         impfDaten.deImpfungAnzahlBoost4
+        ,deImpfungQuoteMin1:            impfDaten.deImpfungQuoteMin1
+        ,deImpfungQuoteGI:              impfDaten.deImpfungQuoteGI
+        ,deImpfungQuoteBoost1:          impfDaten.deImpfungQuoteBoost1
+        ,deImpfungQuoteBoost2:          impfDaten.deImpfungQuoteBoost2
+        ,deImpfungUpdate:               impfDaten.deImpfungUpdate
+        ,blImpfungAnzahl:               impfDaten.blImpfungAnzahl
+        ,blImpfungAnzahlMin1:           impfDaten.blImpfungAnzahlMin1
+        ,blImpfungAnzahlGI:             impfDaten.blImpfungAnzahlGI
+        ,blImpfungAnzahlBoost1:         impfDaten.blImpfungAnzahlBoost1
+        ,blImpfungAnzahlBoost2:         impfDaten.blImpfungAnzahlBoost2
+        ,blImpfungAnzahlBoost3:         impfDaten.blImpfungAnzahlBoost3
+        ,blImpfungAnzahlBoost4:         impfDaten.blImpfungAnzahlBoost4
+        ,blImpfungQuoteMin1:            impfDaten.blImpfungQuoteMin1
+        ,blImpfungQuoteGI:              impfDaten. blImpfungQuoteGI
+        ,blImpfungQuoteBoost1:          impfDaten.blImpfungQuoteBoost1
+        ,blImpfungQuoteBoost2:          impfDaten.blImpfungQuoteBoost2
+        ,blImpfungUpdate:               impfDaten.blImpfungUpdate
+        ,rFaktor:                       rWerDaten.rFaktor
+
+    }
+
+    logDebug("covidDaten: " + JSON.stringify(covidDaten))
+
+    listWidget                              = new ListWidget()
+    listWidget.backgroundColor              = Color.clear()
+    listWidget.layoutVertically
+    listWidget.centerAlignContent
+
+    let gradient                            = new LinearGradient()
+    gradient.colors                         = getBackgroundGradientColor(covidDaten.deHospitalisierungInzidenz7T)
+    gradient.locations                      = [0.0, 1.0]
+    listWidget.backgroundGradient           = gradient
+
+    if(covidDaten) {
+   
+        if (config.widgetFamily == 'large')  {
+        
+            await largeWidget(covidDaten)
+
+        } else {
+
+            zeileAusgeben({text: config.widgetFamily + "-Widget ist nicht verfügbar. Bitte ein large-Widget benutzen."}, text.error, false)
+
+        }
+
+    } else {
+     
+        zeileAusgeben({text: "Daten für Lagebericht konnte nicht ermittelt werden."}, text.error, false)
+
+    }
 
     logDebug("END async function crateWidget()")
 
@@ -1137,19 +1536,21 @@ async function largeWidget(covidDaten) {
 
         zeileAusgeben({ text: custom.bund.head }, text.sectionHeader, false)
 
-        if (custom.bund.hospitalisierungInzidenz.show) { zeileAusgeben(custom.bund.hospitalisierungInzidenz, text.sectionData, covidDaten.deHospitalisierungInzidenz7T) }
-        if (custom.bund.hospitalisierung7Tage.show) { zeileAusgeben(custom.bund.hospitalisierung7Tage, text.sectionData, covidDaten.deHospitalisierungFaelle7T) }
-        if (custom.bund.neuinfektioenenAnzahl.show) { zeileAusgeben(custom.bund.neuinfektioenenAnzahl, text.sectionData, covidDaten.deAnzahlNeueFaelle) }
         if (custom.bund.neuinfektioenenInzidenz.show) { zeileAusgeben(custom.bund.neuinfektioenenInzidenz, text.sectionData, covidDaten.deInzidenz) }
+        if (custom.bund.neuinfektioenenAnzahl.show) { zeileAusgeben(custom.bund.neuinfektioenenAnzahl, text.sectionData, covidDaten.deAnzahlNeueFaelle) }
+        if (custom.bund.neueTodesfaelle.show) { zeileAusgeben(custom.bund.neueTodesfaelle, text.sectionData, covidDaten.deNeueTodesfaelle) }
+        if (custom.bund.aktive.show) { zeileAusgeben(custom.bund.aktive, text.sectionData, covidDaten.deAktive) }
+        if (custom.bund.faelle.show) { zeileAusgeben(custom.bund.faelle, text.sectionData, covidDaten.deAnzahlFaelle) }
+        if (custom.bund.faelle7T.show) { zeileAusgeben(custom.bund.faelle7T, text.sectionData, covidDaten.deAnzahlFaelle7T) }
+        if (custom.bund.todesfaelle.show) { zeileAusgeben(custom.bund.todesfaelle, text.sectionData, covidDaten.deTodesfaelle) }
+        if (custom.bund.genesene.show) { zeileAusgeben(custom.bund.genesene, text.sectionData, covidDaten.deGenesene) }
+        if (custom.bund.neueGenesene.show) { zeileAusgeben(custom.bund.neueGenesene, text.sectionData, covidDaten.deNeueGenesene) }
+        if (custom.bund.neueAktive.show) { zeileAusgeben(custom.bund.neueAktive, text.sectionData, covidDaten.deNeueAktive) }
         if (custom.bund.intensivbettenBelegtProzent.show && diviNutzungsfreigabe) { zeileAusgeben(custom.bund.intensivbettenBelegtProzent, text.sectionData, covidDaten.deIntensivBelegungProzent) }
         if (custom.bund.intensivbettenBelegtAnzahl.show && diviNutzungsfreigabe) { zeileAusgeben(custom.bund.intensivbettenBelegtAnzahl, text.sectionData, covidDaten.deIntensivbelegungAnzahl) }
         if (custom.bund.intensivbettenFrei.show && diviNutzungsfreigabe) { zeileAusgeben(custom.bund.intensivbettenFrei, text.sectionData, covidDaten.deFreieIntensivbetten) }
-        if (custom.bund.rWert.show) { zeileAusgeben(custom.bund.rWert, text.sectionData, covidDaten.rFaktor) }
-        if (custom.bund.faelle.show) { zeileAusgeben(custom.bund.faelle, text.sectionData, covidDaten.deAnzahlFaelle) }
-        if (custom.bund.todesfaelle.show) { zeileAusgeben(custom.bund.todesfaelle, text.sectionData, covidDaten.deTodesfaelle) }
-        if (custom.bund.neueTodesfaelle.show) { zeileAusgeben(custom.bund.neueTodesfaelle, text.sectionData, covidDaten.deNeueTodesfaelle) }
-        if (custom.bund.genesene.show) { zeileAusgeben(custom.bund.genesene, text.sectionData, covidDaten.deGenesene) }
-        if (custom.bund.aktive.show) { zeileAusgeben(custom.bund.aktive, text.sectionData, covidDaten.deAktive) }
+        if (custom.bund.hospitalisierungInzidenz.show) { zeileAusgeben(custom.bund.hospitalisierungInzidenz, text.sectionData, covidDaten.deHospitalisierungInzidenz7T) }
+        if (custom.bund.hospitalisierung7Tage.show) { zeileAusgeben(custom.bund.hospitalisierung7Tage, text.sectionData, covidDaten.deHospitalisierungFaelle7T) }
         if (custom.bund.impfQuote.show) { zeileAusgeben(custom.bund.impfQuote, text.sectionData, covidDaten.deImpfungQuoteMin1 + "%/" + covidDaten.deImpfungQuoteGI  + "%/" + covidDaten.deImpfungQuoteBoost1 + "%/" + covidDaten.deImpfungQuoteBoost2 + "%") }
         if (custom.bund.impfungenGesamt.show) { zeileAusgeben(custom.bund.impfungenGesamt, text.sectionData, covidDaten.deImpfungAnzahl) }
         if (custom.bund.impfungenGesamtMin1.show) { zeileAusgeben(custom.bund.impfungenGesamtMin1, text.sectionData, covidDaten.deImpfungAnzahlMin1) }
@@ -1158,7 +1559,8 @@ async function largeWidget(covidDaten) {
         if (custom.bund.impfungenGesamtBoost2.show) { zeileAusgeben(custom.bund.impfungenGesamtBoost2, text.sectionData, covidDaten.deImpfungAnzahlBoost2) }
         if (custom.bund.impfungenGesamtBoost3.show) { zeileAusgeben(custom.bund.impfungenGesamtBoost3, text.sectionData, covidDaten.deImpfungAnzahlBoost3) }
         if (custom.bund.impfungenGesamtBoost4.show) { zeileAusgeben(custom.bund.impfungenGesamtBoost4, text.sectionData, covidDaten.deImpfungAnzahlBoost4) }
-
+        if (custom.bund.rWert.show) { zeileAusgeben(custom.bund.rWert, text.sectionData, covidDaten.rFaktor) }
+        
         logDebug("END generate Bund")
 
     }
@@ -1179,19 +1581,21 @@ async function largeWidget(covidDaten) {
 
         }
         
-        if (custom.land.hospitalisierungInzidenz.show) { zeileAusgeben(custom.land.hospitalisierungInzidenz, text.sectionData, covidDaten.blHospitalisierungInzidenz7T) }
-        if (custom.land.hospitalisierung7Tage.show) { zeileAusgeben(custom.land.hospitalisierung7Tage, text.sectionData, covidDaten.blHospitalisierungFaelle7T) }
         if (custom.land.neuinfektioenenInzidenz.show) { zeileAusgeben(custom.land.neuinfektioenenInzidenz, text.sectionData, covidDaten.blInzidenz) }
-        if (custom.land.neuinfektioenenStaticInzidenz.show) { zeileAusgeben(custom.land.neuinfektioenenStaticInzidenz, text.sectionData, covidDaten.blStaticInzidenz) }
         if (custom.land.neuinfektioenenAnzahl.show) { zeileAusgeben(custom.land.neuinfektioenenAnzahl, text.sectionData, covidDaten.blAnzahlNeueFaelle) }
+        if (custom.land.neueTodesfaelle.show) { zeileAusgeben(custom.land.neueTodesfaelle, text.sectionData, covidDaten.blNeueTodesfaelle) }
+        if (custom.land.aktive.show) { zeileAusgeben(custom.land.aktive, text.sectionData, covidDaten.blAktive) }
+        if (custom.land.faelle.show) { zeileAusgeben(custom.land.faelle, text.sectionData, covidDaten.blAnzahlFaelle) }
+        if (custom.land.faelle7T.show) { zeileAusgeben(custom.land.faelle7T, text.sectionData, covidDaten.blAnzahlFaelle7T) }
+        if (custom.land.todesfaelle.show) { zeileAusgeben(custom.land.todesfaelle, text.sectionData, covidDaten.blTodesfaelle) }
+        if (custom.land.genesene.show) { zeileAusgeben(custom.land.genesene, text.sectionData, covidDaten.blGenesene) }
+        if (custom.land.neueGenesene.show) { zeileAusgeben(custom.land.neueGenesene, text.sectionData, covidDaten.blNeueGenesene) }
+        if (custom.land.neueAktive.show) { zeileAusgeben(custom.land.neueAktive, text.sectionData, covidDaten.blNeueAktive) }
         if (custom.land.intensivbettenBelegtProzent.show && diviNutzungsfreigabe) { zeileAusgeben(custom.land.intensivbettenBelegtProzent, text.sectionData, covidDaten.blIntensivBelegungProzent) }
         if (custom.land.intensivbettenBelegtAnzahl.show && diviNutzungsfreigabe) { zeileAusgeben(custom.land.intensivbettenBelegtAnzahl, text.sectionData, covidDaten.blIntensivbelegungAnzahl) }
         if (custom.land.intensivbettenFrei.show && diviNutzungsfreigabe) { zeileAusgeben(custom.land.intensivbettenFrei, text.sectionData, covidDaten.blFreieIntensivbetten) }
-        if (custom.land.faelle.show) { zeileAusgeben(custom.land.faelle, text.sectionData, covidDaten.blAnzahlFaelle) }
-        if (custom.land.todesfaelle.show) { zeileAusgeben(custom.land.todesfaelle, text.sectionData, covidDaten.blTodesfaelle) }
-        if (custom.land.neueTodesfaelle.show) { zeileAusgeben(custom.land.neueTodesfaelle, text.sectionData, covidDaten.blNeueTodesfaelle) }
-        if (custom.land.genesene.show) { zeileAusgeben(custom.land.genesene, text.sectionData, covidDaten.blGenesene) }
-        if (custom.land.aktive.show) { zeileAusgeben(custom.land.aktive, text.sectionData, covidDaten.blAktive) }
+        if (custom.land.hospitalisierungInzidenz.show) { zeileAusgeben(custom.land.hospitalisierungInzidenz, text.sectionData, covidDaten.blHospitalisierungInzidenz7T) }
+        if (custom.land.hospitalisierung7Tage.show) { zeileAusgeben(custom.land.hospitalisierung7Tage, text.sectionData, covidDaten.blHospitalisierungFaelle7T) }
         if (custom.land.impfQuote.show) { zeileAusgeben(custom.land.impfQuote, text.sectionData, covidDaten.blImpfungQuoteMin1 + "%/" + covidDaten.blImpfungQuoteGI  + "%/" + covidDaten.blImpfungQuoteBoost1 + "%/" + covidDaten.blImpfungQuoteBoost2 + "%") }
         if (custom.land.impfungenGesamt.show) { zeileAusgeben(custom.land.impfungenGesamt, text.sectionData, covidDaten.blImpfungAnzahl) }
         if (custom.land.impfungenGesamtMin1.show) { zeileAusgeben(custom.land.impfungenGesamtMin1, text.sectionData, covidDaten.blImpfungAnzahlMin1) }
@@ -1230,17 +1634,18 @@ async function largeWidget(covidDaten) {
         }
 
         if (custom.kreis.neuinfektioenenInzidenz.show) { zeileAusgeben(custom.kreis.neuinfektioenenInzidenz, text.sectionData, covidDaten.lkInzidenz) }
-        if (custom.kreis.neuinfektioenenStaticInzidenz.show) { zeileAusgeben(custom.kreis.neuinfektioenenStaticInzidenz, text.sectionData, covidDaten.lkStaticInzidenz) }
         if (custom.kreis.neuinfektioenenAnzahl.show) { zeileAusgeben(custom.kreis.neuinfektioenenAnzahl, text.sectionData, covidDaten.lkAnzahlNeueFaelle) }
+        if (custom.kreis.neueTodesfaelle.show) { zeileAusgeben(custom.kreis.neueTodesfaelle, text.sectionData, covidDaten.lkNeueTodesfaelle) }
+        if (custom.kreis.aktive.show) { zeileAusgeben(custom.kreis.aktive, text.sectionData, covidDaten.lkAktive) }
+        if (custom.kreis.faelle.show) { zeileAusgeben(custom.kreis.faelle, text.sectionData, covidDaten.lkCases) }
+        if (custom.kreis.faelle7T.show) { zeileAusgeben(custom.kreis.faelle7T, text.sectionData, covidDaten.faelle7T) }
+        if (custom.kreis.todesfaelle.show) { zeileAusgeben(custom.kreis.todesfaelle, text.sectionData, covidDaten.lkDeath) }
+        if (custom.kreis.genesene.show) { zeileAusgeben(custom.kreis.genesene, text.sectionData, covidDaten.lkGenesene) }
+        if (custom.kreis.neueGenesene.show) { zeileAusgeben(custom.kreis.neueGenesene, text.sectionData, covidDaten.lkNeueGenesene) }
         if (custom.kreis.intensivbettenBelegtProzent.show && diviNutzungsfreigabe) { zeileAusgeben(custom.kreis.intensivbettenBelegtProzent, text.sectionData, covidDaten.lkIntensivBelegungProzent) }
         if (custom.kreis.intensivbettenBelegtAnzahl.show && diviNutzungsfreigabe) { zeileAusgeben(custom.kreis.intensivbettenBelegtAnzahl, text.sectionData, covidDaten.lkIntensivbelegungAnzahl) }
         if (custom.kreis.intensivbettenFrei.show && diviNutzungsfreigabe) { zeileAusgeben(custom.kreis.intensivbettenFrei, text.sectionData, covidDaten.lkFreieIntensivbetten) }
-        if (custom.kreis.faelle.show) { zeileAusgeben(custom.kreis.faelle, text.sectionData, covidDaten.lkCases) }
-        if (custom.kreis.todesfaelle.show) { zeileAusgeben(custom.kreis.todesfaelle, text.sectionData, covidDaten.lkDeath) }
-        if (custom.kreis.neueTodesfaelle.show) { zeileAusgeben(custom.kreis.neueTodesfaelle, text.sectionData, covidDaten.lkNeueTodesfaelle) }
-        if (custom.kreis.genesene.show) { zeileAusgeben(custom.kreis.genesene, text.sectionData, covidDaten.lkGenesene) }
-        if (custom.kreis.aktive.show) { zeileAusgeben(custom.kreis.aktive, text.sectionData, covidDaten.lkAktive) }
-
+        
         logDebug("END generate Kreis")
 
     }
@@ -1251,8 +1656,8 @@ async function largeWidget(covidDaten) {
 	
     let footerLine                          = basic.name.short + " " + basic.version
     footerLine                              = footerLine +  " WU:" + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
-    footerLine                              = footerLine +  " RKI:" + covidDaten.lkLastUpdate.substr(0, 6)
-    logDebug("covidDaten.lkLastUpdate: " + covidDaten.lkLastUpdate.substr(0, 10))
+    //footerLine                              = footerLine +  " RKI:" + covidDaten.lkLastUpdate.substr(0, 6)
+    logDebug("covidDaten.lkLastUpdate: " + covidDaten.lkLastUpdate)
     footerLine                              = footerLine +  " RKI-H:" + covidDaten.deHospitalisierungUpdate.substr(8, 2) + "." + covidDaten.deHospitalisierungUpdate.substr(5, 2) + "."
     logDebug("covidDaten.deHospitalisierungUpdate: " + covidDaten.deHospitalisierungUpdate)
     footerLine                              = footerLine +  " RKI-I:" + covidDaten.deImpfungUpdate.substr(8, 2) + "." + covidDaten.deImpfungUpdate.substr(5, 2) + "."
@@ -1270,102 +1675,134 @@ async function largeWidget(covidDaten) {
 
 }
 
-// Inzidenz für Deutschland ermitteln
-async function InzidenzHolen(lkID, blID, EWZ_LK, EWZ_BL) {
+// Key Data holen
+async function keyDataHolen(lkID, blID) {
 
-    logDebug("START async function InzidenzHolen")
+    logDebug("START async function keyDataHolen(lkID, blID)")
     
     try {
         
         logDebug("lkID: " + lkID)
         logDebug("blID: " + blID)
-        logDebug("EWZ_LK: " + EWZ_LK)
-        logDebug("EWZ_BL: " + EWZ_BL)
         
-        let now = new Date()
-        now.setDate(now.getDate() - 7)
-        let start = now.toISOString().slice(0, 10)
-        
-        let lkIncidence = -1
+        let lakrKeyData = ""
 
         if (custom.kreis.show && custom.kreis.neuinfektioenenInzidenz.show) {
 
-            logDebug("start: " + start)
-
-            let lkInzidenzRawData               = await new Request(rkiApiLkNeueFaelle7T(lkID)).loadJSON()
-            logDebug("lkInzidenzRawData: " + JSON.stringify(lkInzidenzRawData))
-
-            let lkCases7D = lkInzidenzRawData.features[0].attributes.AnzFall7T
-            logDebug("lkCases7D: " + lkCases7D)
-
-            lkIncidence = (((lkCases7D / parseFloat(EWZ_LK) * 100000).toFixed(1)).replace(/\./g,",")).toLocaleString()
-            logDebug("lkIncidence: " + lkIncidence)
+            let lakrKeyRawData = await new Request(rkiApiLkKeyData(lkID)).loadJSON()
+            logDebug("lakrKeyRawData: " + JSON.stringify(lakrKeyRawData))
+            lakrKeyData = lakrKeyRawData.features[0].attributes
+            logDebug("lakrKeyData: " + JSON.stringify(lakrKeyData))
 
         }
 
-        let blIncidence = -1
+        let bulaKeyData = ""
 
         if (custom.land.show && custom.land.neuinfektioenenInzidenz.show) {
 
-            let blInzidenzRawData               = await new Request(rkiApiBlNeueFaelle7T(blID)).loadJSON()
-            logDebug("blInzidenzRawData: " + JSON.stringify(blInzidenzRawData))
-
-            let blCases7D = blInzidenzRawData.features[0].attributes.AnzFall7T
-            logDebug("blCases7D: " + blCases7D)
-
-            blIncidence = (((blCases7D / parseFloat(EWZ_BL) * 100000).toFixed(1)).replace(/\./g,",")).toLocaleString()
-            logDebug("blIncidence: " + blIncidence)
+            let bulaKeyRawData = await new Request(rkiApiBlKeyData(blID)).loadJSON()
+            logDebug("bulaKeyRawData: " + JSON.stringify(bulaKeyRawData))
+            bulaKeyData = bulaKeyRawData.features[0].attributes
+            logDebug("bulaKeyData: " + JSON.stringify(bulaKeyData))
 
         }
 
-        let deEWZ = -1
-        let deIncidence = -1
+        let delaKeyData = ""
 
         if (custom.bund.show && custom.bund.neuinfektioenenInzidenz.show) {
 
-            let deInzidenzRawData               = await new Request(rkiApiDeNeueFaelle7T).loadJSON()
-            logDebug("deInzidenzRawData: " + JSON.stringify(deInzidenzRawData))
-
-            let deCases7D = deInzidenzRawData.features[0].attributes.AnzFall7T
-            logDebug("deCases7D: " + deCases7D)
-
-            let deEwzRawData                        = await new Request(rkiApiDeEwz).loadJSON()
-            logDebug("deEwzRawData: " + JSON.stringify(deEwzRawData))
-
-            deEWZ                                   = deEwzRawData.features[0].attributes.EWZ
-            logDebug("deEWZ: " + JSON.stringify(deEWZ))
-
-            deIncidence = (((deCases7D / parseFloat(deEWZ) * 100000).toFixed(1)).replace(/\./g,",")).toLocaleString()
-            logDebug("deIncidence: " + deIncidence)
+            let delaKeyRawData = await new Request(rkiApiDeKeyData).loadJSON()
+            logDebug("delaKeyRawData: " + JSON.stringify(delaKeyRawData))
+            delaKeyData = delaKeyRawData.features[0].attributes
+            logDebug("delaKeyData: " + JSON.stringify(delaKeyData))
 
         }
         
-        logDebug("END async function InzidenzHolen()")
+        logDebug("END async function KeyDataHolen()")
 
         return {
             
-                lkInzidenz:                 lkIncidence
-                ,blInzidenz:                blIncidence
-                ,deInzidenz:                deIncidence
-                ,deEWZ:                         deEWZ
+            lkInzidenz:             lakrKeyData.Inz7T.toLocaleString()
+            ,lkAnzahlNeueFaelle:    lakrKeyData.AnzFallNeu.toLocaleString()
+            ,lkNeueTodesfaelle:     lakrKeyData.AnzTodesfallNeu.toLocaleString()
+            ,lkAktive:              lakrKeyData.AnzAktiv.toLocaleString()
+            ,lkAnzahlFaelle:        lakrKeyData.AnzFall.toLocaleString()
+            ,lkAnzahlFaelle7T:      lakrKeyData.AnzFall7T.toLocaleString()
+            ,lkTodesfaelle:         lakrKeyData.AnzTodesfall.toLocaleString()
+            ,lkGenesene:            lakrKeyData.AnzGenesen.toLocaleString()
+            ,lkNeueGenesene:        lakrKeyData.AnzGenesenNeu.toLocaleString()
+            ,lkNeueAktive:          lakrKeyData.AnzAktivNeu.toLocaleString()
+            ,blInzidenz:            bulaKeyData.Inz7T.toLocaleString()
+            ,blAnzahlNeueFaelle:    bulaKeyData.AnzFallNeu.toLocaleString()
+            ,blNeueTodesfaelle:     bulaKeyData.AnzTodesfallNeu.toLocaleString()
+            ,blAktive:              bulaKeyData.AnzAktiv.toLocaleString()
+            ,blAnzahlFaelle:        bulaKeyData.AnzFall.toLocaleString()
+            ,blAnzahlFaelle7T:      bulaKeyData.AnzFall7T.toLocaleString()
+            ,blTodesfaelle:         bulaKeyData.AnzTodesfall.toLocaleString()
+            ,blGenesene:            bulaKeyData.AnzGenesen.toLocaleString()
+            ,blNeueGenesene:        bulaKeyData.AnzGenesenNeu.toLocaleString()
+            ,blNeueAktive:          bulaKeyData.AnzAktivNeu.toLocaleString()
+            ,deInzidenz:            delaKeyData.Inz7T.toLocaleString()
+            ,deAnzahlNeueFaelle:    delaKeyData.AnzFallNeu.toLocaleString()
+            ,deNeueTodesfaelle:     delaKeyData.AnzTodesfallNeu.toLocaleString()
+            ,deAktive:              delaKeyData.AnzAktiv.toLocaleString()
+            ,deAnzahlFaelle:        delaKeyData.AnzFall.toLocaleString()
+            ,deAnzahlFaelle7T:      delaKeyData.AnzFall7T.toLocaleString()
+            ,deTodesfaelle:         delaKeyData.AnzTodesfall.toLocaleString()
+            ,deGenesene:            delaKeyData.AnzGenesen.toLocaleString()
+            ,deNeueGenesene:        delaKeyData.AnzGenesenNeu.toLocaleString()
+            ,deNeueAktive:          delaKeyData.AnzAktivNeu.toLocaleString()
 
         }
                     
     } catch(e) {
 
-       logDebug("END async function InzidenzHolen() return null")
+       logDebug("END async function KeyDataHolen() return initial value")
 
-       return null;
+       return {
+            
+            lkInzidenz:             "-1"
+            ,lkAnzahlNeueFaelle:    "-1"
+            ,lkNeueTodesfaelle:     "-1"
+            ,lkAktive:              "-1"
+            ,lkAnzahlFaelle:        "-1"
+            ,lkAnzahlFaelle7T:      "-1"
+            ,lkTodesfaelle:         "-1"
+            ,lkGenesene:            "-1"
+            ,lkNeueGenesene:        "-1"
+            ,lkNeueAktive:          "-1"
+            ,blInzidenz:            "-1"
+            ,blAnzahlNeueFaelle:    "-1"
+            ,blNeueTodesfaelle:     "-1"
+            ,blAktive:              "-1"
+            ,blAnzahlFaelle:        "-1"
+            ,blAnzahlFaelle7T:      "-1"
+            ,blTodesfaelle:         "-1"
+            ,blGenesene:            "-1"
+            ,blNeueGenesene:        "-1"
+            ,blNeueAktive:          "-1"
+            ,deInzidenz:            "-1"
+            ,deAnzahlNeueFaelle:    "-1"
+            ,deNeueTodesfaelle:     "-1"
+            ,deAktive:              "-1"
+            ,deAnzahlFaelle:        "-1"
+            ,deAnzahlFaelle7T:      "-1"
+            ,deTodesfaelle:         "-1"
+            ,deGenesene:            "-1"
+            ,deNeueGenesene:        "-1"
+            ,deNeueAktive:          "-1"
+
+        }
 
     }
     
 
 }
 
-// LK Daten vom RKI holen
-async function lkDatenHolen(geodaten) {
+// Landkreis Daten vom RKI holen
+async function lakrDatenHolen(geodaten) {
 
-    logDebug("START async function lkDatenHolen(geodaten)")
+    logDebug("START async function lakrDatenHolen(geodaten)")
     logDebug("geodaten: " + JSON.stringify(geodaten))
 
     try {
@@ -1375,314 +1812,33 @@ async function lkDatenHolen(geodaten) {
         let lkData                          = lkRawData.features[0].attributes
         logDebug("lkData: " + JSON.stringify(lkData))
 
-        logDebug("END async function lkDatenHolen(geodaten)")
+        logDebug("END async function lakrDatenHolen(geodaten)")
 
         return { 
 
             AGS:                            lkData.AGS
             ,GEN:                           lkData.GEN
             ,BEZ:                           lkData.BEZ
-            ,EWZ:                           lkData.EWZ
-            ,cases:                         lkData.cases.toLocaleString()
-            ,death:                         lkData.deaths.toLocaleString()
             ,BL:                            lkData.BL
             ,BL_ID:                         lkData.BL_ID
-            ,EWZ_BL:                        lkData.EWZ_BL
-            ,last_update:                   lkData.last_update
-            ,cases7_per_100k:               lkData.cases7_per_100k.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
-            ,cases7_bl_per_100k:            lkData.cases7_bl_per_100k.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
-
+            ,last_update:                   lkData.last_update.toLocaleString()
+            
         }
                     
     } catch(e) {
 
-        logDebug("END async function lkDatenHolen(geodaten) return null")
-
-        return null;
-
-    }
-
-}
-
-// Neue Fälle vom RKI holen
-async function neueFaelleHolen(ags, bl_id) {
-
-    logDebug("START async function neueFaelleHolen(ags, bl_id)")
-    logDebug("ags: " + JSON.stringify(ags))
-    logDebug("bl_id: " + JSON.stringify(bl_id))
-    
-    try {
-        
-        let lkAnzahlNeueFaelle = -1
-
-        if (custom.kreis.show && custom.kreis.neuinfektioenenAnzahl.show) {
-
-            let lkRawData                       = await new Request(rkiApiLkNeueFaelle(ags)).loadJSON()
-            logDebug("lkRawData: " + JSON.stringify(lkRawData))
-            lkAnzahlNeueFaelle              = lkRawData.features[0].attributes.AnzFallNeu || 0
-            logDebug("lkAnzahlNeueFaelle: " + lkAnzahlNeueFaelle)
-
-        }
-
-        let blAnzahlNeueFaelle = -1
-
-        if (custom.land.show && custom.land.neuinfektioenenAnzahl.show) {
-
-            let blRawData                       = await new Request(rkiApiBlNeueFaelle(bl_id)).loadJSON()
-            logDebug("blRawData: " + JSON.stringify(blRawData))
-            blAnzahlNeueFaelle              = blRawData.features[0].attributes.AnzFallNeu || 0
-            logDebug("blAnzahlNeueFaelle: " + blAnzahlNeueFaelle)
-
-        }
-
-        let deAnzahlNeueFaelle = -1
-
-        if (custom.bund.show && custom.bund.neuinfektioenenAnzahl.show) {
-
-            let deRawData                       = await new Request(rkiApiDeNeueFaelle).loadJSON()
-            logDebug("deRawData: " + JSON.stringify(deRawData))
-            deAnzahlNeueFaelle              = deRawData.features[0].attributes.AnzFallNeu || 0
-            logDebug("deAnzahlNeueFaelle: " + deAnzahlNeueFaelle)
-
-        }
-
-        logDebug("END async function neueFaelleHolen(ags, bl_id)")
+        logDebug("END async function lakrDatenHolen(geodaten) return initial Values")
 
         return { 
 
-            lkAnzahlNeueFaelle:             lkAnzahlNeueFaelle.toLocaleString()
-            ,blAnzahlNeueFaelle:            blAnzahlNeueFaelle.toLocaleString()
-            ,deAnzahlNeueFaelle:            deAnzahlNeueFaelle.toLocaleString()
-
+            AGS:                            "00000"
+            ,GEN:                           "n/a"
+            ,BEZ:                           ""
+            ,BL:                            "n/a"
+            ,BL_ID:                         "0"
+            ,last_update:                   "Fehler"
+            
         }
-                    
-    } catch(e) {
-
-        logDebug("END async function neueFaelleHolen(ags, bl_id) return null")
-
-        return null;
-
-    }
-
-}
-
-// Gesamt Fälle vom RKI holen
-async function alleFaelleHolen(bl_id) {
-
-    logDebug("START async function alleFaelleHolen(bl_id)")
-    logDebug("bl_id: " + JSON.stringify(bl_id))
-    
-    try {
-
-        let blAnzahlFaelle = -1
-
-        if (custom.land.show && (custom.land.faelle.show || custom.land.aktive.show)) {
-
-            let blRawData                       = await new Request(rkiApiBlFaelle(bl_id)).loadJSON()
-            logDebug("blRawData: " + JSON.stringify(blRawData))
-            blAnzahlFaelle                  = blRawData.features[0].attributes.AnzFall || 0
-            logDebug("blAnzahlFaelle: " + blAnzahlFaelle)
-
-        }
-
-        let deAnzahlFaelle = -1
-
-        if (custom.bund.show && (custom.bund.faelle.show || custom.bund.aktive.show)) {
-
-            let deRawData                       = await new Request(rkiApiDeFaelle).loadJSON()
-            logDebug("deRawData: " + JSON.stringify(deRawData))
-            deAnzahlFaelle                  = deRawData.features[0].attributes.AnzFall || 0
-            logDebug("deAnzahlFaelle: " + deAnzahlFaelle)
-
-        }
-
-        logDebug("END async function alleFaelleHolen(bl_id)")
-
-        return { 
-
-            blAnzahlFaelle:                 blAnzahlFaelle.toLocaleString()
-            ,deAnzahlFaelle:                deAnzahlFaelle.toLocaleString()
-
-        }
-                    
-    } catch(e) {
-
-        logDebug("END async function alleFaelleHolen(bl_id) return null")
-
-        return null;
-
-    }
-
-}
-
-// Neue Todesfälle vom RKI holen
-async function neueTodesfaelleHolen(ags, bl_id) {
-
-    logDebug("START async function neueTodesfaelleHolen(ags, bl_id)")
-    logDebug("ags: " + JSON.stringify(ags))
-    logDebug("bl_id: " + JSON.stringify(bl_id))
-    
-    try {
-        
-        let lkNeueTodesfaelle = -1
-
-        if (custom.kreis.show && custom.kreis.neueTodesfaelle.show) {
-
-            let lkRawData                       = await new Request(rkiApiLkNeueTodesfaelle(ags)).loadJSON()
-            logDebug("lkRawData: " + JSON.stringify(lkRawData))
-            lkNeueTodesfaelle                  = lkRawData.features[0].attributes.AnzTodesfallNeu || 0
-            logDebug("lkNeueTodesfaelle: " + lkNeueTodesfaelle)
-
-        }
-
-        let blNeueTodesfaelle = -1
-
-        if (custom.land.show && custom.land.neueTodesfaelle.show) {
-
-            let blRawData                       = await new Request(rkiApiBlNeueTodesfaelle(bl_id)).loadJSON()
-            logDebug("blRawData: " + JSON.stringify(blRawData))
-            blNeueTodesfaelle                  = blRawData.features[0].attributes.AnzTodesfallNeu || 0
-            logDebug("blNeueTodesfaelle: " + blNeueTodesfaelle)
-
-        }
-
-        let deNeueTodesfaelle = -1
-
-        if (custom.bund.show && custom.bund.neueTodesfaelle.show) {
-
-            let deRawData                       = await new Request(rkiApiDeNeueTodesfaelle).loadJSON()
-            logDebug("deRawData: " + JSON.stringify(deRawData))
-            deNeueTodesfaelle                  = deRawData.features[0].attributes.AnzTodesfallNeu || 0
-            logDebug("deNeueTodesfaelle: " + deNeueTodesfaelle)
-
-        }
-
-        logDebug("END async function neueTodesfaelleHolen(ags, bl_id)")
-
-        return { 
-
-            lkNeueTodesfaelle:                 lkNeueTodesfaelle.toLocaleString()
-            ,blNeueTodesfaelle:                blNeueTodesfaelle.toLocaleString()
-            ,deNeueTodesfaelle:                deNeueTodesfaelle.toLocaleString()
-
-        }
-                    
-    } catch(e) {
-
-        logDebug("END async function neueTodesfaelleHolen(ags, bl_id) return null")
-
-        return null;
-
-    }
-
-}
-
-// Gesamt Todesfälle vom RKI holen
-async function alleTodesfaelleHolen(bl_id) {
-
-    logDebug("START async function alleTodesfaelleHolen(bl_id)")
-    logDebug("bl_id: " + JSON.stringify(bl_id))
-    
-    try {
-        
-        let blTodesfaelle = -1
-
-        if (custom.land.show && (custom.land.todesfaelle.show || custom.land.aktive.show)) {
-
-            let blRawData                       = await new Request(rkiApiBlTodesfaelle(bl_id)).loadJSON()
-            logDebug("blRawData: " + JSON.stringify(blRawData))
-            blTodesfaelle                  = blRawData.features[0].attributes.AnzTodesfall || 0
-            logDebug("blTodesfaelle: " + blTodesfaelle)
-
-        }
-
-        let deTodesfaelle = -1
-
-        if (custom.bund.show && (custom.bund.todesfaelle.show || custom.bund.aktive.show)) {
-
-            let deRawData                       = await new Request(rkiApiDeTodesfaelle).loadJSON()
-            logDebug("deRawData: " + JSON.stringify(deRawData))
-            deTodesfaelle                  = deRawData.features[0].attributes.AnzTodesfall || 0
-            logDebug("deTodesfaelle: " + deTodesfaelle)
-
-        }
-
-        logDebug("END async function alleTodesfaelleHolen(bl_id)")
-
-        return { 
-
-            blTodesfaelle:                 blTodesfaelle.toLocaleString()
-            ,deTodesfaelle:                deTodesfaelle.toLocaleString()
-
-        }
-                    
-    } catch(e) {
-
-        logDebug("END async function alleTodesfaelleHolen(bl_id) return null")
-
-        return null;
-
-    }
-
-}
-
-// Genesene vom RKI holen
-async function geneseneHolen(ags, bl_id) {
-
-    logDebug("START async function geneseneHolen(ags, bl_id)")
-    logDebug("ags: " + JSON.stringify(ags))
-    logDebug("bl_id: " + JSON.stringify(bl_id))
-    
-    try {
-        
-        let lkGenesene = -1
-
-        if (custom.kreis.show && (custom.kreis.genesene.show || custom.kreis.aktive.show)) {
-
-            let lkRawData                       = await new Request(rkiApiLkGenesen(ags)).loadJSON()
-            logDebug("lkRawData: " + JSON.stringify(lkRawData))
-            lkGenesene                  = lkRawData.features[0].attributes.AnzGenesen || 0
-            logDebug("lkGenesene: " + lkGenesene)
-
-        }
-
-        let blGenesene = -1
-
-        if (custom.land.show && (custom.land.genesene.show || custom.land.aktive.show)) {
-
-            let blRawData                       = await new Request(rkiApiBlGenesen(bl_id)).loadJSON()
-            logDebug("blRawData: " + JSON.stringify(blRawData))
-            blGenesene                  = blRawData.features[0].attributes.AnzGenesen || 0
-            logDebug("blGenesene: " + blGenesene)
-
-        }
-
-        let deGenesene = -1
-
-        if (custom.bund.show && (custom.bund.genesene.show || custom.bund.aktive.show)) {
-
-            let deRawData                       = await new Request(rkiApiDeGenesen).loadJSON()
-            logDebug("deRawData: " + JSON.stringify(deRawData))
-            deGenesene                  = deRawData.features[0].attributes.AnzGenesen || 0
-            logDebug("deGenesene: " + deGenesene)
-        
-        }
-
-        logDebug("END async function geneseneHolen(ags, bl_id)")
-
-        return { 
-
-            lkGenesene:                 lkGenesene.toLocaleString()
-            ,blGenesene:                blGenesene.toLocaleString()
-            ,deGenesene:                deGenesene.toLocaleString()
-
-        }
-                    
-    } catch(e) {
-
-        logDebug("END async function geneseneHolen(ags, bl_id) return null")
-
-        return null;
 
     }
 
@@ -1694,14 +1850,14 @@ async function hospitalisierungHolen (bundesland) {
     logDebug("START async function hospitalisierungHolen(bundesland)")
     logDebug("bundesland: " + bundesland)
     
-    //try {
+    let deHospitalisierungFaelle7T      = 0
+    let deHospitalisierungInzidenz7T    = 0
+    let deHospitalisierungUpdate        = "Fehler"
+    let blHospitalisierungFaelle7T      = 0
+    let blHospitalisierungInzidenz7T    = 0
+    let blHospitalisierungUpdate        = "Fehler"
 
-        let deHospitalisierungFaelle7T      = 0
-        let deHospitalisierungInzidenz7T    = 0
-        let deHospitalisierungUpdate        = "Fehler"
-        let blHospitalisierungFaelle7T      = 0
-        let blHospitalisierungInzidenz7T    = 0
-        let blHospitalisierungUpdate        = "Fehler"
+    try {
 
         if ((custom.bund.show && (custom.bund.hospitalisierung7Tage.show || custom.bund.hospitalisierungInzidenz.show)) || (custom.land.show && (custom.land.hospitalisierung7Tage.show || custom.land.hospitalisierungInzidenz.show))) {
 
@@ -1751,13 +1907,22 @@ async function hospitalisierungHolen (bundesland) {
 
         }
 
-    //} catch(e) {
+    } catch(e) {
 
-    //    logDebug("END async function hospitalisierungHolen(bundesland) return null")
+        logDebug("END async function hospitalisierungHolen(bundesland) return initial values")
 
-    //    return null;
+        return {
 
-    //}
+            deHospitalisierungFaelle7T:         deHospitalisierungFaelle7T.toLocaleString()
+            ,deHospitalisierungInzidenz7T:      deHospitalisierungInzidenz7T.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+            ,deHospitalisierungUpdate:          deHospitalisierungUpdate
+            ,blHospitalisierungFaelle7T:        blHospitalisierungFaelle7T.toLocaleString()
+            ,blHospitalisierungInzidenz7T:      blHospitalisierungInzidenz7T.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+            ,blHospitalisierungUpdate:          blHospitalisierungUpdate
+
+        }
+
+    }
 
 }
 
@@ -1767,32 +1932,32 @@ async function impfDatenHolen(bundesland) {
     logDebug("START async function impfDatenHolen(bundesland)")
     logDebug("bundesland: " + bundesland)
     
-    try {
+    let deImpfungAnzahl                 = 0
+    let deImpfungAnzahlMin1             = 0
+    let deImpfungAnzahlGI               = 0
+    let deImpfungAnzahlBoost1           = 0
+    let deImpfungAnzahlBoost2           = 0
+    let deImpfungAnzahlBoost3           = 0
+    let deImpfungAnzahlBoost4           = 0
+    let deImpfungQuoteMin1              = 0.00
+    let deImpfungQuoteGI                = 0.00
+    let deImpfungQuoteBoost1            = 0.00
+    let deImpfungQuoteBoost2            = 0.00
+    let deImpfungUpdate                 = "Fehler"
+    let blImpfungAnzahl                 = 0
+    let blImpfungAnzahlMin1             = 0
+    let blImpfungAnzahlGI               = 0
+    let blImpfungAnzahlBoost1           = 0
+    let blImpfungAnzahlBoost2           = 0
+    let blImpfungAnzahlBoost3           = 0
+    let blImpfungAnzahlBoost4           = 0
+    let blImpfungQuoteMin1              = 0.00
+    let blImpfungQuoteGI                = 0.00
+    let blImpfungQuoteBoost1            = 0.00
+    let blImpfungQuoteBoost2            = 0.00
+    let blImpfungUpdate                 = "Fehler"
 
-        let deImpfungAnzahl                 = 0
-        let deImpfungAnzahlMin1             = 0
-        let deImpfungAnzahlGI               = 0
-        let deImpfungAnzahlBoost1           = 0
-        let deImpfungAnzahlBoost2           = 0
-        let deImpfungAnzahlBoost3           = 0
-        let deImpfungAnzahlBoost4           = 0
-        let deImpfungQuoteMin1              = 0.00
-        let deImpfungQuoteGI                = 0.00
-        let deImpfungQuoteBoost1            = 0.00
-        let deImpfungQuoteBoost2            = 0.00
-        let deImpfungUpdate                 = "Fehler"
-        let blImpfungAnzahl                 = 0
-        let blImpfungAnzahlMin1             = 0
-        let blImpfungAnzahlGI               = 0
-        let blImpfungAnzahlBoost1           = 0
-        let blImpfungAnzahlBoost2           = 0
-        let blImpfungAnzahlBoost3           = 0
-        let blImpfungAnzahlBoost4           = 0
-        let blImpfungQuoteMin1              = 0.00
-        let blImpfungQuoteGI                = 0.00
-        let blImpfungQuoteBoost1            = 0.00
-        let blImpfungQuoteBoost2            = 0.00
-        let blImpfungUpdate                 = "Fehler"
+    try {
 
         if ((custom.bund.show && (custom.bund.impfQuote.show || custom.bund.impfungenGesamt.show || custom.bund.impfungenGesamtBoost1.show || custom.bund.impfungenGesamtBoost2.show || custom.bund.impfungenGesamtGI.show || custom.bund.impfungenGesamtMin1.show)) || (custom.land.show && (custom.land.impfQuote.show || custom.land.impfungenGesamt.show || custom.land.impfungenGesamtBoost1.show || custom.land.impfungenGesamtBoost2.show || custom.land.impfungenGesamtGI.show || custom.land.impfungenGesamtMin1.show))) {
 
@@ -1880,9 +2045,36 @@ async function impfDatenHolen(bundesland) {
 
     } catch(e) {
 
-        logDebug("END async function impfDatenHolen(bundesland) return null")
+        logDebug("END async function impfDatenHolen(bundesland) return initial values")
 
-        return null;
+        return {
+
+            deImpfungAnzahl:                deImpfungAnzahl.toLocaleString()
+            ,deImpfungAnzahlMin1:           deImpfungAnzahlMin1.toLocaleString()
+            ,deImpfungAnzahlGI:             deImpfungAnzahlGI.toLocaleString()
+            ,deImpfungAnzahlBoost1:         deImpfungAnzahlBoost1.toLocaleString()
+            ,deImpfungAnzahlBoost2:         deImpfungAnzahlBoost2.toLocaleString()
+            ,deImpfungAnzahlBoost3:         deImpfungAnzahlBoost3.toLocaleString()
+            ,deImpfungAnzahlBoost4:         deImpfungAnzahlBoost4.toLocaleString()
+            ,deImpfungQuoteMin1:            deImpfungQuoteMin1.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+            ,deImpfungQuoteGI:              deImpfungQuoteGI.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+            ,deImpfungQuoteBoost1:          deImpfungQuoteBoost1.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+            ,deImpfungQuoteBoost2:          deImpfungQuoteBoost2.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+            ,deImpfungUpdate:               deImpfungUpdate
+            ,blImpfungAnzahl:               blImpfungAnzahl.toLocaleString()
+            ,blImpfungAnzahlMin1:           blImpfungAnzahlMin1.toLocaleString()
+            ,blImpfungAnzahlGI:             blImpfungAnzahlGI.toLocaleString()
+            ,blImpfungAnzahlBoost1:         blImpfungAnzahlBoost1.toLocaleString()
+            ,blImpfungAnzahlBoost2:         blImpfungAnzahlBoost2.toLocaleString()
+            ,blImpfungAnzahlBoost3:         blImpfungAnzahlBoost3.toLocaleString()
+            ,blImpfungAnzahlBoost4:         blImpfungAnzahlBoost4.toLocaleString()
+            ,blImpfungQuoteMin1:            blImpfungQuoteMin1.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+            ,blImpfungQuoteGI:              blImpfungQuoteGI.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+            ,blImpfungQuoteBoost1:          blImpfungQuoteBoost1.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+            ,blImpfungQuoteBoost2:          blImpfungQuoteBoost2.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+            ,blImpfungUpdate:               blImpfungUpdate
+
+        }
 
     }
 
@@ -1895,20 +2087,20 @@ async function intensivbettenHolen(ags, bl_id) {
     logDebug("ags: " + JSON.stringify(ags))
     logDebug("bl_id: " + JSON.stringify(bl_id))
     
+    let lkIntensivBelegungProzent   =   -1
+    let lkIntensivbelegungAnzahl    =   -1
+    let lkFreieIntensivbetten       =   -1
+    let lkIntensivbettenUpdate      =   "Fehler"
+    let blIntensivBelegungProzent   =   -1
+    let blIntensivbelegungAnzahl    =   -1
+    let blFreieIntensivbetten       =   -1
+    let blIntensivbettenUpdate      =   "Fehler"
+    let deIntensivBelegungProzent   =   -1
+    let deIntensivbelegungAnzahl    =   -1
+    let deFreieIntensivbetten       =   -1
+    let deIntensivbettenUpdate      =   "Fehler"
+
     try {
-        
-        let lkIntensivBelegungProzent   =   -1
-        let lkIntensivbelegungAnzahl    =   -1
-        let lkFreieIntensivbetten       =   -1
-        let lkIntensivbettenUpdate      =   "01.01.1900"
-        let blIntensivBelegungProzent   =   -1
-        let blIntensivbelegungAnzahl    =   -1
-        let blFreieIntensivbetten       =   -1
-        let blIntensivbettenUpdate      =   "01.01.1900"
-        let deIntensivBelegungProzent   =   -1
-        let deIntensivbelegungAnzahl    =   -1
-        let deFreieIntensivbetten       =   -1
-        let deIntensivbettenUpdate      =   "01.01.1900"
 
         if (diviNutzungsfreigabe && ((custom.bund.show && (custom.bund.intensivbettenBelegtAnzahl.show || custom.bund.intensivbettenBelegtProzent.show || custom.bund.intensivbettenFrei.show)) || (custom.land.show && (custom.land.intensivbettenBelegtAnzahl.show || custom.land.intensivbettenBelegtProzent.show || custom.land.intensivbettenFrei.show)) || (custom.kreis.show && (custom.kreis.intensivbettenBelegtAnzahl.show || custom.kreis.intensivbettenBelegtProzent.show || custom.kreis.intensivbettenFrei.show)))) { 
             
@@ -1983,9 +2175,24 @@ async function intensivbettenHolen(ags, bl_id) {
                     
     } catch(e) {
 
-        logDebug("END async function intensivbettenHolen(ags, bl_id) return null")
+        logDebug("END async function intensivbettenHolen(ags, bl_id) return initial values")
 
-        return null;
+        return { 
+
+            lkIntensivBelegungProzent:      lkIntensivBelegungProzent.toLocaleString()
+            ,lkIntensivbelegungAnzahl:      lkIntensivbelegungAnzahl.toLocaleString()
+            ,lkFreieIntensivbetten:         lkFreieIntensivbetten.toLocaleString()
+            ,lkIntensivbettenUpdate:        lkIntensivbettenUpdate.toLocaleString()
+            ,blIntensivBelegungProzent:     blIntensivBelegungProzent.toLocaleString()
+            ,blIntensivbelegungAnzahl:      blIntensivbelegungAnzahl.toLocaleString()
+            ,blFreieIntensivbetten:         blFreieIntensivbetten.toLocaleString()
+            ,blIntensivbettenUpdate:        blIntensivbettenUpdate.toLocaleString()
+            ,deIntensivBelegungProzent:     deIntensivBelegungProzent.toLocaleString()
+            ,deIntensivbelegungAnzahl:      deIntensivbelegungAnzahl.toLocaleString()
+            ,deFreieIntensivbetten:         deFreieIntensivbetten.toLocaleString()
+            ,deIntensivbettenUpdate:        deIntensivbettenUpdate.toLocaleString()
+
+        }
 
     }
 
@@ -1996,9 +2203,9 @@ async function rFaktorHolen () {
 
     logDebug("START async function rFaktorHolen()")
     
-    try {
+    let rFaktor                 = -1
 
-        let rFaktor                 = -1
+    try {
 
         if (custom.bund.show && custom.bund.rWert.show) {
 
@@ -2059,9 +2266,13 @@ async function rFaktorHolen () {
 
     } catch(e) {
 
-        logDebug("END async function rFaktorHolen() return null")
+        logDebug("END async function rFaktorHolen() return initial values")
 
-        return null;
+        return {
+
+            rFaktor:                rFaktor.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+
+        }
 
     }
 
@@ -2337,22 +2548,12 @@ function logDebug(text) {
 
     if (custom.debug) console.log(text)
 
-    let fm = FileManager.iCloud()
-    let logPath = ""
-    let logFile = ""
-    
-    try {
+    let fm = FileManager.local()
+    const iCloudInUse = fm.isFileStoredIniCloud(module.filename)
+    fm = iCloudInUse ? FileManager.iCloud() : fm
 
-        logPath = fm.joinPath(fm.documentsDirectory(), basic.name.short + "Logs")
-        logFile = fm.joinPath(logPath, basic.name.short + ".log")
-
-    } catch(e) {
-
-        fm = FileManager.local()
-        logPath = fm.joinPath(fm.documentsDirectory(), basic.name.short + "Logs")
-        logFile = fm.joinPath(logPath, basic.name.short + ".log")
-
-    }
+    let logPath = fm.joinPath(fm.joinPath(fm.documentsDirectory(), basic.name.short), "Logs")
+    let logFile = fm.joinPath(logPath, basic.name.short + ".log")
 
     let inText = ""
     if (custom.logging && fm.fileExists(logFile)) inText = fm.readString(logFile) + "\n"
