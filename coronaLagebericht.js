@@ -91,7 +91,7 @@ const basic = {
     }
 
     ,version:               "v0.98"
-    ,lastChange:            "24.25.2023"
+    ,lastChange:            "24.05.2023"
     ,author:                "icsAT"
     ,source:                "https://github.com/icsAT/AktuellerCoronaLagebericht"
 
@@ -1656,17 +1656,32 @@ async function largeWidget(covidDaten) {
 	
     let footerLine                          = basic.name.short + " " + basic.version
     footerLine                              = footerLine +  " WU:" + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
-    //footerLine                              = footerLine +  " RKI:" + covidDaten.lkLastUpdate.substr(0, 6)
-    logDebug("covidDaten.lkLastUpdate: " + covidDaten.lkLastUpdate)
-    footerLine                              = footerLine +  " RKI-H:" + covidDaten.deHospitalisierungUpdate.substr(8, 2) + "." + covidDaten.deHospitalisierungUpdate.substr(5, 2) + "."
-    logDebug("covidDaten.deHospitalisierungUpdate: " + covidDaten.deHospitalisierungUpdate)
-    footerLine                              = footerLine +  " RKI-I:" + covidDaten.deImpfungUpdate.substr(8, 2) + "." + covidDaten.deImpfungUpdate.substr(5, 2) + "."
-    logDebug("covidDaten.deHospitalisierungUpdate: " + covidDaten.deHospitalisierungUpdate)
     
-    if (diviNutzungsfreigabe) {
+    if (covidDaten.lkLastUpdate && covidDaten.lkLastUpdate != "Fehler") {
     
-    	footerLine                              = footerLine +  " DIVI:" + covidDaten.lkIntensivbettenUpdate.substr(0, 6)
+        logDebug("covidDaten.lkLastUpdate: " + covidDaten.lkLastUpdate)
+        footerLine                              = footerLine +  " RKI:" + covidDaten.lkLastUpdate.toLocaleString().substr(0, 6)
+    
+    }
+    
+    if (covidDaten.deHospitalisierungUpdate && covidDaten.deHospitalisierungUpdate != "Fehler") {
+    
+        logDebug("covidDaten.deHospitalisierungUpdate: " + covidDaten.deHospitalisierungUpdate)
+        footerLine                              = footerLine +  " RKI-H:" + covidDaten.deHospitalisierungUpdate.substr(8, 2) + "." + covidDaten.deHospitalisierungUpdate.substr(5, 2) + "."
+    
+    }
+    
+    if (covidDaten.deImpfungUpdate && covidDaten.deImpfungUpdate != "Fehler") {
+    
+        logDebug("covidDaten.deImpfungUpdate: " + covidDaten.deImpfungUpdate)
+        footerLine                              = footerLine +  " RKI-I:" + covidDaten.deImpfungUpdate.substr(8, 2) + "." + covidDaten.deImpfungUpdate.substr(5, 2) + "."
+    
+    }
+    
+    if (diviNutzungsfreigabe && covidDaten.lkIntensivbettenUpdate && covidDaten.lkIntensivbettenUpdate != "Fehler") {
+    
     	logDebug("covidDaten.lkIntensivbettenUpdate: " + covidDaten.lkIntensivbettenUpdate.substr(0, 10))
+        footerLine                              = footerLine +  " DIVI:" + covidDaten.lkIntensivbettenUpdate.substr(0, 6)
     
 	}
 
