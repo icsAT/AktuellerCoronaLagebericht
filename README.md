@@ -258,9 +258,13 @@ Quelle: https://www.niedersachsen.de/Coronavirus/aktuelle_lage_in_niedersachsen/
 
 # Versionen:
 
+Version 0.98 (25.05.2023):
+- Aktualisierungsdatum wird nur noch für angezeigte Werte angezeigt, sofern es keinen Dummy-Werte sind.
+- Behebung des Fehlers, dass teilweise Variablen nicht definiert sind.
+
 Version 0.97 (05.03.2023):
 - Konsolidieren der Datenabrufe beim RKI, welche durch die Umstellung von Covid19_hubv auf rki_key_data_hubv möglich geworden sind.
-- Implementieren zusätzlicher Cache Files, ändern des Speicherortes und erhöhen der Standard Cache Zeit auf 120 Minuten. Ein weiterer Versuch die Speichernutzung so zu beeinflussen, dass aktuelle Daten angezeigt werden können.
+- Implementieren zusätzlicher Cache Files, ändern des Speicherortes und erhöhen der Standard Cache Zeit auf 120 Minuten. Ein weiterer Versuch die Speichernutzung so zu beeinflussen, dass aktuelle Daten angezeigt werden können, auch wenn es weiterhin teilweise zu Speichermangel kommen dürfte.
 
 Version 0.96 (04.03.2023):
 - Das RKI hat die Datenquelle Covid19_hubv deaktiviert. Daher wurden die betroffenen Aufrufe auf rki_key_data_hubv umgestellt.
