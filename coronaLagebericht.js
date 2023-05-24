@@ -78,7 +78,7 @@
 // Die Verwendung von Texten, Textteilen oder Bildmaterial bedarf einer schriftlichen Zustimmung der Redaktion.
 
 // DIVI-Nutzungsfreigabe liegt vor (ja = true / nein = false)
-const diviNutzungsfreigabe  = false
+const diviNutzungsfreigabe  = true
 
 // Widget Basic Information
 const basic = {
@@ -90,10 +90,10 @@ const basic = {
 
     }
 
-    ,version:               "v0.95"
-    ,lastChange:            "20.01.2023"
+    ,version:               "v0.96"
+    ,lastChange:            "03.03.2023"
     ,author:                "icsAT"
-    ,source:                "https://gist.github.com/icsAT"
+    ,source:                "https://github.com/icsAT/AktuellerCoronaLagebericht"
 
 }
 
@@ -141,10 +141,10 @@ const custom = {
             ,warnOP:        ""
 
         }
-        ,neuinfektioenenLiveInzidenz: {
+        ,neuinfektioenenInzidenz: {
 
             show:           true
-            ,text:          "7-Tage-Live-Inzidenz Neuinfektionen"
+            ,text:          "7-Tage-Inzidenz Neuinfektionen"
             ,einheit:       ""
             ,warnGelb:      35
             ,warnOrange:    100
@@ -242,7 +242,7 @@ const custom = {
         }
         ,aktive: {
 
-            show:           false
+            show:           true
             ,text:          "Aktive Fälle"
             ,einheit:       ""
             ,warnGelb:      -1
@@ -253,7 +253,7 @@ const custom = {
         }
         ,impfQuote: {
             
-            show:           true
+            show:           false
             ,text:          "Impfquote (1./GI/B1/B2)"
             ,einheit:       ""
             ,warnGelb:      -1
@@ -358,7 +358,7 @@ const custom = {
         }
         ,hospitalisierung7Tage: {
 
-            show:           true
+            show:           false
             ,text:          "Stationäre Aufnahmen 7T"
             ,einheit:       ""
             ,warnGelb:      -1
@@ -367,10 +367,10 @@ const custom = {
             ,warnOP:        "GT"
 
         }
-        ,neuinfektioenenLiveInzidenz: {
+        ,neuinfektioenenInzidenz: {
 
             show:           true
-            ,text:          "7-Tage-Live-Inzidenz Neuinfektionen"
+            ,text:          "7-Tage-Inzidenz Neuinfektionen"
             ,einheit:       ""
             ,warnGelb:      35
             ,warnOrange:    100
@@ -402,7 +402,7 @@ const custom = {
         }
         ,intensivbettenBelegtProzent: {
 
-            show:           true
+            show:           false
             ,text:          "Intensivbettenbelegung C19"
             ,einheit:       "%"
             ,warnGelb:      5
@@ -457,7 +457,7 @@ const custom = {
         }
         ,neueTodesfaelle: {
 
-            show:           false
+            show:           true
             ,text:          "Neue Todesfälle"
             ,einheit:       ""
             ,warnGelb:      -1
@@ -479,7 +479,7 @@ const custom = {
         }
         ,aktive: {
 
-            show:           false
+            show:           true
             ,text:          "Aktive Fälle"
             ,einheit:       ""
             ,warnGelb:      -1
@@ -490,7 +490,7 @@ const custom = {
         }
         ,impfQuote: {
             
-            show:           true
+            show:           false
             ,text:          "Impfquote (1./GI/B1/B2)"
             ,einheit:       ""
             ,warnGelb:      -1
@@ -582,10 +582,10 @@ const custom = {
     ,kreis: {
 
         show:               true
-        ,neuinfektioenenLiveInzidenz: {
+        ,neuinfektioenenInzidenz: {
 
             show:           true
-            ,text:          "7-Tage-Live-Inzidenz Neuinfektionen"
+            ,text:          "7-Tage-Inzidenz Neuinfektionen"
             ,einheit:       ""
             ,warnGelb:      35
             ,warnOrange:    100
@@ -628,7 +628,7 @@ const custom = {
         }
         ,intensivbettenBelegtAnzahl:  {
 
-            show:           false
+            show:           true
             ,text:          "Intensivbettenbelegung C19"
             ,einheit:       ""
             ,warnGelb:      -1
@@ -672,7 +672,7 @@ const custom = {
         }
         ,neueTodesfaelle: {
 
-            show:           false
+            show:           true
             ,text:          "Neue Todesfälle"
             ,einheit:       ""
             ,warnGelb:      -1
@@ -814,29 +814,29 @@ const text = {
 
 // URL's zur Datenermittlung
 const rkiApiLk                  = (geodaten) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=1%3D1&outFields=AGS,GEN,BEZ,cases,deaths,BL,BL_ID,last_update,cases7_per_100k,cases7_bl_per_100k,EWZ,EWZ_BL&geometry=${geodaten.longitude.toFixed(3)}%2C${geodaten.latitude.toFixed(3)}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelWithin&returnGeometry=false&outSR=4326&f=json`
-const rkiApiLkNeueFaelle        = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=IdLandkreis=${lkID}+AND+NeuerFall%20in%20(-1%2C1)&outFields=*&returnGeometry=false&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22AnzahlFall%22%2C%22outStatisticFieldName%22%3A%22lkAnzahlNeueFaelle%22%7D%5D&f=json`
-const rkiApiLkNeueFaelle7T      = (lkID, start) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=NeuerFall%20in%20(1%2C0)%20and%20IdLandkreis=${lkID}%20and%20MeldeDatum%3E=TIMESTAMP%27${start}%27&time=&resultType=standard&outFields=AnzahlFall%2CCMeldeDatum&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=MeldeDatum%20DESC&groupByFieldsForStatistics=MeldeDatum&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27cases%27%7D%5D&sqlFormat=none&f=json`
-const rkiApiLkNeueTodesfaelle   = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=IdLandkreis=${lkID}+AND+NeuerTodesfall+in+(-1%2C1)&outFields=AnzahlFall%2CMeldedatum&returnGeometry=false&objectIds=&time=&resultType=standard&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27newDeaths%27%7D%2C%7B%27statisticType%27%3A%27max%27%2C%27onStatisticField%27%3A%27MeldeDatum%27%2C%27outStatisticFieldName%27%3A%27ndDate%27%7D%5D&f=json`
-const rkiApiLkGenesen           = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=IdLandkreis=${lkID}+AND+NeuGenesen+in+(0%2C1)&outFields=AnzahlFall%2CMeldedatum&returnGeometry=false&objectIds=&time=&resultType=standard&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27Recovered%27%7D%2C%7B%27statisticType%27%3A%27max%27%2C%27onStatisticField%27%3A%27MeldeDatum%27%2C%27outStatisticFieldName%27%3A%27orDate%27%7D%5D&f=json`
+const rkiApiLkNeueFaelle        = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${lkID}&outFields=AnzFallNeu&returnGeometry=false&f=json`
+const rkiApiLkNeueFaelle7T      = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${lkID}&outFields=AnzFall7T&returnGeometry=false&f=json`
+const rkiApiLkNeueTodesfaelle   = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${lkID}&outFields=AnzTodesfallNeu&returnGeometry=false&f=json`
+const rkiApiLkGenesen           = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${lkID}&outFields=AnzGenesen&returnGeometry=false&f=json`
 const diviApiLk                 = (lkID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/DIVI_Intensivregister_Landkreise/FeatureServer/0/query?where=AGS=${lkID}&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=false&featureEncoding=esriDefault&multipatchOption=none&maxAllowableOffset=&geometryPrecision=&outSR=&sqlFormat=none&f=json`
 
-const rkiApiBlNeueFaelle        = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=IdBundesland=${blID}+AND+NeuerFall%20in%20(-1%2C1)&outFields=*&returnGeometry=false&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22AnzahlFall%22%2C%22outStatisticFieldName%22%3A%22blAnzahlNeueFaelle%22%7D%5D&f=json`
-const rkiApiBlNeueFaelle7T      = (blID, start) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=NeuerFall%20in%20(1%2C0)%20and%20IdBundesland=${blID}%20and%20MeldeDatum%3E=TIMESTAMP%27${start}%27&time=&resultType=standard&outFields=AnzahlFall%2CCMeldeDatum&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=MeldeDatum%20DESC&groupByFieldsForStatistics=MeldeDatum&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27cases%27%7D%5D&sqlFormat=none&f=json`
-const rkiApiBlFaelle            = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=IdBundesland=${blID}+AND+NeuerFall+in+(0%2C1)&outFields=AnzahlFall%2CMeldedatum&returnGeometry=false&objectIds=&time=&resultType=standard&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27cases%27%7D%2C+%7B%27statisticType%27%3A%27max%27%2C%27onStatisticField%27%3A%27MeldeDatum%27%2C%27outStatisticFieldName%27%3A%27ocDate%27%7D%5D&f=json`
-const rkiApiBlNeueTodesfaelle   = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=IdBundesland=${blID}+AND+NeuerTodesfall+in+(-1%2C1)&outFields=AnzahlFall%2CMeldedatum&returnGeometry=false&objectIds=&time=&resultType=standard&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27newDeaths%27%7D%2C%7B%27statisticType%27%3A%27max%27%2C%27onStatisticField%27%3A%27MeldeDatum%27%2C%27outStatisticFieldName%27%3A%27ndDate%27%7D%5D&f=json`
-const rkiApiBlTodesfaelle       = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=IdBundesland=${blID}+AND+NeuerTodesfall+in+(0%2C1)&outFields=AnzahlFall%2CMeldedatum&returnGeometry=false&objectIds=&time=&resultType=standard&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27Deaths%27%7D%2C%7B%27statisticType%27%3A%27max%27%2C%27onStatisticField%27%3A%27MeldeDatum%27%2C%27outStatisticFieldName%27%3A%27odDate%27%7D%5D&f=json`
-const rkiApiBlGenesen           = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=IdBundesland=${blID}+AND+NeuGenesen+in+(0%2C1)&outFields=AnzahlFall%2CMeldedatum&returnGeometry=false&objectIds=&time=&resultType=standard&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27Recovered%27%7D%2C%7B%27statisticType%27%3A%27max%27%2C%27onStatisticField%27%3A%27MeldeDatum%27%2C%27outStatisticFieldName%27%3A%27orDate%27%7D%5D&f=json`
+const rkiApiBlNeueFaelle        = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=AnzFallNeu&returnGeometry=false&f=json`
+const rkiApiBlNeueFaelle7T      = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=AnzFall7T&returnGeometry=false&f=json`
+const rkiApiBlFaelle            = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=AnzFall&returnGeometry=false&f=json`
+const rkiApiBlNeueTodesfaelle   = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=AnzTodesfallNeu&returnGeometry=false&f=json`
+const rkiApiBlTodesfaelle       = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=AnzTodesfall&returnGeometry=false&f=json`
+const rkiApiBlGenesen           = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=${blID}+AND+BundeslandId=${blID}&outFields=AnzGenesen&returnGeometry=false&f=json`
 const diviApiBl                 = (blID) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/DIVI_Intensivregister_Landkreise/FeatureServer/0/query?where=BL_ID=${blID}&returnGeodetic=false&outFields=*&returnGeometry=false&returnCentroid=false&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22faelle_covid_aktuell%22%2C%22outStatisticFieldName%22%3A%22faelle_covid_aktuell%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22faelle_covid_aktuell_beatmet%22%2C%22outStatisticFieldName%22%3A%22faelle_covid_aktuell_beatmet%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22betten_frei%22%2C%22outStatisticFieldName%22%3A%22betten_frei%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22betten_gesamt%22%2C%22outStatisticFieldName%22%3A%22betten_gesamt%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22anzahl_standorte%22%2C%22outStatisticFieldName%22%3A%22anzahl_standorte%22%7D%2C%7B%22statisticType%22%3A%22max%22%2C%22onStatisticField%22%3A%22daten_stand%22%2C%22outStatisticFieldName%22%3A%22daten_stand%22%7D%5D&returnZ=false&returnM=false&returnExceededLimitFeatures=true&sqlFormat=none&f=json`
 
 const rkiCsvHospitalisierung    = `https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/master/Aktuell_Deutschland_COVID-19-Hospitalisierungen.csv`
 const rkiCsvImpfungen           = `https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Impfungen_in_Deutschland/master/Aktuell_Deutschland_Impfquoten_COVID-19.csv`
 
-const rkiApiDeNeueFaelle        = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=NeuerFall%20in%20(-1%2C1)&outFields=*&returnGeometry=false&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22AnzahlFall%22%2C%22outStatisticFieldName%22%3A%22deAnzahlNeueFaelle%22%7D%5D&f=json`
-const rkiApiDeNeueFaelle7T      = (start) => `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=NeuerFall%20in%20(1%2C0)%20and%20MeldeDatum%3E=TIMESTAMP%27${start}%27&time=&resultType=standard&outFields=AnzahlFall%2CCMeldeDatum&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=MeldeDatum%20DESC&groupByFieldsForStatistics=MeldeDatum&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27cases%27%7D%5D&sqlFormat=none&f=json`
-const rkiApiDeFaelle            = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=NeuerFall+in+(0%2C1)&outFields=AnzahlFall%2CMeldedatum&returnGeometry=false&objectIds=&time=&resultType=standard&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27cases%27%7D%2C+%7B%27statisticType%27%3A%27max%27%2C%27onStatisticField%27%3A%27MeldeDatum%27%2C%27outStatisticFieldName%27%3A%27ocDate%27%7D%5D&f=json`
-const rkiApiDeNeueTodesfaelle   = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=NeuerTodesfall+in+(-1%2C1)&outFields=AnzahlFall%2CMeldedatum&returnGeometry=false&objectIds=&time=&resultType=standard&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27newDeaths%27%7D%2C%7B%27statisticType%27%3A%27max%27%2C%27onStatisticField%27%3A%27MeldeDatum%27%2C%27outStatisticFieldName%27%3A%27ndDate%27%7D%5D&f=json`
-const rkiApiDeTodesfaelle       = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=NeuerTodesfall+in+(0%2C1)&outFields=AnzahlFall%2CMeldedatum&returnGeometry=false&objectIds=&time=&resultType=standard&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27Deaths%27%7D%2C%7B%27statisticType%27%3A%27max%27%2C%27onStatisticField%27%3A%27MeldeDatum%27%2C%27outStatisticFieldName%27%3A%27odDate%27%7D%5D&f=json`
-const rkiApiDeGenesen           = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_hubv/FeatureServer/0/query?where=NeuGenesen+in+(0%2C1)&outFields=AnzahlFall%2CMeldedatum&returnGeometry=false&objectIds=&time=&resultType=standard&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27AnzahlFall%27%2C%27outStatisticFieldName%27%3A%27Recovered%27%7D%2C%7B%27statisticType%27%3A%27max%27%2C%27onStatisticField%27%3A%27MeldeDatum%27%2C%27outStatisticFieldName%27%3A%27orDate%27%7D%5D&f=json`
+const rkiApiDeNeueFaelle        = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=AnzFallNeu&returnGeometry=false&f=json`
+const rkiApiDeNeueFaelle7T      = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=AnzFall7T&returnGeometry=false&f=json`
+const rkiApiDeFaelle            = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=AnzFall&returnGeometry=false&f=json`
+const rkiApiDeNeueTodesfaelle   = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=AnzTodesfallNeu&returnGeometry=false&f=json`
+const rkiApiDeTodesfaelle       = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=AnzTodesfall&returnGeometry=false&f=json`
+const rkiApiDeGenesen           = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId=0+AND+BundeslandId=0&outFields=AnzGenesen&returnGeometry=false&f=json`
 const rkiApiDeEwz               = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Coronaf%C3%A4lle_in_den_Bundesl%C3%A4ndern/FeatureServer/0/query?where=1=1&outFields=LAN_ew_EWZ&returnGeometry=false&outStatistics=%5B%7B%27statisticType%27%3A%27sum%27%2C%27onStatisticField%27%3A%27LAN_ew_EWZ%27%2C%27outStatisticFieldName%27%3A%27EWZ%27%7D%5D&f=json`
 const rkiCsvRFaktor             = `https://raw.githubusercontent.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung/main/Nowcast_R_aktuell.csv`
 const diviApiDe                 = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/DIVI_Intensivregister_Landkreise/FeatureServer/0/query?where=1=1&returnGeodetic=false&outFields=*&returnGeometry=false&returnCentroid=false&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22faelle_covid_aktuell%22%2C%22outStatisticFieldName%22%3A%22faelle_covid_aktuell%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22faelle_covid_aktuell_beatmet%22%2C%22outStatisticFieldName%22%3A%22faelle_covid_aktuell_beatmet%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22betten_frei%22%2C%22outStatisticFieldName%22%3A%22betten_frei%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22betten_gesamt%22%2C%22outStatisticFieldName%22%3A%22betten_gesamt%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22anzahl_standorte%22%2C%22outStatisticFieldName%22%3A%22anzahl_standorte%22%7D%2C%7B%22statisticType%22%3A%22max%22%2C%22onStatisticField%22%3A%22daten_stand%22%2C%22outStatisticFieldName%22%3A%22daten_stand%22%7D%5D&returnZ=false&returnM=false&returnExceededLimitFeatures=true&sqlFormat=none&f=json`
@@ -845,8 +845,6 @@ const diviApiDe                 = `https://services7.arcgis.com/mOBPykOjAyBO2ZKk
 config.widgetFamily = config.widgetFamily || 'large'
 
 let widget = await createWidget()
-
-Script.setWidget(widget)
 
 if (config.runsInWidget) {
 
@@ -954,8 +952,8 @@ async function createWidget() {
             	logDebug("lkDaten: " + JSON.stringify(lkDaten))
             
             }
-            liveInzidenz                    = await liveInzidenzHolen(lkDaten.AGS, lkDaten.BL_ID, lkDaten.EWZ, lkDaten.EWZ_BL)
-            logDebug("liveInzidenz: " + JSON.stringify(liveInzidenz))
+            Inzidenz                    = await InzidenzHolen(lkDaten.AGS, lkDaten.BL_ID, lkDaten.EWZ, lkDaten.EWZ_BL)
+            logDebug("Inzidenz: " + JSON.stringify(Inzidenz))
             neueFaelle             		    = await neueFaelleHolen(lkDaten.AGS, lkDaten.BL_ID)
             logDebug("neueFaelle: " + JSON.stringify(neueFaelle))
             alleFaelle                      = await alleFaelleHolen(lkDaten.BL_ID)
@@ -1012,10 +1010,10 @@ async function createWidget() {
                 ,lkLastUpdate:                  lkDaten.last_update || "01.01.1900"
                 ,lkStaticInzidenz:              lkDaten.cases7_per_100k || "-1"
                 ,blStaticInzidenz:              lkDaten.cases7_bl_per_100k || "-1"
-                ,lkLiveInzidenz:                liveInzidenz.lkLiveInzidenz || "-1"
-                ,blLiveInzidenz:                liveInzidenz.blLiveInzidenz || "-1"
-                ,deLiveInzidenz:                liveInzidenz.deLiveInzidenz || "-1"
-                ,deEWZ:                         liveInzidenz.deEWZ || "-1"
+                ,lkInzidenz:                Inzidenz.lkInzidenz || "-1"
+                ,blInzidenz:                Inzidenz.blInzidenz || "-1"
+                ,deInzidenz:                Inzidenz.deInzidenz || "-1"
+                ,deEWZ:                         Inzidenz.deEWZ || "-1"
                 ,lkAnzahlNeueFaelle:            neueFaelle.lkAnzahlNeueFaelle || "-1"
                 ,blAnzahlNeueFaelle:            neueFaelle.blAnzahlNeueFaelle || "-1"
                 ,deAnzahlNeueFaelle:            neueFaelle.deAnzahlNeueFaelle || "-1"
@@ -1142,7 +1140,7 @@ async function largeWidget(covidDaten) {
         if (custom.bund.hospitalisierungInzidenz.show) { zeileAusgeben(custom.bund.hospitalisierungInzidenz, text.sectionData, covidDaten.deHospitalisierungInzidenz7T) }
         if (custom.bund.hospitalisierung7Tage.show) { zeileAusgeben(custom.bund.hospitalisierung7Tage, text.sectionData, covidDaten.deHospitalisierungFaelle7T) }
         if (custom.bund.neuinfektioenenAnzahl.show) { zeileAusgeben(custom.bund.neuinfektioenenAnzahl, text.sectionData, covidDaten.deAnzahlNeueFaelle) }
-        if (custom.bund.neuinfektioenenLiveInzidenz.show) { zeileAusgeben(custom.bund.neuinfektioenenLiveInzidenz, text.sectionData, covidDaten.deLiveInzidenz) }
+        if (custom.bund.neuinfektioenenInzidenz.show) { zeileAusgeben(custom.bund.neuinfektioenenInzidenz, text.sectionData, covidDaten.deInzidenz) }
         if (custom.bund.intensivbettenBelegtProzent.show && diviNutzungsfreigabe) { zeileAusgeben(custom.bund.intensivbettenBelegtProzent, text.sectionData, covidDaten.deIntensivBelegungProzent) }
         if (custom.bund.intensivbettenBelegtAnzahl.show && diviNutzungsfreigabe) { zeileAusgeben(custom.bund.intensivbettenBelegtAnzahl, text.sectionData, covidDaten.deIntensivbelegungAnzahl) }
         if (custom.bund.intensivbettenFrei.show && diviNutzungsfreigabe) { zeileAusgeben(custom.bund.intensivbettenFrei, text.sectionData, covidDaten.deFreieIntensivbetten) }
@@ -1183,7 +1181,7 @@ async function largeWidget(covidDaten) {
         
         if (custom.land.hospitalisierungInzidenz.show) { zeileAusgeben(custom.land.hospitalisierungInzidenz, text.sectionData, covidDaten.blHospitalisierungInzidenz7T) }
         if (custom.land.hospitalisierung7Tage.show) { zeileAusgeben(custom.land.hospitalisierung7Tage, text.sectionData, covidDaten.blHospitalisierungFaelle7T) }
-        if (custom.land.neuinfektioenenLiveInzidenz.show) { zeileAusgeben(custom.land.neuinfektioenenLiveInzidenz, text.sectionData, covidDaten.blLiveInzidenz) }
+        if (custom.land.neuinfektioenenInzidenz.show) { zeileAusgeben(custom.land.neuinfektioenenInzidenz, text.sectionData, covidDaten.blInzidenz) }
         if (custom.land.neuinfektioenenStaticInzidenz.show) { zeileAusgeben(custom.land.neuinfektioenenStaticInzidenz, text.sectionData, covidDaten.blStaticInzidenz) }
         if (custom.land.neuinfektioenenAnzahl.show) { zeileAusgeben(custom.land.neuinfektioenenAnzahl, text.sectionData, covidDaten.blAnzahlNeueFaelle) }
         if (custom.land.intensivbettenBelegtProzent.show && diviNutzungsfreigabe) { zeileAusgeben(custom.land.intensivbettenBelegtProzent, text.sectionData, covidDaten.blIntensivBelegungProzent) }
@@ -1231,7 +1229,7 @@ async function largeWidget(covidDaten) {
 
         }
 
-        if (custom.kreis.neuinfektioenenLiveInzidenz.show) { zeileAusgeben(custom.kreis.neuinfektioenenLiveInzidenz, text.sectionData, covidDaten.lkLiveInzidenz) }
+        if (custom.kreis.neuinfektioenenInzidenz.show) { zeileAusgeben(custom.kreis.neuinfektioenenInzidenz, text.sectionData, covidDaten.lkInzidenz) }
         if (custom.kreis.neuinfektioenenStaticInzidenz.show) { zeileAusgeben(custom.kreis.neuinfektioenenStaticInzidenz, text.sectionData, covidDaten.lkStaticInzidenz) }
         if (custom.kreis.neuinfektioenenAnzahl.show) { zeileAusgeben(custom.kreis.neuinfektioenenAnzahl, text.sectionData, covidDaten.lkAnzahlNeueFaelle) }
         if (custom.kreis.intensivbettenBelegtProzent.show && diviNutzungsfreigabe) { zeileAusgeben(custom.kreis.intensivbettenBelegtProzent, text.sectionData, covidDaten.lkIntensivBelegungProzent) }
@@ -1273,9 +1271,9 @@ async function largeWidget(covidDaten) {
 }
 
 // Inzidenz für Deutschland ermitteln
-async function liveInzidenzHolen(lkID, blID, EWZ_LK, EWZ_BL) {
+async function InzidenzHolen(lkID, blID, EWZ_LK, EWZ_BL) {
 
-    logDebug("START async function liveInzidenzHolen")
+    logDebug("START async function InzidenzHolen")
     
     try {
         
@@ -1288,67 +1286,48 @@ async function liveInzidenzHolen(lkID, blID, EWZ_LK, EWZ_BL) {
         now.setDate(now.getDate() - 7)
         let start = now.toISOString().slice(0, 10)
         
-        let lkLiveIncidence = -1
+        let lkIncidence = -1
 
-        if (custom.kreis.show && custom.kreis.neuinfektioenenLiveInzidenz.show) {
+        if (custom.kreis.show && custom.kreis.neuinfektioenenInzidenz.show) {
 
             logDebug("start: " + start)
 
-            let lkLiveInzidenzRawData               = await new Request(rkiApiLkNeueFaelle7T(lkID, start)).loadJSON()
-            logDebug("lkLiveInzidenzRawData: " + JSON.stringify(lkLiveInzidenzRawData))
+            let lkInzidenzRawData               = await new Request(rkiApiLkNeueFaelle7T(lkID)).loadJSON()
+            logDebug("lkInzidenzRawData: " + JSON.stringify(lkInzidenzRawData))
 
-            let lkLiveCases7D = 0
+            let lkCases7D = lkInzidenzRawData.features[0].attributes.AnzFall7T
+            logDebug("lkCases7D: " + lkCases7D)
 
-            for (let i = 0; i < lkLiveInzidenzRawData.features.length; i++) {   
-            
-                lkLiveCases7D = lkLiveCases7D + lkLiveInzidenzRawData.features[i].attributes.cases
-
-            }
-            logDebug("lkLiveCases7D: " + lkLiveCases7D)
-
-            lkLiveIncidence = (((lkLiveCases7D / parseFloat(EWZ_LK) * 100000).toFixed(1)).replace(/\./g,",")).toLocaleString()
-            logDebug("lkLiveIncidence: " + lkLiveIncidence)
+            lkIncidence = (((lkCases7D / parseFloat(EWZ_LK) * 100000).toFixed(1)).replace(/\./g,",")).toLocaleString()
+            logDebug("lkIncidence: " + lkIncidence)
 
         }
 
-        let blLiveIncidence = -1
+        let blIncidence = -1
 
-        if (custom.land.show && custom.land.neuinfektioenenLiveInzidenz.show) {
+        if (custom.land.show && custom.land.neuinfektioenenInzidenz.show) {
 
-            let blLiveInzidenzRawData               = await new Request(rkiApiBlNeueFaelle7T(blID, start)).loadJSON()
-            logDebug("blLiveInzidenzRawData: " + JSON.stringify(blLiveInzidenzRawData))
+            let blInzidenzRawData               = await new Request(rkiApiBlNeueFaelle7T(blID)).loadJSON()
+            logDebug("blInzidenzRawData: " + JSON.stringify(blInzidenzRawData))
 
-            let blLiveCases7D = 0
+            let blCases7D = blInzidenzRawData.features[0].attributes.AnzFall7T
+            logDebug("blCases7D: " + blCases7D)
 
-            for (let i = 0; i < blLiveInzidenzRawData.features.length; i++) {   
-            
-                blLiveCases7D = blLiveCases7D + blLiveInzidenzRawData.features[i].attributes.cases
-
-            }
-        
-            logDebug("blLiveCases7D: " + blLiveCases7D)
-
-            blLiveIncidence = (((blLiveCases7D / parseFloat(EWZ_BL) * 100000).toFixed(1)).replace(/\./g,",")).toLocaleString()
-            logDebug("blLiveIncidence: " + blLiveIncidence)
+            blIncidence = (((blCases7D / parseFloat(EWZ_BL) * 100000).toFixed(1)).replace(/\./g,",")).toLocaleString()
+            logDebug("blIncidence: " + blIncidence)
 
         }
 
         let deEWZ = -1
-        let deLiveIncidence = -1
+        let deIncidence = -1
 
-        if (custom.bund.show && custom.bund.neuinfektioenenLiveInzidenz.show) {
+        if (custom.bund.show && custom.bund.neuinfektioenenInzidenz.show) {
 
-            let deLiveInzidenzRawData               = await new Request(rkiApiDeNeueFaelle7T(start)).loadJSON()
-            logDebug("deLiveInzidenzRawData: " + JSON.stringify(deLiveInzidenzRawData))
+            let deInzidenzRawData               = await new Request(rkiApiDeNeueFaelle7T).loadJSON()
+            logDebug("deInzidenzRawData: " + JSON.stringify(deInzidenzRawData))
 
-            let deLiveCases7D = 0
-
-            for (let i = 0; i < deLiveInzidenzRawData.features.length; i++) {   
-            
-                deLiveCases7D = deLiveCases7D + deLiveInzidenzRawData.features[i].attributes.cases
-
-            }
-            logDebug("deLiveCases7D: " + deLiveCases7D)
+            let deCases7D = deInzidenzRawData.features[0].attributes.AnzFall7T
+            logDebug("deCases7D: " + deCases7D)
 
             let deEwzRawData                        = await new Request(rkiApiDeEwz).loadJSON()
             logDebug("deEwzRawData: " + JSON.stringify(deEwzRawData))
@@ -1356,25 +1335,25 @@ async function liveInzidenzHolen(lkID, blID, EWZ_LK, EWZ_BL) {
             deEWZ                                   = deEwzRawData.features[0].attributes.EWZ
             logDebug("deEWZ: " + JSON.stringify(deEWZ))
 
-            deLiveIncidence = (((deLiveCases7D / parseFloat(deEWZ) * 100000).toFixed(1)).replace(/\./g,",")).toLocaleString()
-            logDebug("deLiveIncidence: " + deLiveIncidence)
+            deIncidence = (((deCases7D / parseFloat(deEWZ) * 100000).toFixed(1)).replace(/\./g,",")).toLocaleString()
+            logDebug("deIncidence: " + deIncidence)
 
         }
         
-        logDebug("END async function liveInzidenzHolen()")
+        logDebug("END async function InzidenzHolen()")
 
         return {
             
-                lkLiveInzidenz:                 lkLiveIncidence
-                ,blLiveInzidenz:                blLiveIncidence
-                ,deLiveInzidenz:                deLiveIncidence
+                lkInzidenz:                 lkIncidence
+                ,blInzidenz:                blIncidence
+                ,deInzidenz:                deIncidence
                 ,deEWZ:                         deEWZ
 
         }
                     
     } catch(e) {
 
-       logDebug("END async function liveInzidenzHolen() return null")
+       logDebug("END async function InzidenzHolen() return null")
 
        return null;
 
@@ -1440,7 +1419,7 @@ async function neueFaelleHolen(ags, bl_id) {
 
             let lkRawData                       = await new Request(rkiApiLkNeueFaelle(ags)).loadJSON()
             logDebug("lkRawData: " + JSON.stringify(lkRawData))
-            lkAnzahlNeueFaelle              = lkRawData.features[0].attributes.lkAnzahlNeueFaelle || 0
+            lkAnzahlNeueFaelle              = lkRawData.features[0].attributes.AnzFallNeu || 0
             logDebug("lkAnzahlNeueFaelle: " + lkAnzahlNeueFaelle)
 
         }
@@ -1451,7 +1430,7 @@ async function neueFaelleHolen(ags, bl_id) {
 
             let blRawData                       = await new Request(rkiApiBlNeueFaelle(bl_id)).loadJSON()
             logDebug("blRawData: " + JSON.stringify(blRawData))
-            blAnzahlNeueFaelle              = blRawData.features[0].attributes.blAnzahlNeueFaelle || 0
+            blAnzahlNeueFaelle              = blRawData.features[0].attributes.AnzFallNeu || 0
             logDebug("blAnzahlNeueFaelle: " + blAnzahlNeueFaelle)
 
         }
@@ -1462,7 +1441,7 @@ async function neueFaelleHolen(ags, bl_id) {
 
             let deRawData                       = await new Request(rkiApiDeNeueFaelle).loadJSON()
             logDebug("deRawData: " + JSON.stringify(deRawData))
-            deAnzahlNeueFaelle              = deRawData.features[0].attributes.deAnzahlNeueFaelle || 0
+            deAnzahlNeueFaelle              = deRawData.features[0].attributes.AnzFallNeu || 0
             logDebug("deAnzahlNeueFaelle: " + deAnzahlNeueFaelle)
 
         }
@@ -1501,7 +1480,7 @@ async function alleFaelleHolen(bl_id) {
 
             let blRawData                       = await new Request(rkiApiBlFaelle(bl_id)).loadJSON()
             logDebug("blRawData: " + JSON.stringify(blRawData))
-            blAnzahlFaelle                  = blRawData.features[0].attributes.cases || 0
+            blAnzahlFaelle                  = blRawData.features[0].attributes.AnzFall || 0
             logDebug("blAnzahlFaelle: " + blAnzahlFaelle)
 
         }
@@ -1512,7 +1491,7 @@ async function alleFaelleHolen(bl_id) {
 
             let deRawData                       = await new Request(rkiApiDeFaelle).loadJSON()
             logDebug("deRawData: " + JSON.stringify(deRawData))
-            let deAnzahlFaelle                  = deRawData.features[0].attributes.cases || 0
+            deAnzahlFaelle                  = deRawData.features[0].attributes.AnzFall || 0
             logDebug("deAnzahlFaelle: " + deAnzahlFaelle)
 
         }
@@ -1551,7 +1530,7 @@ async function neueTodesfaelleHolen(ags, bl_id) {
 
             let lkRawData                       = await new Request(rkiApiLkNeueTodesfaelle(ags)).loadJSON()
             logDebug("lkRawData: " + JSON.stringify(lkRawData))
-            lkNeueTodesfaelle                  = lkRawData.features[0].attributes.newDeaths || 0
+            lkNeueTodesfaelle                  = lkRawData.features[0].attributes.AnzTodesfallNeu || 0
             logDebug("lkNeueTodesfaelle: " + lkNeueTodesfaelle)
 
         }
@@ -1562,7 +1541,7 @@ async function neueTodesfaelleHolen(ags, bl_id) {
 
             let blRawData                       = await new Request(rkiApiBlNeueTodesfaelle(bl_id)).loadJSON()
             logDebug("blRawData: " + JSON.stringify(blRawData))
-            blNeueTodesfaelle                  = blRawData.features[0].attributes.newDeaths || 0
+            blNeueTodesfaelle                  = blRawData.features[0].attributes.AnzTodesfallNeu || 0
             logDebug("blNeueTodesfaelle: " + blNeueTodesfaelle)
 
         }
@@ -1573,7 +1552,7 @@ async function neueTodesfaelleHolen(ags, bl_id) {
 
             let deRawData                       = await new Request(rkiApiDeNeueTodesfaelle).loadJSON()
             logDebug("deRawData: " + JSON.stringify(deRawData))
-            deNeueTodesfaelle                  = deRawData.features[0].attributes.newDeaths || 0
+            deNeueTodesfaelle                  = deRawData.features[0].attributes.AnzTodesfallNeu || 0
             logDebug("deNeueTodesfaelle: " + deNeueTodesfaelle)
 
         }
@@ -1612,7 +1591,7 @@ async function alleTodesfaelleHolen(bl_id) {
 
             let blRawData                       = await new Request(rkiApiBlTodesfaelle(bl_id)).loadJSON()
             logDebug("blRawData: " + JSON.stringify(blRawData))
-            blTodesfaelle                  = blRawData.features[0].attributes.Deaths || 0
+            blTodesfaelle                  = blRawData.features[0].attributes.AnzTodesfall || 0
             logDebug("blTodesfaelle: " + blTodesfaelle)
 
         }
@@ -1623,7 +1602,7 @@ async function alleTodesfaelleHolen(bl_id) {
 
             let deRawData                       = await new Request(rkiApiDeTodesfaelle).loadJSON()
             logDebug("deRawData: " + JSON.stringify(deRawData))
-            deTodesfaelle                  = deRawData.features[0].attributes.Deaths || 0
+            deTodesfaelle                  = deRawData.features[0].attributes.AnzTodesfall || 0
             logDebug("deTodesfaelle: " + deTodesfaelle)
 
         }
@@ -1662,7 +1641,7 @@ async function geneseneHolen(ags, bl_id) {
 
             let lkRawData                       = await new Request(rkiApiLkGenesen(ags)).loadJSON()
             logDebug("lkRawData: " + JSON.stringify(lkRawData))
-            lkGenesene                  = lkRawData.features[0].attributes.Recovered || 0
+            lkGenesene                  = lkRawData.features[0].attributes.AnzGenesen || 0
             logDebug("lkGenesene: " + lkGenesene)
 
         }
@@ -1673,7 +1652,7 @@ async function geneseneHolen(ags, bl_id) {
 
             let blRawData                       = await new Request(rkiApiBlGenesen(bl_id)).loadJSON()
             logDebug("blRawData: " + JSON.stringify(blRawData))
-            blGenesene                  = blRawData.features[0].attributes.Recovered || 0
+            blGenesene                  = blRawData.features[0].attributes.AnzGenesen || 0
             logDebug("blGenesene: " + blGenesene)
 
         }
@@ -1684,7 +1663,7 @@ async function geneseneHolen(ags, bl_id) {
 
             let deRawData                       = await new Request(rkiApiDeGenesen).loadJSON()
             logDebug("deRawData: " + JSON.stringify(deRawData))
-            deGenesene                  = deRawData.features[0].attributes.Recovered || 0
+            deGenesene                  = deRawData.features[0].attributes.AnzGenesen || 0
             logDebug("deGenesene: " + deGenesene)
         
         }
@@ -1715,7 +1694,7 @@ async function hospitalisierungHolen (bundesland) {
     logDebug("START async function hospitalisierungHolen(bundesland)")
     logDebug("bundesland: " + bundesland)
     
-    try {
+    //try {
 
         let deHospitalisierungFaelle7T      = 0
         let deHospitalisierungInzidenz7T    = 0
@@ -1772,13 +1751,13 @@ async function hospitalisierungHolen (bundesland) {
 
         }
 
-    } catch(e) {
+    //} catch(e) {
 
-        logDebug("END async function hospitalisierungHolen(bundesland) return null")
+    //    logDebug("END async function hospitalisierungHolen(bundesland) return null")
 
-        return null;
+    //    return null;
 
-    }
+    //}
 
 }
 
