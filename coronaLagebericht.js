@@ -78,7 +78,7 @@
 // Die Verwendung von Texten, Textteilen oder Bildmaterial bedarf einer schriftlichen Zustimmung der Redaktion.
 
 // DIVI-Nutzungsfreigabe liegt vor (ja = true / nein = false)
-const diviNutzungsfreigabe  = false
+const diviNutzungsfreigabe  = true
 
 // Widget Basic Information
 const basic = {
@@ -90,8 +90,8 @@ const basic = {
 
     }
 
-    ,version:               "v0.98"
-    ,lastChange:            "24.05.2023"
+    ,version:               "v0.99"
+    ,lastChange:            "26.05.2023"
     ,author:                "icsAT"
     ,source:                "https://github.com/icsAT/AktuellerCoronaLagebericht"
 
@@ -99,8 +99,8 @@ const basic = {
 
 const custom = {
 
-    debug:                  false
-    ,logging:               false
+    debug:                  true
+    ,logging:               true
     ,altUeberschrift:       ""
     ,cacheTime:             120
 
@@ -759,7 +759,7 @@ const custom = {
         }
         ,intensivbettenBelegtAnzahl:  {
 
-            show:           false
+            show:           true
             ,text:          "Intensivbettenbelegung C19"
             ,einheit:       ""
             ,warnGelb:      -1
@@ -770,7 +770,7 @@ const custom = {
         }
         ,intensivbettenFrei:  {
 
-            show:           false
+            show:           true
             ,text:          "Freie Intensivbetten"
             ,einheit:       ""
             ,warnGelb:      10
@@ -901,6 +901,9 @@ const rkiCsvImpfungen           = `https://raw.githubusercontent.com/robert-koch
 const rkiCsvRFaktor             = `https://raw.githubusercontent.com/robert-koch-institut/SARS-CoV-2-Nowcasting_und_-R-Schaetzung/main/Nowcast_R_aktuell.csv`
 
 // running the script
+let now = new Date()
+logDebug("START Script: " + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}))
+
 config.widgetFamily = config.widgetFamily || 'large'
 
 let widget = await createWidgetCache()
@@ -941,11 +944,14 @@ if (config.runsInWidget) {
 
 }
 
+now = new Date()
+logDebug("END Script: " + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}))
+
 Script.complete()
 
 // create the widget from cache
 async function createWidgetCache() {
-
+    
     let fm = FileManager.local()
     const iCloudInUse = fm.isFileStoredIniCloud(module.filename)
     fm = iCloudInUse ? FileManager.iCloud() : fm
@@ -979,12 +985,12 @@ async function createWidgetCache() {
 		logDebug("geodaten: " + JSON.stringify(geodaten))
             
 		lakrDaten = await lakrDatenHolen(geodaten)
+        fm.writeString(cacheFileLaKr, JSON.stringify(lakrDaten, null, 2))
 		logDebug("lakrDaten: " + JSON.stringify(lakrDaten))
 		
 		locationID  = { AGS: lakrDaten.AGS }
+        fm.writeString(cacheFile, JSON.stringify(locationID, null, 2))
 		logDebug("locationID aktuell: " + JSON.stringify(locationID))
-
-		fm.writeString(cacheFile, JSON.stringify(locationID, null, 2))
 
 	} catch(e) {
   
@@ -1127,92 +1133,112 @@ async function createWidgetCache() {
 
     }
     
-    if ( lakrDaten ) { covidDaten.AGS = lakrDaten.AGS }
-    if ( lakrDaten ) { covidDaten.GEN = lakrDaten.GEN }
-    if ( lakrDaten ) { covidDaten.BEZ = lakrDaten.BEZ }
-    if ( lakrDaten ) { covidDaten.BL = lakrDaten.BL }
-    if ( lakrDaten ) { covidDaten.BL_ID = lakrDaten.BL_ID }
-    if ( lakrDaten ) { covidDaten.lkLastUpdate = lakrDaten.lkLastUpdate }
+    if ( lakrDaten ) {
+        
+        covidDaten.AGS = lakrDaten.AGS
+        covidDaten.GEN = lakrDaten.GEN
+        covidDaten.BEZ = lakrDaten.BEZ
+        covidDaten.BL = lakrDaten.BL
+        covidDaten.BL_ID = lakrDaten.BL_ID
+        covidDaten.lkLastUpdate = lakrDaten.last_update
     
-    if ( keydDaten ) { covidDaten.lkInzidenz = keydDaten.lkInzidenz }
-    if ( keydDaten ) { covidDaten.blInzidenz = keydDaten.blInzidenz }
-    if ( keydDaten ) { covidDaten.deInzidenz = keydDaten.deInzidenz }
-    if ( keydDaten ) { covidDaten.lkAnzahlNeueFaelle = keydDaten.lkAnzahlNeueFaelle }
-    if ( keydDaten ) { covidDaten.blAnzahlNeueFaelle = keydDaten.blAnzahlNeueFaelle }
-    if ( keydDaten ) { covidDaten.deAnzahlNeueFaelle = keydDaten.deAnzahlNeueFaelle }
-    if ( keydDaten ) { covidDaten.lkNeueTodesfaelle = keydDaten.lkNeueTodesfaelle }
-    if ( keydDaten ) { covidDaten.blNeueTodesfaelle = keydDaten.blNeueTodesfaelle }
-    if ( keydDaten ) { covidDaten.deNeueTodesfaelle = keydDaten.deNeueTodesfaelle }
-    if ( keydDaten ) { covidDaten.lkAktive = keydDaten.lkAktive }
-    if ( keydDaten ) { covidDaten.blAktive = keydDaten.blAktive }
-    if ( keydDaten ) { covidDaten.deAktive = keydDaten.deAktive }
-    if ( keydDaten ) { covidDaten.lkAnzahlFaelle = keydDaten.lkAnzahlFaelle }
-    if ( keydDaten ) { covidDaten.blAnzahlFaelle = keydDaten.blAnzahlFaelle }
-    if ( keydDaten ) { covidDaten.deAnzahlFaelle = keydDaten.deAnzahlFaelle }
-    if ( keydDaten ) { covidDaten.lkAnzahlFaelle7T = keydDaten.lkAnzahlFaelle7T }
-    if ( keydDaten ) { covidDaten.blAnzahlFaelle7T = keydDaten.blAnzahlFaelle7T }
-    if ( keydDaten ) { covidDaten.deAnzahlFaelle7T = keydDaten.deAnzahlFaelle7T }
-    if ( keydDaten ) { covidDaten.lkTodesfaelle = keydDaten.lkTodesfaelle }
-    if ( keydDaten ) { covidDaten.blTodesfaelle = keydDaten.blTodesfaelle }
-    if ( keydDaten ) { covidDaten.deTodesfaelle = keydDaten.deTodesfaelle }
-    if ( keydDaten ) { covidDaten.lkGenesene = keydDaten.lkGenesene }
-    if ( keydDaten ) { covidDaten.blGenesene = keydDaten.blGenesene }
-    if ( keydDaten ) { covidDaten.deGenesene = keydDaten.deGenesene }
-    if ( keydDaten ) { covidDaten.lkNeueGenesene = keydDaten.lkNeueGenesene }
-    if ( keydDaten ) { covidDaten.blNeueGenesene = keydDaten.blNeueGenesene }
-    if ( keydDaten ) { covidDaten.deNeueGenesene = keydDaten.deNeueGenesene }
-    if ( keydDaten ) { covidDaten.lkNeueAktive = keydDaten.lkNeueAktive }
-    if ( keydDaten ) { covidDaten.blNeueAktive = keydDaten.blNeueAktive }
-    if ( keydDaten ) { covidDaten.deNeueAktive = keydDaten.deNeueAktive }
+    }
     
-    if ( diviDaten ) { covidDaten.lkIntensivBelegungProzent = diviDaten.lkIntensivBelegungProzent }
-    if ( diviDaten ) { covidDaten.lkIntensivbelegungAnzahl = diviDaten.lkIntensivbelegungAnzahl }
-    if ( diviDaten ) { covidDaten.lkFreieIntensivbetten = diviDaten.lkFreieIntensivbetten }
-    if ( diviDaten ) { covidDaten.lkIntensivbettenUpdate = diviDaten.lkIntensivbettenUpdate }
-    if ( diviDaten ) { covidDaten.blIntensivBelegungProzent = diviDaten.blIntensivBelegungProzent }
-    if ( diviDaten ) { covidDaten.blIntensivbelegungAnzahl = diviDaten.blIntensivbelegungAnzahl }
-    if ( diviDaten ) { covidDaten.blFreieIntensivbetten = diviDaten.blFreieIntensivbetten }
-    if ( diviDaten ) { covidDaten.blIntensivbettenUpdate = diviDaten.blIntensivbettenUpdate }
-    if ( diviDaten ) { covidDaten.deIntensivBelegungProzent = diviDaten.deIntensivBelegungProzent }
-    if ( diviDaten ) { covidDaten.deIntensivbelegungAnzahl = diviDaten.deIntensivbelegungAnzahl }
-    if ( diviDaten ) { covidDaten.deFreieIntensivbetten = diviDaten.deFreieIntensivbetten }
-    if ( diviDaten ) { covidDaten.deIntensivbettenUpdate = diviDaten.deIntensivbettenUpdate }
+    if ( keydDaten ) {
+        
+        covidDaten.lkInzidenz = keydDaten.lkInzidenz
+        covidDaten.blInzidenz = keydDaten.blInzidenz
+        covidDaten.deInzidenz = keydDaten.deInzidenz
+        covidDaten.lkAnzahlNeueFaelle = keydDaten.lkAnzahlNeueFaelle
+        covidDaten.blAnzahlNeueFaelle = keydDaten.blAnzahlNeueFaelle
+        covidDaten.deAnzahlNeueFaelle = keydDaten.deAnzahlNeueFaelle
+        covidDaten.lkNeueTodesfaelle = keydDaten.lkNeueTodesfaelle
+        covidDaten.blNeueTodesfaelle = keydDaten.blNeueTodesfaelle
+        covidDaten.deNeueTodesfaelle = keydDaten.deNeueTodesfaelle
+        covidDaten.lkAktive = keydDaten.lkAktive
+        covidDaten.blAktive = keydDaten.blAktive
+        covidDaten.deAktive = keydDaten.deAktive
+        covidDaten.lkAnzahlFaelle = keydDaten.lkAnzahlFaelle
+        covidDaten.blAnzahlFaelle = keydDaten.blAnzahlFaelle
+        covidDaten.deAnzahlFaelle = keydDaten.deAnzahlFaelle
+        covidDaten.lkAnzahlFaelle7T = keydDaten.lkAnzahlFaelle7T
+        covidDaten.blAnzahlFaelle7T = keydDaten.blAnzahlFaelle7T
+        covidDaten.deAnzahlFaelle7T = keydDaten.deAnzahlFaelle7T
+        covidDaten.lkTodesfaelle = keydDaten.lkTodesfaelle
+        covidDaten.blTodesfaelle = keydDaten.blTodesfaelle
+        covidDaten.deTodesfaelle = keydDaten.deTodesfaelle
+        covidDaten.lkGenesene = keydDaten.lkGenesene
+        covidDaten.blGenesene = keydDaten.blGenesene
+        covidDaten.deGenesene = keydDaten.deGenesene
+        covidDaten.lkNeueGenesene = keydDaten.lkNeueGenesene
+        covidDaten.blNeueGenesene = keydDaten.blNeueGenesene
+        covidDaten.deNeueGenesene = keydDaten.deNeueGenesene
+        covidDaten.lkNeueAktive = keydDaten.lkNeueAktive
+        covidDaten.blNeueAktive = keydDaten.blNeueAktive
+        covidDaten.deNeueAktive = keydDaten.deNeueAktive
     
-    if ( impfDaten ) { covidDaten.deImpfungAnzahl = impfDaten.deImpfungAnzahl }
-    if ( impfDaten ) { covidDaten.deImpfungAnzahlMin1 = impfDaten.deImpfungAnzahlMin1 }
-    if ( impfDaten ) { covidDaten.deImpfungAnzahlGI = impfDaten.deImpfungAnzahlGI }
-    if ( impfDaten ) { covidDaten.deImpfungAnzahlBoost1 = impfDaten.deImpfungAnzahlBoost1 }
-    if ( impfDaten ) { covidDaten.deImpfungAnzahlBoost2 = impfDaten.deImpfungAnzahlBoost2 }
-    if ( impfDaten ) { covidDaten.deImpfungAnzahlBoost3 = impfDaten.deImpfungAnzahlBoost3 }
-    if ( impfDaten ) { covidDaten.deImpfungAnzahlBoost4 = impfDaten.deImpfungAnzahlBoost4 }
-    if ( impfDaten ) { covidDaten.deImpfungQuoteMin1 = impfDaten.deImpfungQuoteMin1 }
-    if ( impfDaten ) { covidDaten.deImpfungQuoteGI = impfDaten.deImpfungQuoteGI }
-    if ( impfDaten ) { covidDaten.deImpfungQuoteBoost1 = impfDaten.deImpfungQuoteBoost1 }
-    if ( impfDaten ) { covidDaten.deImpfungQuoteBoost2 = impfDaten.deImpfungQuoteBoost2 }
-    if ( impfDaten ) { covidDaten.deImpfungUpdate = impfDaten.deImpfungUpdate }
-    if ( impfDaten ) { covidDaten.blImpfungAnzahl = impfDaten.blImpfungAnzahl }
-    if ( impfDaten ) { covidDaten.blImpfungAnzahlMin1 = impfDaten.blImpfungAnzahlMin1 }
-    if ( impfDaten ) { covidDaten.blImpfungAnzahlGI = impfDaten.blImpfungAnzahlGI }
-    if ( impfDaten ) { covidDaten.blImpfungAnzahlBoost1 = impfDaten.blImpfungAnzahlBoost1 }
-    if ( impfDaten ) { covidDaten.blImpfungAnzahlBoost2 = impfDaten.blImpfungAnzahlBoost2 }
-    if ( impfDaten ) { covidDaten.blImpfungAnzahlBoost3 = impfDaten.blImpfungAnzahlBoost3 }
-    if ( impfDaten ) { covidDaten.blImpfungAnzahlBoost4 = impfDaten.blImpfungAnzahlBoost4 }
-    if ( impfDaten ) { covidDaten.blImpfungQuoteMin1 = impfDaten.blImpfungQuoteMin1 }
-    if ( impfDaten ) { covidDaten.blImpfungQuoteGI = impfDaten.blImpfungQuoteGI }
-    if ( impfDaten ) { covidDaten.blImpfungQuoteBoost1 = impfDaten.blImpfungQuoteBoost1 }
-    if ( impfDaten ) { covidDaten.blImpfungQuoteBoost2 = impfDaten.blImpfungQuoteBoost2 }
-    if ( impfDaten ) { covidDaten.blImpfungUpdate = impfDaten.blImpfungUpdate }
+    }
+    
+    if ( diviDaten ) {
+        
+        covidDaten.lkIntensivBelegungProzent = diviDaten.lkIntensivBelegungProzent
+        covidDaten.lkIntensivbelegungAnzahl = diviDaten.lkIntensivbelegungAnzahl
+        covidDaten.lkFreieIntensivbetten = diviDaten.lkFreieIntensivbetten
+        covidDaten.lkIntensivbettenUpdate = diviDaten.lkIntensivbettenUpdate
+        covidDaten.blIntensivBelegungProzent = diviDaten.blIntensivBelegungProzent
+        covidDaten.blIntensivbelegungAnzahl = diviDaten.blIntensivbelegungAnzahl
+        covidDaten.blFreieIntensivbetten = diviDaten.blFreieIntensivbetten
+        covidDaten.blIntensivbettenUpdate = diviDaten.blIntensivbettenUpdate
+        covidDaten.deIntensivBelegungProzent = diviDaten.deIntensivBelegungProzent
+        covidDaten.deIntensivbelegungAnzahl = diviDaten.deIntensivbelegungAnzahl
+        covidDaten.deFreieIntensivbetten = diviDaten.deFreieIntensivbetten
+        covidDaten.deIntensivbettenUpdate = diviDaten.deIntensivbettenUpdate
+    
+    }
+    
+    if ( impfDaten ) { 
+        
+        covidDaten.deImpfungAnzahl = impfDaten.deImpfungAnzahl
+        covidDaten.deImpfungAnzahlMin1 = impfDaten.deImpfungAnzahlMin1
+        covidDaten.deImpfungAnzahlGI = impfDaten.deImpfungAnzahlGI
+        covidDaten.deImpfungAnzahlBoost1 = impfDaten.deImpfungAnzahlBoost1
+        covidDaten.deImpfungAnzahlBoost2 = impfDaten.deImpfungAnzahlBoost2
+        covidDaten.deImpfungAnzahlBoost3 = impfDaten.deImpfungAnzahlBoost3
+        covidDaten.deImpfungAnzahlBoost4 = impfDaten.deImpfungAnzahlBoost4
+        covidDaten.deImpfungQuoteMin1 = impfDaten.deImpfungQuoteMin1
+        covidDaten.deImpfungQuoteGI = impfDaten.deImpfungQuoteGI
+        covidDaten.deImpfungQuoteBoost1 = impfDaten.deImpfungQuoteBoost1
+        covidDaten.deImpfungQuoteBoost2 = impfDaten.deImpfungQuoteBoost2
+        covidDaten.deImpfungUpdate = impfDaten.deImpfungUpdate
+        covidDaten.blImpfungAnzahl = impfDaten.blImpfungAnzahl
+        covidDaten.blImpfungAnzahlMin1 = impfDaten.blImpfungAnzahlMin1
+        covidDaten.blImpfungAnzahlGI = impfDaten.blImpfungAnzahlGI
+        covidDaten.blImpfungAnzahlBoost1 = impfDaten.blImpfungAnzahlBoost1
+        covidDaten.blImpfungAnzahlBoost2 = impfDaten.blImpfungAnzahlBoost2
+        covidDaten.blImpfungAnzahlBoost3 = impfDaten.blImpfungAnzahlBoost3
+        covidDaten.blImpfungAnzahlBoost4 = impfDaten.blImpfungAnzahlBoost4
+        covidDaten.blImpfungQuoteMin1 = impfDaten.blImpfungQuoteMin1
+        covidDaten.blImpfungQuoteGI = impfDaten.blImpfungQuoteGI
+        covidDaten.blImpfungQuoteBoost1 = impfDaten.blImpfungQuoteBoost1
+        covidDaten.blImpfungQuoteBoost2 = impfDaten.blImpfungQuoteBoost2
+        covidDaten.blImpfungUpdate = impfDaten.blImpfungUpdate
+    
+    }
 
-    if ( hospDaten ) { covidDaten.blHospitalisierungFaelle7T = hospDaten.blHospitalisierungFaelle7T }
-    if ( hospDaten ) { covidDaten.blHospitalisierungInzidenz7T = hospDaten.blHospitalisierungInzidenz7T }
-    if ( hospDaten ) { covidDaten.blHospitalisierungUpdate = hospDaten.blHospitalisierungUpdate }
-    if ( hospDaten ) { covidDaten.deHospitalisierungFaelle7T = hospDaten.deHospitalisierungFaelle7T }
-    if ( hospDaten ) { covidDaten.deHospitalisierungInzidenz7T = hospDaten.deHospitalisierungInzidenz7T }
-    if ( hospDaten ) { covidDaten.deHospitalisierungUpdate = hospDaten.deHospitalisierungUpdate }
+    if ( hospDaten ) {
+
+        covidDaten.blHospitalisierungFaelle7T = hospDaten.blHospitalisierungFaelle7T
+        covidDaten.blHospitalisierungInzidenz7T = hospDaten.blHospitalisierungInzidenz7T
+        covidDaten.blHospitalisierungUpdate = hospDaten.blHospitalisierungUpdate
+        covidDaten.deHospitalisierungFaelle7T = hospDaten.deHospitalisierungFaelle7T
+        covidDaten.deHospitalisierungInzidenz7T = hospDaten.deHospitalisierungInzidenz7T
+        covidDaten.deHospitalisierungUpdate = hospDaten.deHospitalisierungUpdate
+    
+    }
 
     if ( rWerDaten ) { covidDaten.rFaktor = rWerDaten.rFaktor }
  
-    logDebug("covidDaten: " + JSON.stringify(covidDaten))
+    logDebug("covidDaten aus Cache: " + JSON.stringify(covidDaten))
 
     listWidget                              = new ListWidget()
     listWidget.backgroundColor              = Color.clear()
@@ -1228,7 +1254,7 @@ async function createWidgetCache() {
    
         if (config.widgetFamily == 'large')  {
         
-            await largeWidget(covidDaten)
+            await largeWidget(covidDaten,true)
 
         } else {
 
@@ -1282,12 +1308,12 @@ async function createWidget() {
 		logDebug("geodaten: " + JSON.stringify(geodaten))
             
 		lakrDaten = await lakrDatenHolen(geodaten)
+        fm.writeString(cacheFileLaKr, JSON.stringify(lakrDaten, null, 2))
 		logDebug("lakrDaten: " + JSON.stringify(lakrDaten))
 		
 		locationID = { AGS: lakrDaten.AGS }
+        fm.writeString(cacheFile, JSON.stringify(locationID, null, 2))
 		logDebug("locationID aktuell: " + JSON.stringify(locationID))
-
-		fm.writeString(cacheFile, JSON.stringify(locationID, null, 2))
 
 	} catch(e) {
   
@@ -1346,6 +1372,197 @@ async function createWidget() {
     let rWerDaten = cacheHolen(fm, cacheFileRWer, custom.cacheTime)
     logDebug("rWerDaten aus Cache: " + JSON.stringify(rWerDaten))
 
+    let covidDaten = {
+
+        AGS:                            "00000"
+        ,GEN:                           "n/a"
+        ,BEZ:                           ""
+        ,BL:                            "n/a"
+        ,BL_ID:                         "0"
+        ,lkLastUpdate:                  "Fehler"
+        ,lkInzidenz:                    "-1"
+        ,blInzidenz:                    "-1"
+        ,deInzidenz:                    "-1"
+        ,lkAnzahlNeueFaelle:            "-1"
+        ,blAnzahlNeueFaelle:            "-1"
+        ,deAnzahlNeueFaelle:            "-1"
+        ,lkNeueTodesfaelle:             "-1"
+        ,blNeueTodesfaelle:             "-1"
+        ,deNeueTodesfaelle:             "-1"
+        ,lkAktive:                      "-1"
+        ,blAktive:                      "-1"
+        ,deAktive:                      "-1"
+        ,lkAnzahlFaelle:                "-1"
+        ,blAnzahlFaelle:                "-1"
+        ,deAnzahlFaelle:                "-1"
+        ,lkAnzahlFaelle7T:              "-1"
+        ,blAnzahlFaelle7T:              "-1"
+        ,deAnzahlFaelle7T:              "-1"
+        ,lkTodesfaelle:                 "-1"            
+        ,blTodesfaelle:                 "-1"
+        ,deTodesfaelle:                 "-1"
+        ,lkGenesene:                    "-1"
+        ,blGenesene:                    "-1"
+        ,deGenesene:                    "-1"
+        ,lkNeueGenesene:                "-1"
+        ,blNeueGenesene:                "-1"
+        ,deNeueGenesene:                "-1"
+        ,lkNeueAktive:                  "-1"
+        ,blNeueAktive:                  "-1"
+        ,deNeueAktive:                  "-1"
+        ,lkIntensivBelegungProzent:     "-1"
+        ,lkIntensivbelegungAnzahl:      "-1"
+        ,lkFreieIntensivbetten:         "-1"
+        ,lkIntensivbettenUpdate:        "Fehler"
+        ,blIntensivBelegungProzent:     "-1"
+        ,blIntensivbelegungAnzahl:      "-1"
+        ,blFreieIntensivbetten:         "-1"
+        ,blIntensivbettenUpdate:        "Fehler"
+        ,deIntensivBelegungProzent:     "-1"
+        ,deIntensivbelegungAnzahl:      "-1"
+        ,deFreieIntensivbetten:         "-1"
+        ,deIntensivbettenUpdate:        "Fehler"
+        ,blHospitalisierungFaelle7T:    "-1"
+        ,blHospitalisierungInzidenz7T:  "-1"
+        ,blHospitalisierungUpdate:      "-1"
+        ,deHospitalisierungFaelle7T:    "-1"
+        ,deHospitalisierungInzidenz7T:  "-1"
+        ,deHospitalisierungUpdate:      "Fehler"
+        ,deImpfungAnzahl:               "-1"
+        ,deImpfungAnzahlMin1:           "-1"
+        ,deImpfungAnzahlGI:             "-1"
+        ,deImpfungAnzahlBoost1:         "-1"
+        ,deImpfungAnzahlBoost2:         "-1"
+        ,deImpfungAnzahlBoost3:         "-1"
+        ,deImpfungAnzahlBoost4:         "-1"
+        ,deImpfungQuoteMin1:            "-1"
+        ,deImpfungQuoteGI:              "-1"
+        ,deImpfungQuoteBoost1:          "-1"
+        ,deImpfungQuoteBoost2:          "-1"
+        ,deImpfungUpdate:               "Fehler"
+        ,blImpfungAnzahl:               "-1"
+        ,blImpfungAnzahlMin1:           "-1"
+        ,blImpfungAnzahlGI:             "-1"
+        ,blImpfungAnzahlBoost1:         "-1"
+        ,blImpfungAnzahlBoost2:         "-1"
+        ,blImpfungAnzahlBoost3:         "-1"
+        ,blImpfungAnzahlBoost4:         "-1"
+        ,blImpfungQuoteMin1:            "-1"
+        ,blImpfungQuoteGI:              "-1"
+        ,blImpfungQuoteBoost1:          "-1"
+        ,blImpfungQuoteBoost2:          "-1"
+        ,blImpfungUpdate:               "Fehler"
+        ,rFaktor:                       "-1"
+
+    }
+
+    if ( lakrDaten ) {
+        
+        covidDaten.AGS = lakrDaten.AGS
+        covidDaten.GEN = lakrDaten.GEN
+        covidDaten.BEZ = lakrDaten.BEZ
+        covidDaten.BL = lakrDaten.BL
+        covidDaten.BL_ID = lakrDaten.BL_ID
+        covidDaten.lkLastUpdate = lakrDaten.last_update
+    
+    }
+    
+    if ( keydDaten ) {
+        
+        covidDaten.lkInzidenz = keydDaten.lkInzidenz
+        covidDaten.blInzidenz = keydDaten.blInzidenz
+        covidDaten.deInzidenz = keydDaten.deInzidenz
+        covidDaten.lkAnzahlNeueFaelle = keydDaten.lkAnzahlNeueFaelle
+        covidDaten.blAnzahlNeueFaelle = keydDaten.blAnzahlNeueFaelle
+        covidDaten.deAnzahlNeueFaelle = keydDaten.deAnzahlNeueFaelle
+        covidDaten.lkNeueTodesfaelle = keydDaten.lkNeueTodesfaelle
+        covidDaten.blNeueTodesfaelle = keydDaten.blNeueTodesfaelle
+        covidDaten.deNeueTodesfaelle = keydDaten.deNeueTodesfaelle
+        covidDaten.lkAktive = keydDaten.lkAktive
+        covidDaten.blAktive = keydDaten.blAktive
+        covidDaten.deAktive = keydDaten.deAktive
+        covidDaten.lkAnzahlFaelle = keydDaten.lkAnzahlFaelle
+        covidDaten.blAnzahlFaelle = keydDaten.blAnzahlFaelle
+        covidDaten.deAnzahlFaelle = keydDaten.deAnzahlFaelle
+        covidDaten.lkAnzahlFaelle7T = keydDaten.lkAnzahlFaelle7T
+        covidDaten.blAnzahlFaelle7T = keydDaten.blAnzahlFaelle7T
+        covidDaten.deAnzahlFaelle7T = keydDaten.deAnzahlFaelle7T
+        covidDaten.lkTodesfaelle = keydDaten.lkTodesfaelle
+        covidDaten.blTodesfaelle = keydDaten.blTodesfaelle
+        covidDaten.deTodesfaelle = keydDaten.deTodesfaelle
+        covidDaten.lkGenesene = keydDaten.lkGenesene
+        covidDaten.blGenesene = keydDaten.blGenesene
+        covidDaten.deGenesene = keydDaten.deGenesene
+        covidDaten.lkNeueGenesene = keydDaten.lkNeueGenesene
+        covidDaten.blNeueGenesene = keydDaten.blNeueGenesene
+        covidDaten.deNeueGenesene = keydDaten.deNeueGenesene
+        covidDaten.lkNeueAktive = keydDaten.lkNeueAktive
+        covidDaten.blNeueAktive = keydDaten.blNeueAktive
+        covidDaten.deNeueAktive = keydDaten.deNeueAktive
+    
+    }
+    
+    if ( diviDaten ) {
+        
+        covidDaten.lkIntensivBelegungProzent = diviDaten.lkIntensivBelegungProzent
+        covidDaten.lkIntensivbelegungAnzahl = diviDaten.lkIntensivbelegungAnzahl
+        covidDaten.lkFreieIntensivbetten = diviDaten.lkFreieIntensivbetten
+        covidDaten.lkIntensivbettenUpdate = diviDaten.lkIntensivbettenUpdate
+        covidDaten.blIntensivBelegungProzent = diviDaten.blIntensivBelegungProzent
+        covidDaten.blIntensivbelegungAnzahl = diviDaten.blIntensivbelegungAnzahl
+        covidDaten.blFreieIntensivbetten = diviDaten.blFreieIntensivbetten
+        covidDaten.blIntensivbettenUpdate = diviDaten.blIntensivbettenUpdate
+        covidDaten.deIntensivBelegungProzent = diviDaten.deIntensivBelegungProzent
+        covidDaten.deIntensivbelegungAnzahl = diviDaten.deIntensivbelegungAnzahl
+        covidDaten.deFreieIntensivbetten = diviDaten.deFreieIntensivbetten
+        covidDaten.deIntensivbettenUpdate = diviDaten.deIntensivbettenUpdate
+    
+    }
+    
+    if ( impfDaten ) { 
+        
+        covidDaten.deImpfungAnzahl = impfDaten.deImpfungAnzahl
+        covidDaten.deImpfungAnzahlMin1 = impfDaten.deImpfungAnzahlMin1
+        covidDaten.deImpfungAnzahlGI = impfDaten.deImpfungAnzahlGI
+        covidDaten.deImpfungAnzahlBoost1 = impfDaten.deImpfungAnzahlBoost1
+        covidDaten.deImpfungAnzahlBoost2 = impfDaten.deImpfungAnzahlBoost2
+        covidDaten.deImpfungAnzahlBoost3 = impfDaten.deImpfungAnzahlBoost3
+        covidDaten.deImpfungAnzahlBoost4 = impfDaten.deImpfungAnzahlBoost4
+        covidDaten.deImpfungQuoteMin1 = impfDaten.deImpfungQuoteMin1
+        covidDaten.deImpfungQuoteGI = impfDaten.deImpfungQuoteGI
+        covidDaten.deImpfungQuoteBoost1 = impfDaten.deImpfungQuoteBoost1
+        covidDaten.deImpfungQuoteBoost2 = impfDaten.deImpfungQuoteBoost2
+        covidDaten.deImpfungUpdate = impfDaten.deImpfungUpdate
+        covidDaten.blImpfungAnzahl = impfDaten.blImpfungAnzahl
+        covidDaten.blImpfungAnzahlMin1 = impfDaten.blImpfungAnzahlMin1
+        covidDaten.blImpfungAnzahlGI = impfDaten.blImpfungAnzahlGI
+        covidDaten.blImpfungAnzahlBoost1 = impfDaten.blImpfungAnzahlBoost1
+        covidDaten.blImpfungAnzahlBoost2 = impfDaten.blImpfungAnzahlBoost2
+        covidDaten.blImpfungAnzahlBoost3 = impfDaten.blImpfungAnzahlBoost3
+        covidDaten.blImpfungAnzahlBoost4 = impfDaten.blImpfungAnzahlBoost4
+        covidDaten.blImpfungQuoteMin1 = impfDaten.blImpfungQuoteMin1
+        covidDaten.blImpfungQuoteGI = impfDaten.blImpfungQuoteGI
+        covidDaten.blImpfungQuoteBoost1 = impfDaten.blImpfungQuoteBoost1
+        covidDaten.blImpfungQuoteBoost2 = impfDaten.blImpfungQuoteBoost2
+        covidDaten.blImpfungUpdate = impfDaten.blImpfungUpdate
+    
+    }
+
+    if ( hospDaten ) {
+
+        covidDaten.blHospitalisierungFaelle7T = hospDaten.blHospitalisierungFaelle7T
+        covidDaten.blHospitalisierungInzidenz7T = hospDaten.blHospitalisierungInzidenz7T
+        covidDaten.blHospitalisierungUpdate = hospDaten.blHospitalisierungUpdate
+        covidDaten.deHospitalisierungFaelle7T = hospDaten.deHospitalisierungFaelle7T
+        covidDaten.deHospitalisierungInzidenz7T = hospDaten.deHospitalisierungInzidenz7T
+        covidDaten.deHospitalisierungUpdate = hospDaten.deHospitalisierungUpdate
+    
+    }
+
+    if ( rWerDaten ) { covidDaten.rFaktor = rWerDaten.rFaktor }
+
+    logDebug("covidDaten aus Cache: " + JSON.stringify(covidDaten))
+    
     if (!geodaten || geodaten == "") {
             
         geodaten = await geodatenHolen(args.widgetParameter)
@@ -1353,135 +1570,156 @@ async function createWidget() {
         
     }
     
-    if (!lakrDaten || lakrDaten == "") {
+    if (!lakrDaten || lakrDaten == "" || lakrDaten.last_update == "Fehler") {
         
         lakrDaten = await lakrDatenHolen(geodaten)
+        fm.writeString(cacheFileLaKr, JSON.stringify(lakrDaten, null, 2))
         logDebug("lakrDaten: " + JSON.stringify(lakrDaten))
         
+        if ( lakrDaten ) {
+        
+            covidDaten.AGS = lakrDaten.AGS
+            covidDaten.GEN = lakrDaten.GEN
+            covidDaten.BEZ = lakrDaten.BEZ
+            covidDaten.BL = lakrDaten.BL
+            covidDaten.BL_ID = lakrDaten.BL_ID
+            covidDaten.lkLastUpdate = lakrDaten.last_update
+        
+        }
+        
     }
-    fm.writeString(cacheFileLaKr, JSON.stringify(lakrDaten, null, 2))
     
     if (!keydDaten || keydDaten.cacheExpired) {
 
         keydDaten = await keyDataHolen(lakrDaten.AGS, lakrDaten.BL_ID)
-        logDebug("keydDaten: " + JSON.stringify(keydDaten))
         fm.writeString(cacheFileKeyD, JSON.stringify(keydDaten, null, 2))
+        logDebug("keydDaten: " + JSON.stringify(keydDaten))
+
+        if ( keydDaten ) {
+        
+            covidDaten.lkInzidenz = keydDaten.lkInzidenz
+            covidDaten.blInzidenz = keydDaten.blInzidenz
+            covidDaten.deInzidenz = keydDaten.deInzidenz
+            covidDaten.lkAnzahlNeueFaelle = keydDaten.lkAnzahlNeueFaelle
+            covidDaten.blAnzahlNeueFaelle = keydDaten.blAnzahlNeueFaelle
+            covidDaten.deAnzahlNeueFaelle = keydDaten.deAnzahlNeueFaelle
+            covidDaten.lkNeueTodesfaelle = keydDaten.lkNeueTodesfaelle
+            covidDaten.blNeueTodesfaelle = keydDaten.blNeueTodesfaelle
+            covidDaten.deNeueTodesfaelle = keydDaten.deNeueTodesfaelle
+            covidDaten.lkAktive = keydDaten.lkAktive
+            covidDaten.blAktive = keydDaten.blAktive
+            covidDaten.deAktive = keydDaten.deAktive
+            covidDaten.lkAnzahlFaelle = keydDaten.lkAnzahlFaelle
+            covidDaten.blAnzahlFaelle = keydDaten.blAnzahlFaelle
+            covidDaten.deAnzahlFaelle = keydDaten.deAnzahlFaelle
+            covidDaten.lkAnzahlFaelle7T = keydDaten.lkAnzahlFaelle7T
+            covidDaten.blAnzahlFaelle7T = keydDaten.blAnzahlFaelle7T
+            covidDaten.deAnzahlFaelle7T = keydDaten.deAnzahlFaelle7T
+            covidDaten.lkTodesfaelle = keydDaten.lkTodesfaelle
+            covidDaten.blTodesfaelle = keydDaten.blTodesfaelle
+            covidDaten.deTodesfaelle = keydDaten.deTodesfaelle
+            covidDaten.lkGenesene = keydDaten.lkGenesene
+            covidDaten.blGenesene = keydDaten.blGenesene
+            covidDaten.deGenesene = keydDaten.deGenesene
+            covidDaten.lkNeueGenesene = keydDaten.lkNeueGenesene
+            covidDaten.blNeueGenesene = keydDaten.blNeueGenesene
+            covidDaten.deNeueGenesene = keydDaten.deNeueGenesene
+            covidDaten.lkNeueAktive = keydDaten.lkNeueAktive
+            covidDaten.blNeueAktive = keydDaten.blNeueAktive
+            covidDaten.deNeueAktive = keydDaten.deNeueAktive
+        
+        }
 
     }
     
     if (!diviDaten || diviDaten.cacheExpired) {
 
         diviDaten = await intensivbettenHolen(lakrDaten.AGS, lakrDaten.BL_ID)
-        logDebug("diviDaten: " + JSON.stringify(diviDaten))
         fm.writeString(cacheFileDIVI, JSON.stringify(diviDaten, null, 2))
+        logDebug("diviDaten: " + JSON.stringify(diviDaten))
+        
+        if ( diviDaten ) {
+        
+            covidDaten.lkIntensivBelegungProzent = diviDaten.lkIntensivBelegungProzent
+            covidDaten.lkIntensivbelegungAnzahl = diviDaten.lkIntensivbelegungAnzahl
+            covidDaten.lkFreieIntensivbetten = diviDaten.lkFreieIntensivbetten
+            covidDaten.lkIntensivbettenUpdate = diviDaten.lkIntensivbettenUpdate
+            covidDaten.blIntensivBelegungProzent = diviDaten.blIntensivBelegungProzent
+            covidDaten.blIntensivbelegungAnzahl = diviDaten.blIntensivbelegungAnzahl
+            covidDaten.blFreieIntensivbetten = diviDaten.blFreieIntensivbetten
+            covidDaten.blIntensivbettenUpdate = diviDaten.blIntensivbettenUpdate
+            covidDaten.deIntensivBelegungProzent = diviDaten.deIntensivBelegungProzent
+            covidDaten.deIntensivbelegungAnzahl = diviDaten.deIntensivbelegungAnzahl
+            covidDaten.deFreieIntensivbetten = diviDaten.deFreieIntensivbetten
+            covidDaten.deIntensivbettenUpdate = diviDaten.deIntensivbettenUpdate
+        
+        }
 
     }
     
     if (!impfDaten || impfDaten.cacheExpired) {
 
         impfDaten = await impfDatenHolen(lakrDaten.BL)
-        logDebug("impfDaten: " + JSON.stringify(impfDaten))
         fm.writeString(cacheFileImpf, JSON.stringify(impfDaten, null, 2))
+        logDebug("impfDaten: " + JSON.stringify(impfDaten))
+        
+        if ( impfDaten ) { 
+        
+            covidDaten.deImpfungAnzahl = impfDaten.deImpfungAnzahl
+            covidDaten.deImpfungAnzahlMin1 = impfDaten.deImpfungAnzahlMin1
+            covidDaten.deImpfungAnzahlGI = impfDaten.deImpfungAnzahlGI
+            covidDaten.deImpfungAnzahlBoost1 = impfDaten.deImpfungAnzahlBoost1
+            covidDaten.deImpfungAnzahlBoost2 = impfDaten.deImpfungAnzahlBoost2
+            covidDaten.deImpfungAnzahlBoost3 = impfDaten.deImpfungAnzahlBoost3
+            covidDaten.deImpfungAnzahlBoost4 = impfDaten.deImpfungAnzahlBoost4
+            covidDaten.deImpfungQuoteMin1 = impfDaten.deImpfungQuoteMin1
+            covidDaten.deImpfungQuoteGI = impfDaten.deImpfungQuoteGI
+            covidDaten.deImpfungQuoteBoost1 = impfDaten.deImpfungQuoteBoost1
+            covidDaten.deImpfungQuoteBoost2 = impfDaten.deImpfungQuoteBoost2
+            covidDaten.deImpfungUpdate = impfDaten.deImpfungUpdate
+            covidDaten.blImpfungAnzahl = impfDaten.blImpfungAnzahl
+            covidDaten.blImpfungAnzahlMin1 = impfDaten.blImpfungAnzahlMin1
+            covidDaten.blImpfungAnzahlGI = impfDaten.blImpfungAnzahlGI
+            covidDaten.blImpfungAnzahlBoost1 = impfDaten.blImpfungAnzahlBoost1
+            covidDaten.blImpfungAnzahlBoost2 = impfDaten.blImpfungAnzahlBoost2
+            covidDaten.blImpfungAnzahlBoost3 = impfDaten.blImpfungAnzahlBoost3
+            covidDaten.blImpfungAnzahlBoost4 = impfDaten.blImpfungAnzahlBoost4
+            covidDaten.blImpfungQuoteMin1 = impfDaten.blImpfungQuoteMin1
+            covidDaten.blImpfungQuoteGI = impfDaten.blImpfungQuoteGI
+            covidDaten.blImpfungQuoteBoost1 = impfDaten.blImpfungQuoteBoost1
+            covidDaten.blImpfungQuoteBoost2 = impfDaten.blImpfungQuoteBoost2
+            covidDaten.blImpfungUpdate = impfDaten.blImpfungUpdate
+        
+        }
 
     }
     
     if (!hospDaten || hospDaten.cacheExpired) {
 
         hospDaten = await hospitalisierungHolen(lakrDaten.BL)
-        logDebug("hospDaten: " + JSON.stringify(hospDaten))
         fm.writeString(cacheFileHosp, JSON.stringify(hospDaten, null, 2))
+        logDebug("hospDaten: " + JSON.stringify(hospDaten))
+        
+        if ( hospDaten ) {
+
+            covidDaten.blHospitalisierungFaelle7T = hospDaten.blHospitalisierungFaelle7T
+            covidDaten.blHospitalisierungInzidenz7T = hospDaten.blHospitalisierungInzidenz7T
+            covidDaten.blHospitalisierungUpdate = hospDaten.blHospitalisierungUpdate
+            covidDaten.deHospitalisierungFaelle7T = hospDaten.deHospitalisierungFaelle7T
+            covidDaten.deHospitalisierungInzidenz7T = hospDaten.deHospitalisierungInzidenz7T
+            covidDaten.deHospitalisierungUpdate = hospDaten.deHospitalisierungUpdate
+        
+        }
 
     }
     
     if (!rWerDaten || rWerDaten.cacheExpired) {
 
-        let rWerDaten = await rFaktorHolen()
-        logDebug("rWerDaten: " +JSON.stringify(rWerDaten))
+        rWerDaten = await rFaktorHolen()
         fm.writeString(cacheFileRWer, JSON.stringify(rWerDaten, null, 2))
-
-    }
-
-    covidDaten = {
-
-        AGS:                            lakrDaten.AGS
-        ,GEN:                           lakrDaten.GEN
-        ,BEZ:                           lakrDaten.BEZ
-        ,BL:                            lakrDaten.BL
-        ,BL_ID:                         lakrDaten.BL_ID
-        ,lkLastUpdate:                  lakrDaten.last_update
-        ,lkInzidenz:                    keydDaten.lkInzidenz
-        ,blInzidenz:                    keydDaten.blInzidenz
-        ,deInzidenz:                    keydDaten.deInzidenz
-        ,lkAnzahlNeueFaelle:            keydDaten.lkAnzahlNeueFaelle
-        ,blAnzahlNeueFaelle:            keydDaten.blAnzahlNeueFaelle
-        ,deAnzahlNeueFaelle:            keydDaten.deAnzahlNeueFaelle
-        ,lkNeueTodesfaelle:             keydDaten.lkNeueTodesfaelle
-        ,blNeueTodesfaelle:             keydDaten.blNeueTodesfaelle
-        ,deNeueTodesfaelle:             keydDaten.deNeueTodesfaelle
-        ,lkAktive:                      keydDaten.lkAktive
-        ,blAktive:                      keydDaten.blAktive
-        ,deAktive:                      keydDaten.deAktive
-        ,lkAnzahlFaelle:                keydDaten.lkAnzahlFaelle
-        ,blAnzahlFaelle:                keydDaten.blAnzahlFaelle
-        ,deAnzahlFaelle:                keydDaten.deAnzahlFaelle
-        ,lkAnzahlFaelle7T:              keydDaten.lkAnzahlFaelle7T
-        ,blAnzahlFaelle7T:              keydDaten.blAnzahlFaelle7T
-        ,deAnzahlFaelle7T:              keydDaten.deAnzahlFaelle7T
-        ,lkTodesfaelle:                 keydDaten.lkTodesfaelle       
-        ,blTodesfaelle:                 keydDaten.blTodesfaelle
-        ,deTodesfaelle:                 keydDaten.deTodesfaelle
-        ,lkGenesene:                    keydDaten.lkGenesene
-        ,blGenesene:                    keydDaten.blGenesene
-        ,deGenesene:                    keydDaten.deGenesene
-        ,lkNeueGenesene:                keydDaten.lkNeueGenesene
-        ,blNeueGenesene:                keydDaten.blNeueGenesene
-        ,deNeueGenesene:                keydDaten.deNeueGenesene
-        ,lkNeueAktive:                  keydDaten.lkNeueAktive
-        ,blNeueAktive:                  keydDaten.blNeueAktive
-        ,deNeueAktive:                  keydDaten.deNeueAktive
-        ,lkIntensivBelegungProzent:     diviDaten.lkIntensivBelegungProzent
-        ,lkIntensivbelegungAnzahl:      diviDaten.lkIntensivbelegungAnzahl
-        ,lkFreieIntensivbetten:         diviDaten.lkFreieIntensivbetten
-        ,lkIntensivbettenUpdate:        diviDaten.lkIntensivbettenUpdate
-        ,blIntensivBelegungProzent:     diviDaten.blIntensivBelegungProzent
-        ,blIntensivbelegungAnzahl:      diviDaten.blIntensivbelegungAnzahl
-        ,blFreieIntensivbetten:         diviDaten.blFreieIntensivbetten
-        ,blIntensivbettenUpdate:        diviDaten.blIntensivbettenUpdate
-        ,deIntensivBelegungProzent:     diviDaten.deIntensivBelegungProzent
-        ,deIntensivbelegungAnzahl:      diviDaten.deIntensivbelegungAnzahl
-        ,deFreieIntensivbetten:         diviDaten.deFreieIntensivbetten
-        ,deIntensivbettenUpdate:        diviDaten.deIntensivbettenUpdate
-        ,blHospitalisierungFaelle7T:    hospDaten.blHospitalisierungFaelle7T
-        ,blHospitalisierungInzidenz7T:  hospDaten.blHospitalisierungInzidenz7T
-        ,blHospitalisierungUpdate:      hospDaten.blHospitalisierungUpdate
-        ,deHospitalisierungFaelle7T:    hospDaten.deHospitalisierungFaelle7T
-        ,deHospitalisierungInzidenz7T:  hospDaten.deHospitalisierungInzidenz7T
-        ,deHospitalisierungUpdate:      hospDaten.deHospitalisierungUpdate
-        ,deImpfungAnzahl:               impfDaten.deImpfungAnzahl
-        ,deImpfungAnzahlMin1:           impfDaten.deImpfungAnzahlMin1
-        ,deImpfungAnzahlGI:             impfDaten.deImpfungAnzahlGI
-        ,deImpfungAnzahlBoost1:         impfDaten.deImpfungAnzahlBoost1
-        ,deImpfungAnzahlBoost2:         impfDaten.deImpfungAnzahlBoost2
-        ,deImpfungAnzahlBoost3:         impfDaten.deImpfungAnzahlBoost3
-        ,deImpfungAnzahlBoost4:         impfDaten.deImpfungAnzahlBoost4
-        ,deImpfungQuoteMin1:            impfDaten.deImpfungQuoteMin1
-        ,deImpfungQuoteGI:              impfDaten.deImpfungQuoteGI
-        ,deImpfungQuoteBoost1:          impfDaten.deImpfungQuoteBoost1
-        ,deImpfungQuoteBoost2:          impfDaten.deImpfungQuoteBoost2
-        ,deImpfungUpdate:               impfDaten.deImpfungUpdate
-        ,blImpfungAnzahl:               impfDaten.blImpfungAnzahl
-        ,blImpfungAnzahlMin1:           impfDaten.blImpfungAnzahlMin1
-        ,blImpfungAnzahlGI:             impfDaten.blImpfungAnzahlGI
-        ,blImpfungAnzahlBoost1:         impfDaten.blImpfungAnzahlBoost1
-        ,blImpfungAnzahlBoost2:         impfDaten.blImpfungAnzahlBoost2
-        ,blImpfungAnzahlBoost3:         impfDaten.blImpfungAnzahlBoost3
-        ,blImpfungAnzahlBoost4:         impfDaten.blImpfungAnzahlBoost4
-        ,blImpfungQuoteMin1:            impfDaten.blImpfungQuoteMin1
-        ,blImpfungQuoteGI:              impfDaten. blImpfungQuoteGI
-        ,blImpfungQuoteBoost1:          impfDaten.blImpfungQuoteBoost1
-        ,blImpfungQuoteBoost2:          impfDaten.blImpfungQuoteBoost2
-        ,blImpfungUpdate:               impfDaten.blImpfungUpdate
-        ,rFaktor:                       rWerDaten.rFaktor
+        logDebug("rWerDaten: " +JSON.stringify(rWerDaten))
+        
+        if ( rWerDaten ) { covidDaten.rFaktor = rWerDaten.rFaktor }
 
     }
 
@@ -1501,7 +1739,7 @@ async function createWidget() {
    
         if (config.widgetFamily == 'large')  {
         
-            await largeWidget(covidDaten)
+            await largeWidget(covidDaten, false)
 
         } else {
 
@@ -1522,9 +1760,12 @@ async function createWidget() {
 }
 
 // large widget
-async function largeWidget(covidDaten) {
+async function largeWidget(covidDaten, fromCache) {
 
     logDebug("START async function largeWidget()")
+
+    logDebug("covidDaten: " + JSON.stringify(covidDaten))
+    logDebug("fromCache: " + fromCache)
 
     zeileAusgeben({ text: basic.name.full}, text.header, false)
     
@@ -1655,7 +1896,17 @@ async function largeWidget(covidDaten) {
 	now										 = new Date()
 	
     let footerLine                          = basic.name.short + " " + basic.version
-    footerLine                              = footerLine +  " WU:" + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+    
+    if (fromCache) {
+
+        footerLine                              = footerLine +  " WUC:" + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+
+    } else {
+
+        footerLine                              = footerLine +  " WU:" + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+
+    }
+    
     
     if (covidDaten.lkLastUpdate && covidDaten.lkLastUpdate != "Fehler") {
     
