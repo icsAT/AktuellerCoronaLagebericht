@@ -78,7 +78,7 @@
 // Die Verwendung von Texten, Textteilen oder Bildmaterial bedarf einer schriftlichen Zustimmung der Redaktion.
 
 // DIVI-Nutzungsfreigabe liegt vor (ja = true / nein = false)
-const diviNutzungsfreigabe  = true
+const diviNutzungsfreigabe  = false
 
 // Widget Basic Information
 const basic = {
@@ -99,8 +99,8 @@ const basic = {
 
 const custom = {
 
-    debug:                  true
-    ,logging:               true
+    debug:                  false
+    ,logging:               false
     ,altUeberschrift:       ""
     ,cacheTime:             120
 
