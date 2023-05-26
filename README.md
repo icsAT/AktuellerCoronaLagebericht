@@ -258,6 +258,10 @@ Quelle: https://www.niedersachsen.de/Coronavirus/aktuelle_lage_in_niedersachsen/
 
 # Versionen:
 
+Version 0.98 (26.05.2023):
+- Bessere Initialisierung der Werte.
+- Behebung kleinerer Fehler.
+
 Version 0.98 (25.05.2023):
 - Aktualisierungsdatum wird nur noch für angezeigte Werte angezeigt, sofern es keinen Dummy-Werte sind.
 - Behebung des Fehlers, dass teilweise Variablen nicht definiert sind.
