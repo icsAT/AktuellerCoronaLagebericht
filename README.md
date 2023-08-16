@@ -1,3 +1,10 @@
+# ACHTUNG: Keine Aktualiserung mehr
+
+Das Skript wird nicht mehr aktualisiert, da das RKI die bisher verwendete API nicht mehr aktualisiert.
+Daten können nur noch über Flat-Files abgerufen werden, die im Scriptable Widget aus Speichergründen nicht handelbar sind.
+Die Umstellung auf eine alternative API scheint darüberhinaus nicht sinnvoll, da die Daten auf Grund fehlender Tests ohnehin wenig aussagekraft haben.
+
+
 # Aktueller Corona Lagebericht (Scriptable App für Apple Devices)
 
 Dieses Widget zeigt Corona (Covid-19) Daten für Deutschland, ein Bundesland und einen Landkreis an. Es lassen sich diverse unterschiedliche Werte zur Anzeige konfigurieren. Dadurch erhält man den individuell benötigten Überblick über die aktuelle Lage (Scriptable App für Apple Devices) . 
